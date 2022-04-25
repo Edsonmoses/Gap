@@ -34,7 +34,7 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
 
-                <form class="mb-0">
+                <form class="mb-0" wire:submit.prevent="storeProperty">
                     <div class="form-box">
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -44,14 +44,15 @@
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label for="property-title">Property Title*</label>
-                                    <input type="text" class="form-control" name="property-title" id="property-title" required>
+                                    <input type="text" class="form-control" name="name" id="name" required wire:model="name"> 
+                                    <input type="hidden" class="form-control" name="slug" id="slug" required wire:model="slug"> 
                                 </div>
                             </div>
                             <!-- .col-md-12 end -->
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label for="property-description">Property Description*</label>
-                                    <textarea class="form-control" name="property-description" id="property-description" rows="2"></textarea>
+                                    <textarea class="form-control" name="property-description" id="property-description" rows="2" wire:model="description"></textarea>
                                 </div>
                             </div>
                             <!-- .col-md-12 end -->
@@ -60,7 +61,7 @@
                                     <label for="select-type">Type</label>
                                     <div class="select--box">
                                         <i class="fa fa-angle-down"></i>
-                                        <select id="select-type">
+                                        <select id="select-type" wire:model="type_id">
                                     <option>house</option>
                                     <option>appartment</option>
                                 </select>
@@ -73,7 +74,7 @@
                                     <label for="select-status">Status</label>
                                     <div class="select--box">
                                         <i class="fa fa-angle-down"></i>
-                                        <select id="select-status">
+                                        <select id="select-status" wire:model="status">
                                     <option>Sale</option>
                                     <option>Rent</option>
                                 </select>
@@ -84,84 +85,84 @@
                             <div class="col-xs-12 col-sm-4 col-md-4">
                                 <div class="form-group">
                                     <label for="location">Location</label>
-                                    <input type="text" class="form-control" name="location" id="location">
+                                    <input type="text" class="form-control" name="location" id="location" wire:model="location_id">
                                 </div>
                             </div>
                             <!-- .col-md-4 end -->
                             <div class="col-xs-12 col-sm-4 col-md-4">
                                 <div class="form-group">
                                     <label for="Bedrooms">Bedrooms</label>
-                                    <input type="text" class="form-control" name="Bedrooms" id="Bedrooms">
+                                    <input type="text" class="form-control" name="Bedrooms" id="Bedrooms" wire:model="bedrooms">
                                 </div>
                             </div>
                             <!-- .col-md-4 end -->
                             <div class="col-xs-12 col-sm-4 col-md-4">
                                 <div class="form-group">
                                     <label for="Bathrooms">Bathrooms</label>
-                                    <input type="text" class="form-control" name="Bathrooms" id="Bathrooms">
+                                    <input type="text" class="form-control" name="Bathrooms" id="Bathrooms" wire:model="bathrooms">
                                 </div>
                             </div>
                             <!-- .col-md-4 end -->
                             <div class="col-xs-12 col-sm-4 col-md-4">
                                 <div class="form-group">
                                     <label for="Floors">Floors</label>
-                                    <input type="text" class="form-control" name="Floors" id="Floors">
+                                    <input type="text" class="form-control" name="Floors" id="Floors" wire:model="floors">
                                 </div>
                             </div>
                             <!-- .col-md-4 end -->
                             <div class="col-xs-12 col-sm-4 col-md-4">
                                 <div class="form-group">
                                     <label for="Garages">Garages</label>
-                                    <input type="text" class="form-control" name="Garages" id="Garages">
+                                    <input type="text" class="form-control" name="Garages" id="Garages" wire:model="garages">
                                 </div>
                             </div>
                             <!-- .col-md-4 end -->
                             <div class="col-xs-12 col-sm-4 col-md-4">
                                 <div class="form-group">
                                     <label for="Area">Area</label>
-                                    <input type="text" class="form-control" name="Area" id="Area" placeholder="sq ft">
+                                    <input type="text" class="form-control" name="Area" id="Area" placeholder="sq ft" wire:model="area">
                                 </div>
                             </div>
                             <!-- .col-md-4 end -->
                             <div class="col-xs-12 col-sm-4 col-md-4">
                                 <div class="form-group">
                                     <label for="Size">Size</label>
-                                    <input type="text" class="form-control" name="Size" id="Size" placeholder="sq ft">
+                                    <input type="text" class="form-control" name="Size" id="Size" placeholder="sq ft" wire:model="size">
                                 </div>
                             </div>
                             <!-- .col-md-4 end -->
                             <div class="col-xs-12 col-sm-4 col-md-4">
                                 <div class="form-group">
                                     <label for="Sale-Rent-Price">Sale or Rent Price*</label>
-                                    <input type="text" class="form-control" name="Sale-Rent-Price" id="Sale-Rent-Price" required>
+                                    <input type="text" class="form-control" name="Sale-Rent-Price" id="Sale-Rent-Price" wire:model="SRprice" required>
                                 </div>
                             </div>
                             <!-- .col-md-4 end -->
                             <div class="col-xs-12 col-sm-4 col-md-4">
                                 <div class="form-group">
                                     <label for="Before-Price-Label">Before Price Label</label>
-                                    <input type="text" class="form-control" name="Before-Price-Label" id="Before-Price-Label" placeholder="ex: start from">
+                                    <input type="text" class="form-control" name="Before-Price-Label" id="Before-Price-Label" placeholder="ex: start from" wire:model="Bprice">
                                 </div>
                             </div>
                             <!-- .col-md-4 end -->
                             <div class="col-xs-12 col-sm-4 col-md-4">
                                 <div class="form-group">
                                     <label for="After-Price-Label">After Price Label</label>
-                                    <input type="text" class="form-control" name="After-Price-Label" id="After-Price-Label" placeholder="ex: monthly">
+                                    <input type="text" class="form-control" name="After-Price-Label" id="After-Price-Label" placeholder="ex: monthly" wire:model="Aprice">
                                 </div>
                             </div>
                             <!-- .col-md-4 end -->
                             <div class="col-xs-12 col-sm-4 col-md-4">
                                 <div class="form-group">
                                     <label for="Property-ID">Property ID*</label>
-                                    <input type="text" class="form-control" name="Property-ID" id="Property-ID">
+                                    <input type="text" class="form-control" name="Property-ID" id="Property-ID" wire:model="propertyID">
                                 </div>
                             </div>
                             <!-- .col-md-4 end -->
                             <div class="col-xs-12 col-sm-4 col-md-4">
                                 <div class="form-group">
                                     <label for="Video-URL">Video URL</label>
-                                    <input type="text" class="form-control" name="Video-URL" id="Video-URL" placeholder="Youtube, Vimeo, Dailymotion, etc..">
+                                    <input type="text" class="form-control" name="Video-URL" id="Video-URL" placeholder="Youtube, Vimeo, Dailymotion, etc.." wire:model="videoURL">
                                 </div>
                             </div>
                             <!-- .col-md-4 end -->
@@ -365,7 +366,7 @@
                             <div class="col-xs-12 col-sm-4 col-md-4">
                                 <div class="form-group">
                                     <label for="address">Address*</label>
-                                    <input type="text" class="form-control" name="address" id="address" placeholder="Enter your property address" required>
+                                    <input type="text" class="form-control" name="address" id="address" placeholder="Enter your property address" required wire:model="address">
                                 </div>
                             </div>
                             <!-- .col-md-4 end -->
@@ -374,7 +375,7 @@
                                     <label for="select-country">Country</label>
                                     <div class="select--box">
                                         <i class="fa fa-angle-down"></i>
-                                        <select id="select-country">
+                                        <select id="select-country" wire:model="country">
                                     <option>Select property country</option>
                                     <option>Select property country</option>
                                  </select>
@@ -385,28 +386,28 @@
                             <div class="col-xs-12 col-sm-4 col-md-4">
                                 <div class="form-group">
                                     <label for="city">City</label>
-                                    <input class="form-control" name="city" id="city">
+                                    <input class="form-control" name="city" id="city" wire:model="city">
                                 </div>
                             </div>
                             <!-- .col-md-4 end -->
                             <div class="col-xs-12 col-sm-4 col-md-4">
                                 <div class="form-group">
                                     <label for="state">State</label>
-                                    <input type="text" class="form-control" name="state" id="state">
+                                    <input type="text" class="form-control" name="state" id="state" wire:model="state">
                                 </div>
                             </div>
                             <!-- .col-md-4 end -->
                             <div class="col-xs-12 col-sm-4 col-md-4">
                                 <div class="form-group">
                                     <label for="Zip/Postal-code">Zip/Postal Code</label>
-                                    <input type="text" class="form-control" name="Zip/Postal-code" id="Zip/Postal-code">
+                                    <input type="text" class="form-control" name="Zip/Postal-code" id="Zip/Postal-code" wire:model="zipcode">
                                 </div>
                             </div>
                             <!-- .col-md-4 end -->
                             <div class="col-xs-12 col-sm-4 col-md-4">
                                 <div class="form-group">
                                     <label for="neighborhood">Neighborhood</label>
-                                    <input type="text" class="form-control" name="neighborhood" id="neighborhood">
+                                    <input type="text" class="form-control" name="neighborhood" id="neighborhood" wire:model="neighborhood ">
                                 </div>
                             </div>
                             <!-- .col-md-4 end -->

@@ -30,7 +30,7 @@
                 <div class="col-xs-12 col-sm-6 col-md-3 widget--about">
                     <div class="widget--content">
                         <div class="footer--logo">
-                            <img src="{{asset('assets/user/assets/images/logo/logo-dark2.jpeg')}}" alt="logo" width="126" height="35">
+                            <img src="{{asset('assets/user/assets/images/logo/GAP-Logo-FC.svg')}}" alt="logo" width="126" height="35">
                         </div>
                         <p>Pamstech House 4th Floor
                             Woodvale Grove, Westland, Nairobi

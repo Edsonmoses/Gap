@@ -66,6 +66,9 @@ Route::get('/contact', ContactComponent::class)->name('contact');
 Route::get('/faq', FAQComponent::class)->name('faq');
 //FAQ
 Route::get('/page-404', Page404Component::class);
+
+//For User
+Route::middleware(['auth:sanctum','verified'])->group(function(){
 //user Profile
 Route::get('/user/profile', UserProfileComponent::class)->name('user.profile');
 Route::get('/user/social-profile', UserSocialProfileComponent::class)->name('user.social');
@@ -79,15 +82,18 @@ Route::get('/properties-list', PropertieSlistComponent::class)->name('proplist')
 Route::get('/properties-list-split', PropertieSlistSplitComponent::class)->name('proplistspl');
 Route::get('/property-single-gallery', PropertieSingleGalleryComponent::class)->name('single_gallery');
 Route::get('/property-single-slider', PropertieSingleSliderComponent::class)->name('single_slider');
+});
 
-//Admin
+//For Admin
+Route::middleware(['auth:sanctum','verified','authadmin'])->group(function(){
 Route::get('/admin/home', AdminHomeComponent::class)->name('admin.home');
 Route::get('/admin/add-category', AdminAddCategoryComponent::class)->name('admin.addcategory');
 Route::get('/admin/add-features', AdminAddFeaturesComponent::class)->name('admin.addfeatures');
 Route::get('/admin/add-location', AdminAddLocationComponent::class)->name('admin.addlocation');
 Route::get('/admin/add-slider', AdminSliderComponent::class)->name('admin.addslider');
+});
 
-Route::middleware([
+/*Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified'
@@ -95,4 +101,4 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-});
+});*/

@@ -14,8 +14,8 @@
         <span class="icon-bar"></span>
         </button>
                 <a class="logo" href="/">
-            <img class="logo-light" src="{{asset('assets/user/assets/images/logo/logo-light.jpeg')}}" alt="Land Logo" width="126" height="35">
-            <img class="logo-dark" src="{{asset('assets/user/assets/images/logo/logo-dark.jpeg')}}" alt="Land Logo" width="126" height="35">
+            <img class="logo-light" src="{{asset('assets/user/assets/images/logo/GAP-Logo-All-White.png')}}" alt="Land Logo" width="126" height="35">
+            <img class="logo-dark" src="{{asset('assets/user/assets/images/logo/GAP-Logo-FC.svg')}}" alt="Land Logo" width="126" height="35">
         </a>
             </div>
 
@@ -79,19 +79,6 @@
                     </li>
                     <!-- li end -->
 
-                    <!-- Profile Menu-->
-                    <li class="has-dropdown">
-                        <a href="#" data-toggle="dropdown" class="dropdown-toggle menu-item">Profile</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/user/profile">user profile</a></li>
-                            <li><a href="/user/social-profile">social profile</a></li>
-                            <li><a href="/user/my-properties">my properties</a></li>
-                            <li><a href="/user/favourite-properties">favourite properties</a></li>
-                            <li><a href="/user/add-property">add property</a></li>
-                        </ul>
-                    </li>
-                    <!-- li end -->
-
                     <!-- Properties Menu-->
                     <li class="has-dropdown">
                         <a href="#" data-toggle="dropdown" class="dropdown-toggle menu-item">Properties</a>
@@ -136,6 +123,62 @@
                     <li><a href="/contact">contact</a></li>
                 </ul>
                 <!-- Module Signup  -->
+                @if (Route::has('login'))
+                    @auth
+                        @if (Auth::user()->utype === 'ADM')
+                        <div class="module module-login pull-left">
+                            <ul class="nav navbar-nav navbar-left">
+                            <li class="has-dropdown">
+                                <a href="#" data-toggle="dropdown" class="dropdown-toggle menu-item">My Account ({{ Auth::user()->name }})</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" title="Dashboard">Dashboard</a></li>
+                                     <!-- Profile Menu-->
+                                     <li><a href="/admin/add-category">Add category</a></li>
+                                     <li><a href="/admin/add-features">Add features</a></li>
+                                     <li><a href="/admin/add-location">Add location</a></li>
+                                     <li><a href="/admin/add-slider">Add slider</a></li>
+                                     <li><a href="/admin/home">Setting</a></li>
+                                     <!-- logout-->
+                                    <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" title="Logout">Logout</a></li>
+                                    <form id="logout-form" method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                    </form>
+                                </ul>
+                            </li>
+                            </ul>
+                        </div>
+                        <!-- Module Consultation  -->
+                        <div class="module module-property pull-left">
+                            <a href="/user/add-property" target="_blank" class="btn"><i class="fa fa-plus"></i> add property</a>
+                        </div>
+                        @else
+                        <div class="module module-login pull-left">
+                            <ul class="nav navbar-nav navbar-left">
+                            <li class="has-dropdown">
+                                <a href="#" data-toggle="dropdown" class="dropdown-toggle menu-item">Profile ({{ Auth::user()->name }})</a>
+                                <ul class="dropdown-menu">
+                                    <!-- Profile Menu-->
+                                    <li><a href="/user/profile">user profile</a></li>
+                                    <li><a href="/user/social-profile">social profile</a></li>
+                                    <li><a href="/user/my-properties">my properties</a></li>
+                                    <li><a href="/user/favourite-properties">favourite properties</a></li>
+                                    <li><a href="/user/add-property">add property</a></li>
+                                    <!-- logout-->
+                                    <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" title="Logout">Logout</a></li>
+                                    <form id="logout-form" method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                    </form>
+                                </ul>
+                            </li>
+                            </ul>
+                        </div>
+                        <!-- Module Consultation  -->
+                        <div class="module module-property pull-left">
+                            <a href="/user/add-property" target="_blank" class="btn"><i class="fa fa-plus"></i> add property</a>
+                        </div>
+                        @endif
+                    
+                @else
                 <div class="module module-login pull-left">
                     <a class="btn-popup" data-toggle="modal" data-target="#signupModule">Login</a>
                     <div class="modal register-login-modal fade" tabindex="-1" role="dialog" id="signupModule">
@@ -229,8 +272,10 @@
                 </div>
                 <!-- Module Consultation  -->
                 <div class="module module-property pull-left">
-                    <a href="/user/add-property" target="_blank" class="btn"><i class="fa fa-plus"></i> add property</a>
+                    <a data-toggle="modal" data-target="#signupModule" class="btn"><i class="fa fa-plus"></i> add property</a>
                 </div>
+                @endauth
+                @endif
             </div>
             <!-- /.navbar-collapse -->
         </div>

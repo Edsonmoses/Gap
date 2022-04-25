@@ -58,7 +58,7 @@
         
                                             <td>
                                                 @if ($setting->isActive == 'active')
-                                                <a href="#" onclick="confirm('Ara you sure, You want to deactivate this slider header') || event.stopImmediatePropagation()" wire:click.prevent="deactivate({{ $setting->id }})" style="margin-left: 10px"><i class="fa fa-power-off fa-1x text-danger"></i></a>
+                                                <a href="#" onclick="confirm('Ara you sure, You want to activate this slider header') || event.stopImmediatePropagation()" wire:click.prevent="deactivate({{ $setting->id }})" style="margin-left: 10px"><i class="fa fa-power-off fa-1x text-danger"></i></a>
                                                 @else
                                                 <a href="#" onclick="confirm('Ara you sure, You want to activate this slider header') || event.stopImmediatePropagation()" wire:click.prevent="updateSetting({{ $setting->id }})" style="margin-left: 10px"><i class="fa fa-power-off fa-1x text-success"></i></a>
                                                 @endif

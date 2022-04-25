@@ -25,10 +25,11 @@
       <script src="{{asset('assets/user/assets/js/html5shiv.js')}}"></script>
       <script src="{{asset('assets/user/assets/js/respond.min.js')}}"></script>
     <![endif]-->
-
+    @livewireStyles
     <!-- Document Title
     ============================================= -->
-    <title>{{ config('app.name', 'Ground & Properties Ltd - Gap') }} | Real Estate Html5 Template</title>
+    <title>{{ config('app.name', 'Ground & Properties Ltd - Gap') }} | </title>
+   
 </head>
 <script>
     window.livewire.on('imageUploaded',()=>{
