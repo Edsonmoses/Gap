@@ -62,8 +62,8 @@
                                     <div class="select--box">
                                         <i class="fa fa-angle-down"></i>
                                         <select id="select-type" wire:model="type_id">
-                                    <option>house</option>
-                                    <option>appartment</option>
+                                    <option value="2">house</option>
+                                    <option value="3">appartment</option>
                                 </select>
                                     </div>
                                 </div>
@@ -75,8 +75,8 @@
                                     <div class="select--box">
                                         <i class="fa fa-angle-down"></i>
                                         <select id="select-status" wire:model="status">
-                                    <option>Sale</option>
-                                    <option>Rent</option>
+                                    <option value="1">Sale</option>
+                                    <option value="3">Rent</option>
                                 </select>
                                     </div>
                                 </div>
@@ -85,7 +85,7 @@
                             <div class="col-xs-12 col-sm-4 col-md-4">
                                 <div class="form-group">
                                     <label for="location">Location</label>
-                                    <input type="text" class="form-control" name="location" id="location" wire:model="location_id">
+                                    <input type="text" class="form-control" name="location" id="location" wire:model="locations">
                                 </div>
                             </div>
                             <!-- .col-md-4 end -->
@@ -180,7 +180,7 @@
                                 <div class="input-checkbox">
                                     <label class="label-checkbox">
                                 <span>Center Cooling</span>
-                                <input type="checkbox">
+                                <input type="checkbox" value="1" wire:model="features_id">
                                 <span class="check-indicator"></span>
                             </label>
                                 </div>
@@ -190,7 +190,7 @@
                                 <div class="input-checkbox">
                                     <label class="label-checkbox">
                                 <span>Balcony</span>
-                                <input type="checkbox">
+                                <input type="checkbox" value="2" wire:model="features_id">
                                 <span class="check-indicator"></span>
                             </label>
                                 </div>
@@ -200,7 +200,7 @@
                                 <div class="input-checkbox">
                                     <label class="label-checkbox">
                                 <span>Pet Friendly</span>
-                                <input type="checkbox">
+                                <input type="checkbox" value="3" wire:model="features_id">
                                 <span class="check-indicator"></span>
                             </label>
                                 </div>
@@ -210,7 +210,7 @@
                                 <div class="input-checkbox">
                                     <label class="label-checkbox">
                                 <span>Barbeque</span>
-                                <input type="checkbox">
+                                <input type="checkbox" value="4" wire:model="features_id">
                                 <span class="check-indicator"></span>
                             </label>
                                 </div>
@@ -220,7 +220,7 @@
                                 <div class="input-checkbox">
                                     <label class="label-checkbox">
                                 <span>Fire Alarm</span>
-                                <input type="checkbox">
+                                <input type="checkbox" value="5" wire:model="features_id">
                                 <span class="check-indicator"></span>
                             </label>
                                 </div>
@@ -230,7 +230,7 @@
                                 <div class="input-checkbox">
                                     <label class="label-checkbox">
                                 <span>Modern Kitchen</span>
-                                <input type="checkbox">
+                                <input type="checkbox" value="6" wire:model="features_id">
                                 <span class="check-indicator"></span>
                             </label>
                                 </div>
@@ -240,7 +240,7 @@
                                 <div class="input-checkbox">
                                     <label class="label-checkbox">
                                 <span>Storage</span>
-                                <input type="checkbox">
+                                <input type="checkbox" value="7" wire:model="features_id">
                                 <span class="check-indicator"></span>
                             </label>
                                 </div>
@@ -250,7 +250,7 @@
                                 <div class="input-checkbox">
                                     <label class="label-checkbox">
                                 <span>Dryer</span>
-                                <input type="checkbox">
+                                <input type="checkbox" value="8" wire:model="features_id">
                                 <span class="check-indicator"></span>
                             </label>
                                 </div>
@@ -260,7 +260,7 @@
                                 <div class="input-checkbox">
                                     <label class="label-checkbox">
                                 <span>Heating</span>
-                                <input type="checkbox">
+                                <input type="checkbox" value="9" wire:model="features_id">
                                 <span class="check-indicator"></span>
                             </label>
                                 </div>
@@ -270,7 +270,7 @@
                                 <div class="input-checkbox">
                                     <label class="label-checkbox">
                                 <span>Pool</span>
-                                <input type="checkbox">
+                                <input type="checkbox" value="10" wire:model="features_id">
                                 <span class="check-indicator"></span>
                             </label>
                                 </div>
@@ -280,7 +280,7 @@
                                 <div class="input-checkbox">
                                     <label class="label-checkbox">
                                 <span>Laundry</span>
-                                <input type="checkbox">
+                                <input type="checkbox"value="11" wire:model="features_id">
                                 <span class="check-indicator"></span>
                             </label>
                                 </div>
@@ -290,7 +290,7 @@
                                 <div class="input-checkbox">
                                     <label class="label-checkbox">
                                 <span>Sauna</span>
-                                <input type="checkbox">
+                                <input type="checkbox" value="12" wire:model="features_id">
                                 <span class="check-indicator"></span>
                             </label>
                                 </div>
@@ -300,7 +300,7 @@
                                 <div class="input-checkbox">
                                     <label class="label-checkbox">
                                 <span>Gym</span>
-                                <input type="checkbox">
+                                <input type="checkbox" value="13" wire:model="features_id">
                                 <span class="check-indicator"></span>
                             </label>
                                 </div>
@@ -310,7 +310,7 @@
                                 <div class="input-checkbox">
                                     <label class="label-checkbox">
                                 <span>Elevator</span>
-                                <input type="checkbox">
+                                <input type="checkbox" value="14" wire:model="features_id">
                                 <span class="check-indicator"></span>
                             </label>
                                 </div>
@@ -320,7 +320,7 @@
                                 <div class="input-checkbox">
                                     <label class="label-checkbox">
                                 <span>Dish Washer</span>
-                                <input type="checkbox">
+                                <input type="checkbox" value="15" wire:model="features_id">
                                 <span class="check-indicator"></span>
                             </label>
                                 </div>
@@ -330,7 +330,7 @@
                                 <div class="input-checkbox">
                                     <label class="label-checkbox">
                                 <span>Emergency Exit</span>
-                                <input type="checkbox">
+                                <input type="checkbox" value="16" wire:model="features_id">
                                 <span class="check-indicator"></span>
                             </label>
                                 </div>
@@ -348,7 +348,8 @@
                             </div>
                             <!-- .col-md-12 end -->
                             <div class="col-xs-12 col-sm-4 col-md-12">
-                                <div id="dZUpload" class="dropzone"></div>
+                               <!-- <div id="dZUpload" class="dropzone"></div>-->
+                                <input type="file" class="form-control" name="gallery" id="gallery" wire:model="gallery">
                             </div>
                             <!-- .col-md-12 end -->
 
@@ -362,58 +363,72 @@
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <h4 class="form--title">Property Location</h4>
                             </div>
-                            <!-- .col-md-12 end -->
+                             <!-- .col-md-4 end -->
                             <div class="col-xs-12 col-sm-4 col-md-4">
+                                <div class="form-group">
+                                    <div class="select--box">
+                                        <i class="fa fa-angle-down"></i>
+                                        <select id="select-country" wire:model="country">
+                                    <option value="">Select property location</option>
+                                     @foreach($locations as $location)
+                                             <option value="{{ $location->id }}">{{ $location->neighborhood }}</option>
+                                     @endforeach
+                                 </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- .col-md-12 end -->
+                           <!-- <div class="col-xs-12 col-sm-4 col-md-4">
                                 <div class="form-group">
                                     <label for="address">Address*</label>
                                     <input type="text" class="form-control" name="address" id="address" placeholder="Enter your property address" required wire:model="address">
                                 </div>
                             </div>
-                            <!-- .col-md-4 end -->
+                            <!-- .col-md-4 end --
                             <div class="col-xs-12 col-sm-4 col-md-4">
                                 <div class="form-group">
                                     <label for="select-country">Country</label>
                                     <div class="select--box">
                                         <i class="fa fa-angle-down"></i>
                                         <select id="select-country" wire:model="country">
-                                    <option>Select property country</option>
-                                    <option>Select property country</option>
+                                    <option value="kimbu">Select property country</option>
+                                    <option value="thika">Select property country</option>
                                  </select>
                                     </div>
                                 </div>
                             </div>
-                            <!-- .col-md-4 end -->
+                            <!-- .col-md-4 end --
                             <div class="col-xs-12 col-sm-4 col-md-4">
                                 <div class="form-group">
                                     <label for="city">City</label>
                                     <input class="form-control" name="city" id="city" wire:model="city">
                                 </div>
                             </div>
-                            <!-- .col-md-4 end -->
+                            <!-- .col-md-4 end --
                             <div class="col-xs-12 col-sm-4 col-md-4">
                                 <div class="form-group">
                                     <label for="state">State</label>
                                     <input type="text" class="form-control" name="state" id="state" wire:model="state">
                                 </div>
                             </div>
-                            <!-- .col-md-4 end -->
+                            <!-- .col-md-4 end --
                             <div class="col-xs-12 col-sm-4 col-md-4">
                                 <div class="form-group">
                                     <label for="Zip/Postal-code">Zip/Postal Code</label>
                                     <input type="text" class="form-control" name="Zip/Postal-code" id="Zip/Postal-code" wire:model="zipcode">
                                 </div>
                             </div>
-                            <!-- .col-md-4 end -->
+                            <!-- .col-md-4 end --
                             <div class="col-xs-12 col-sm-4 col-md-4">
                                 <div class="form-group">
                                     <label for="neighborhood">Neighborhood</label>
                                     <input type="text" class="form-control" name="neighborhood" id="neighborhood" wire:model="neighborhood ">
                                 </div>
                             </div>
-                            <!-- .col-md-4 end -->
+                            <!-- .col-md-4 end --
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div id="googleMap" style="width:100%;height:380px;"></div>
-                            </div>
+                            </div>-->
                             <!-- .col-md-12 end -->
                         </div>
                         <!-- .row end -->

@@ -112,11 +112,11 @@
         </div>
         <!-- .slider-text end -->
     </div>
-    <div class="carousel slider-navs" data-slide="1" data-slide-rs="1" data-autoplay="true" data-nav="true" data-dots="false" data-space="0" data-loop="true" data-speed="800">
+    <div class="carousel slider-navs" data-slide="1" data-slide-rs="1" data-autoplay="false" data-nav="false" data-dots="false" data-space="0" data-loop="false" data-speed="800">
         <!-- Slide #1 -->
         <div class="slide--item bg-overlay bg-overlay-dark3">
             <div class="bg-section">
-                <img src="{{asset('assets/user/assets/images/slider/slide-bg/3.jpg')}}" alt="background">
+                <img src="{{asset('assets/user/assets/images/slider/slide-bg/Mt_Kenya.jpg')}}" alt="background">
             </div>
         </div>
         <!-- .slide-item end -->

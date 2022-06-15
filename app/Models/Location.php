@@ -9,9 +9,10 @@ class Location extends Model
 {
     use HasFactory;
     protected $table="locations";
+    protected $fillable = ['address','country','city','state','zipcode','neighborhood'];
 
-    public function property()
+    public function properties()
     {
-        return $this->hasMany(Property::class,'location_id')
+        return $this->hasMany(Property::class, 'location_id', 'id'); // we can also include comment model like: 'App\Models\Comment'
     }
 }

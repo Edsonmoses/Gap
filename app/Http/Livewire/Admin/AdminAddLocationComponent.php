@@ -33,7 +33,7 @@ class AdminAddLocationComponent extends Component
         ]);
     }
 
-    public function storeAds()
+    public function storeLocation()
     {
         $this->validate([
             'address' => 'required',
@@ -54,10 +54,11 @@ class AdminAddLocationComponent extends Component
         $location->postedby = $this->postedby;
         $location->save();
         session()->flash('message','Location has been created successfully!');
+        return redirect('/admin/add-location');
     }
 
     public function render()
     {
-        return view('livewire.admin.admin-add-location-component')->layout('layouts.base');
+        return view('livewire.admin.admin-add-location-component')->layout('layouts.backend');
     }
 }

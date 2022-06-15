@@ -8,6 +8,6 @@ class AdminSliderComponent extends Component
 {
     public function render()
     {
-        return view('livewire.admin.admin-slider-component')->layout('layouts.base');
+        return view('livewire.admin.admin-slider-component')->layout('layouts.backend');
     }
 }

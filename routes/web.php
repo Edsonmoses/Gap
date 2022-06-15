@@ -3,8 +3,25 @@
 use App\Http\Livewire\Admin\AdminAddCategoryComponent;
 use App\Http\Livewire\Admin\AdminAddFeaturesComponent;
 use App\Http\Livewire\Admin\AdminAddLocationComponent;
+use App\Http\Livewire\Admin\AdminAddPagesComponent;
+use App\Http\Livewire\Admin\AdminAddProductComponent;
+use App\Http\Livewire\Admin\AdminAddPropertyComponent;
+use App\Http\Livewire\Admin\AdminAddProvideComponent;
+use App\Http\Livewire\Admin\AdminAddStepsComponent;
+use App\Http\Livewire\Admin\AdminAddTypeComponent;
+use App\Http\Livewire\Admin\AdminCategoryComponent;
+use App\Http\Livewire\Admin\AdminEditCategoryComponent;
+use App\Http\Livewire\Admin\AdminEditPagesComponent;
+use App\Http\Livewire\Admin\AdminEditPropertyComponent;
+use App\Http\Livewire\Admin\AdminEditProvideComponent;
+use App\Http\Livewire\Admin\AdminEditStepsComponent;
 use App\Http\Livewire\Admin\AdminHomeComponent;
+use App\Http\Livewire\Admin\AdminMainSlidersComponent;
+use App\Http\Livewire\Admin\AdminPagesComponent;
+use App\Http\Livewire\Admin\AdminPropertyComponent;
+use App\Http\Livewire\Admin\AdminProvideComponent;
 use App\Http\Livewire\Admin\AdminSliderComponent;
+use App\Http\Livewire\Admin\AdminStepsComponent;
 use App\Http\Livewire\Pages\AboutComponent;
 use App\Http\Livewire\Pages\AgencyComponent;
 use App\Http\Livewire\Pages\AgencyProfileComponent;
@@ -66,6 +83,14 @@ Route::get('/contact', ContactComponent::class)->name('contact');
 Route::get('/faq', FAQComponent::class)->name('faq');
 //FAQ
 Route::get('/page-404', Page404Component::class);
+//Properties
+Route::get('/properties', PropertiesGridComponent::class)->name('properties');
+Route::get('/properties-grid-split', PropertiesGridSplitComponent::class)->name('propsplit');
+Route::get('/properties-list', PropertieSlistComponent::class)->name('proplist');
+Route::get('/properties-list-split', PropertieSlistSplitComponent::class)->name('proplistspl');
+Route::get('/property/{slug}', PropertieSingleGalleryComponent::class)->name('single_gallery');
+Route::get('/property-single-slider', PropertieSingleSliderComponent::class)->name('single_slider');
+
 
 //For User
 Route::middleware(['auth:sanctum','verified'])->group(function(){
@@ -75,22 +100,32 @@ Route::get('/user/social-profile', UserSocialProfileComponent::class)->name('use
 Route::get('/user/my-properties', UserPropertiesComponent::class)->name('user.properties');
 Route::get('/user/favourite-properties', UserFavouritePropertiesComponent::class)->name('user.favourite');
 Route::get('/user/add-property', UserAddPropertiesComponent::class)->name('user.addproperty');
-//user Profile
-Route::get('/properties', PropertiesGridComponent::class)->name('properties');
-Route::get('/properties-grid-split', PropertiesGridSplitComponent::class)->name('propsplit');
-Route::get('/properties-list', PropertieSlistComponent::class)->name('proplist');
-Route::get('/properties-list-split', PropertieSlistSplitComponent::class)->name('proplistspl');
-Route::get('/property-single-gallery', PropertieSingleGalleryComponent::class)->name('single_gallery');
-Route::get('/property-single-slider', PropertieSingleSliderComponent::class)->name('single_slider');
+
+
 });
 
 //For Admin
 Route::middleware(['auth:sanctum','verified','authadmin'])->group(function(){
 Route::get('/admin/home', AdminHomeComponent::class)->name('admin.home');
+Route::get('/admin/properties', AdminPropertyComponent::class)->name('admin.properties');
+Route::get('/admin/category', AdminCategoryComponent::class)->name('admin.category');
 Route::get('/admin/add-category', AdminAddCategoryComponent::class)->name('admin.addcategory');
+Route::get('/admin/edit-category{slug}', AdminEditCategoryComponent::class)->name('admin.editcategory');
 Route::get('/admin/add-features', AdminAddFeaturesComponent::class)->name('admin.addfeatures');
 Route::get('/admin/add-location', AdminAddLocationComponent::class)->name('admin.addlocation');
-Route::get('/admin/add-slider', AdminSliderComponent::class)->name('admin.addslider');
+Route::get('/admin/add-property', AdminAddPropertyComponent::class)->name('admin.addproperty');
+Route::get('/admin/edit-property/{slug}', AdminEditPropertyComponent::class)->name('admin.editproperty');
+Route::get('/admin/add-slider', AdminMainSlidersComponent::class)->name('admin.addslider');
+Route::get('/admin/add-type', AdminAddTypeComponent::class)->name('admin.addtype');
+Route::get('/admin/pages', AdminPagesComponent::class)->name('admin.pages');
+Route::get('/admin/add-page', AdminAddPagesComponent::class)->name('admin.addpage');
+Route::get('/admin/edit-page/{slug}', AdminEditPagesComponent::class)->name('admin.editpage');
+Route::get('/admin/provide', AdminProvideComponent::class)->name('admin.provide');
+Route::get('/admin/add-provide', AdminAddProvideComponent::class)->name('admin.addprovide');
+Route::get('/admin/edit-provide/{slug}', AdminEditProvideComponent::class)->name('admin.editprovide');
+Route::get('/admin/steps', AdminStepsComponent::class)->name('admin.steps');
+Route::get('/admin/add-steps', AdminAddStepsComponent::class)->name('admin.addsteps');
+Route::get('/admin/edit-steps/{slug}', AdminEditStepsComponent::class)->name('admin.editsteps');
 });
 
 /*Route::middleware([

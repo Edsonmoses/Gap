@@ -1,6 +1,6 @@
 <section id="page-title" class="page-title bg-overlay bg-overlay-dark2">
     <div class="bg-section">
-        <img src="{{asset('assets/user/assets/images/page-titles/1.jpg')}}" alt="Background" />
+        <img src="{{asset('assets/user/assets/images/page-titles')}}/{{ $property->image }}" alt="Background" />
     </div>
     <div class="container">
         <div class="row">
@@ -8,11 +8,11 @@
                 <div class="title title-1 text-center">
                     <div class="title--content">
                         <div class="title--heading">
-                            <h1>Single Property</h1>
+                            <h1>{{ $property->name }}</h1>
                         </div>
                         <ol class="breadcrumb">
-                            <li><a href="#">Home</a></li>
-                            <li class="active">Single Property</li>
+                            <li><a href="/">Home</a></li>
+                            <li class="active">{{ $property->name }}</li>
                         </ol>
                     </div>
                     <div class="clearfix"></div>
@@ -36,12 +36,12 @@
                 <div class="property-single-gallery-info">
                     <div class="property--info clearfix">
                         <div class="pull-left">
-                            <h5 class="property--title">1220 Petersham Town</h5>
-                            <p class="property--location"><i class="fa fa-map-marker"></i>Petersham town, Wardll St - Australia PA 6550</p>
+                            <h5 class="property--title">{{ $property->name }}</h5>
+                            <p class="property--location"><i class="fa fa-map-marker"></i>{{ $property->locations }}</p>
                         </div>
                         <div class="pull-right">
-                            <span class="property--status">For Sale</span>
-                            <p class="property--price">$130,000</p>
+                            <span class="property--status">For {{ $property->status }}</span>
+                            <p class="property--price">ksh {{ $property->SRprice }}</p>
                         </div>
                     </div>
                     <!-- .property-info end -->
@@ -49,7 +49,7 @@
                         <div class="pull-left">
                             <ul class="list-unstyled list-inline mb-0">
                                 <li>
-                                    Property ID:<span class="value">5331</span>
+                                    Property ID:<span class="value">{{ $property->propertyID }}</span>
                                 </li>
                                 <li>
                                     Add to favorites:<span class="value"> <i class="fa fa-heart-o"></i></span>
@@ -82,31 +82,23 @@
                         </div>
                         <!-- .col-md-12 end -->
                         <div class="col-xs-12 col-sm-12 col-md-12 psc">
-                            <div class="property-single-carousel-content">
+                            <div class="property-single-carousel-content" wire:ignore>
                                 <div class="carousel carousel-thumbs slider-navs" data-slide="1" data-slide-res="1" data-autoplay="true" data-thumbs="true" data-nav="true" data-dots="false" data-space="30" data-loop="true" data-speed="800" data-slider-id="1">
-                                    <img src="{{asset('assets/user/assets/images/properties/slider/1.jpg')}}" alt="Property Image">
-                                    <img src="{{asset('assets/user/assets/images/properties/slider/2.jpg')}}" alt="Property Image">
-                                    <img src="{{asset('assets/user/assets/images/properties/slider/3.jpg')}}" alt="Property Image">
-                                    <img src="{{asset('assets/user/assets/images/properties/slider/4.jpg')}}" alt="Property Image">
-                                    <img src="{{asset('assets/user/assets/images/properties/slider/5.jpg')}}" alt="Property Image">
+                                     @foreach (explode(",",$property->gallery) as $gallery)
+                                     @if (!empty($gallery))
+                                    <img src="{{asset('assets/user/assets/images/properties')}}/{{ $gallery }}" alt="{{ $property->name }}">
+                                    @endif
+                                    @endforeach
                                 </div>
                                 <!-- .carousel end -->
                                 <div class="owl-thumbs thumbs-bg" data-slider-id="1">
+                                    @foreach (explode(",",$property->gallery) as $thumbs)
+                                     @if (!empty($thumbs))
                                     <button class="owl-thumb-item">
-                        <img src="{{asset('assets/user/assets/images/properties/slider/thumbs/1.jpg')}}" alt="Property Image thumb">
-                    </button>
-                                    <button class="owl-thumb-item">
-                           <img src="{{asset('assets/user/assets/images/properties/slider/thumbs/2.jpg')}}" alt="Property Image thumb">
-                   </button>
-                                    <button class="owl-thumb-item">
-                        <img src="{{asset('assets/user/assets/images/properties/slider/thumbs/3.jpg')}}" alt="Property Image thumb">
-                    </button>
-                                    <button class="owl-thumb-item">
-                        <img src="{{asset('assets/user/assets/images/properties/slider/thumbs/4.jpg')}}" alt="Property Image thumb">
-                    </button>
-                                    <button class="owl-thumb-item">
-                        <img src="{{asset('assets/user/assets/images/properties/slider/thumbs/5.jpg')}}" alt="Property Image thumb">
-                    </button>
+                                        <img src="{{asset('assets/user/assets/images/properties')}}/{{ $thumbs }}" alt="{{ $property->name }}">
+                                    </button>
+                                    @endif
+                                    @endforeach
                                 </div>
                             </div>
                             <!-- .col-md-12 end -->
@@ -123,6 +115,7 @@
                             </div>
                         </div>
                         <!-- feature-panel #1 -->
+                        @if (!empty($area))
                         <div class="col-xs-6 col-sm-4 col-md-4">
                             <div class="feature-panel">
                                 <div class="feature--img">
@@ -130,12 +123,14 @@
                                 </div>
                                 <div class="feature--content">
                                     <h5>Area:</h5>
-                                    <p>1270 sq ft</p>
+                                    <p>{{ $property->area }} sq ft</p>
                                 </div>
                             </div>
                         </div>
+                        @endif
                         <!-- feature-panel end -->
                         <!-- feature-panel #2 -->
+                        @if (!empty($bedrooms))
                         <div class="col-xs-6 col-sm-4 col-md-4">
                             <div class="feature-panel">
                                 <div class="feature--img">
@@ -143,12 +138,14 @@
                                 </div>
                                 <div class="feature--content">
                                     <h5>Beds:</h5>
-                                    <p>4 Bedrooms</p>
+                                    <p>{{ $property->bedrooms }} Bedrooms</p>
                                 </div>
                             </div>
                         </div>
+                        @endif
                         <!-- feature-panel end -->
                         <!-- feature-panel #3 -->
+                        @if (!empty($bathrooms))
                         <div class="col-xs-6 col-sm-4 col-md-4">
                             <div class="feature-panel">
                                 <div class="feature--img">
@@ -156,12 +153,14 @@
                                 </div>
                                 <div class="feature--content">
                                     <h5>Baths:</h5>
-                                    <p>2 Bathrooms</p>
+                                    <p>{{ $property->bathrooms }} Bathrooms</p>
                                 </div>
                             </div>
                         </div>
+                        @endif
                         <!-- feature-panel end -->
                         <!-- feature-panel #4 -->
+                        @if (!empty($featured))
                         <div class="col-xs-6 col-sm-4 col-md-4">
                             <div class="feature-panel">
                                 <div class="feature--img">
@@ -169,12 +168,14 @@
                                 </div>
                                 <div class="feature--content">
                                     <h5>Rooms:</h5>
-                                    <p>6 Rooms</p>
+                                    <p>{{ $property->propertyID }} Rooms</p>
                                 </div>
                             </div>
                         </div>
+                        @endif
                         <!-- feature-panel end -->
                         <!-- feature-panel #5 -->
+                        @if (!empty($floors))
                         <div class="col-xs-6 col-sm-4 col-md-4">
                             <div class="feature-panel">
                                 <div class="feature--img">
@@ -182,12 +183,14 @@
                                 </div>
                                 <div class="feature--content">
                                     <h5>Floors:</h5>
-                                    <p>3 Floors</p>
+                                    <p>{{ $property->floors }} Floors</p>
                                 </div>
                             </div>
                         </div>
+                        @endif
                         <!-- feature-panel end -->
                         <!-- feature-panel #6 -->
+                        @if (!empty($garages))
                         <div class="col-xs-6 col-sm-4 col-md-4">
                             <div class="feature-panel">
                                 <div class="feature--img">
@@ -195,15 +198,15 @@
                                 </div>
                                 <div class="feature--content">
                                     <h5>Garage:</h5>
-                                    <p>2 Garages</p>
+                                    <p>{{ $property->garages }} Garages</p>
                                 </div>
                             </div>
                         </div>
+                        @endif
                         <!-- feature-panel end -->
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="property--details">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in volupte velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                                <p>Duis aute irure dolor in reprehenderit in volupte velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum sed ut perspiciatis.</p>
+                                <p>{{ $property->description }}</p>
                             </div>
                             <!-- .property-details end -->
                         </div>
@@ -221,90 +224,18 @@
                                 <h2 class="heading--title">Features</h2>
                             </div>
                         </div>
+                        
+                          @foreach (explode(",",$property->featured) as $featured)
+                        @if (!empty($featured))
                         <!-- feature-item #1 -->
-                        <div class="col-xs-6 col-sm-4 col-md-4">
+                        <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="feature-item">
-                                <p>Center Cooling</p>
+                                <p>{{ $featured }} </p>
                             </div>
                         </div>
                         <!-- feature-item end -->
-                        <!-- feature-item #2 -->
-                        <div class="col-xs-6 col-sm-4 col-md-4">
-                            <div class="feature-item">
-                                <p>Balcony</p>
-                            </div>
-                        </div>
-                        <!-- feature-item end -->
-                        <!-- feature-item #3 -->
-                        <div class="col-xs-6 col-sm-4 col-md-4">
-                            <div class="feature-item">
-                                <p>Pet Friendly</p>
-                            </div>
-                        </div>
-                        <!-- feature-item end -->
-                        <!-- feature-item #4 -->
-                        <div class="col-xs-6 col-sm-4 col-md-4">
-                            <div class="feature-item">
-                                <p>Fire Alarm</p>
-                            </div>
-                        </div>
-                        <!-- feature-item end -->
-                        <!-- feature-item #5 -->
-                        <div class="col-xs-6 col-sm-4 col-md-4">
-                            <div class="feature-item">
-                                <p>Modern Kitchen</p>
-                            </div>
-                        </div>
-                        <!-- feature-item end -->
-                        <!-- feature-item #6 -->
-                        <div class="col-xs-6 col-sm-4 col-md-4">
-                            <div class="feature-item">
-                                <p>Storage</p>
-                            </div>
-                        </div>
-                        <!-- feature-item end -->
-                        <!-- feature-item #7 -->
-                        <div class="col-xs-6 col-sm-4 col-md-4">
-                            <div class="feature-item">
-                                <p>Heating</p>
-                            </div>
-                        </div>
-                        <!-- feature-item end -->
-                        <!-- feature-item #8 -->
-                        <div class="col-xs-6 col-sm-4 col-md-4">
-                            <div class="feature-item">
-                                <p>Pool</p>
-                            </div>
-                        </div>
-                        <!-- feature-item end -->
-                        <!-- feature-item #9 -->
-                        <div class="col-xs-6 col-sm-4 col-md-4">
-                            <div class="feature-item">
-                                <p>Laundry</p>
-                            </div>
-                        </div>
-                        <!-- feature-item end -->
-                        <!-- feature-item #10 -->
-                        <div class="col-xs-6 col-sm-4 col-md-4">
-                            <div class="feature-item">
-                                <p>Gym</p>
-                            </div>
-                        </div>
-                        <!-- feature-item end -->
-                        <!-- feature-item #11 -->
-                        <div class="col-xs-6 col-sm-4 col-md-4">
-                            <div class="feature-item">
-                                <p>Elevator</p>
-                            </div>
-                        </div>
-                        <!-- feature-item end -->
-                        <!-- feature-item #12 -->
-                        <div class="col-xs-6 col-sm-4 col-md-4">
-                            <div class="feature-item">
-                                <p>Dish Washer</p>
-                            </div>
-                        </div>
-                        <!-- feature-item end -->
+                        @endif
+                    @endforeach
                     </div>
                     <!-- .row end -->
                 </div>
@@ -338,17 +269,17 @@
                 </div>
                 <!-- .property-single-location end -->
 
-                <div class="property-single-design inner-box">
+                <!--<div class="property-single-design inner-box">
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="heading">
                                 <h2 class="heading--title">Floor Plans</h2>
                             </div>
                         </div>
-                        <!-- .col-md-12 end -->
+                        <-- .col-md-12 end --
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="accordion accordion-1" id="accordion01">
-                                <!-- Panel 01 -->
+                                <-- Panel 01 --
                                 <div class="panel">
                                     <div class="panel--heading clearfix">
                                         <div class="pull-left">
@@ -367,8 +298,8 @@
                                         <img src="{{asset('assets/user/assets/images/property-single/1.png')}}" alt="img" class="img-responsive">
                                     </div>
                                 </div>
-                                <!-- .panel end -->
-                                <!-- Panel 02 -->
+                                <-- .panel end --
+                                <-- Panel 02 --
                                 <div class="panel">
                                     <div class="panel--heading clearfix">
                                         <div class="pull-left">
@@ -387,14 +318,14 @@
                                         <img src="{{asset('assets/user/assets/images/property-single/1.png')}}" alt="img" class="img-responsive">
                                     </div>
                                 </div>
-                                <!-- .panel end -->
+                                <-- .panel end --
                             </div>
-                            <!-- End .Accordion-->
+                            <-- End .Accordion--
                         </div>
-                        <!-- .col-md-12 end -->
+                        <-- .col-md-12 end --
                     </div>
-                    <!-- .row end -->
-                </div>
+                    <-- .row end --
+                </div>-->
                 <!-- .property-single-design end -->
 
                 <div class="property-single-video inner-box">
@@ -413,7 +344,7 @@
                                 <div class="video--button">
                                     <div class="video-overlay">
                                         <div class="pos-vertical-center">
-                                            <a class="popup-video" href="https://www.youtube.com/watch?v=nrJtHemSPW4">
+                                            <a class="popup-video" href="{{ $property->videoURL }}">
                                     <i class="fa fa-youtube-play"></i>  
                                 </a>
                                         </div>

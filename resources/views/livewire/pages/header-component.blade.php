@@ -29,98 +29,14 @@
                     <!-- li end -->
 
                     <!-- Pages Menu-->
-                    <li class="has-dropdown">
-                        <a href="#" data-toggle="dropdown" class="dropdown-toggle menu-item">Pages</a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown-submenu">
-                                <a href="#" data-toggle="dropdown" class="dropdown-toggle">agents</a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="/agents">All Agents</a>
-                                    </li>
-                                    <li>
-                                        <a href="/agent-profile">agent profile</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="dropdown-submenu">
-                                <a href="#" data-toggle="dropdown" class="dropdown-toggle">agencies</a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="/agency-list">all agencies</a>
-                                    </li>
-                                    <li>
-                                        <a href="/agency-profile">agency profile</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="dropdown-submenu">
-                                <a href="#" data-toggle="dropdown" class="dropdown-toggle">blog</a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="/blog">blog Grid</a>
-                                    </li>
-                                    <li>
-                                        <a href="/blog-sidebar-right">blog Grid Right </a>
-                                    </li>
-                                    <li>
-                                        <a href="/blog-sidebar-left">blog Grid Left </a>
-                                    </li>
-                                    <li>
-                                        <a href="/blog-single">blog single</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="/about">page about</a></li>
-                            <li><a href="/contact">page contact</a></li>
-                            <li><a href="/faq">page FAQ</a></li>
-                            <li><a href="/page-404">page 404</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="/about">about</a></li>
                     <!-- li end -->
-
                     <!-- Properties Menu-->
-                    <li class="has-dropdown">
-                        <a href="#" data-toggle="dropdown" class="dropdown-toggle menu-item">Properties</a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown-submenu">
-                                <a href="#" data-toggle="dropdown" class="dropdown-toggle">Properties grid</a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="/properties">properties grid</a>
-                                    </li>
-                                    <li>
-                                        <a href="/properties-grid-split">properties grid split</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="dropdown-submenu">
-                                <a href="#" data-toggle="dropdown" class="dropdown-toggle">properties list</a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="/properties-list">properties list</a>
-                                    </li>
-                                    <li>
-                                        <a href="/properties-list-split">properties list split</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="dropdown-submenu">
-                                <a href="#" data-toggle="dropdown" class="dropdown-toggle">properties single</a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="/property-single-gallery">single gallery</a>
-                                    </li>
-                                    <li>
-                                        <a href="/property-single-slider">single slider</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
+                     <li><a href="/properties">properties</a></li>
                     <!-- li end -->
-
+                     <li><a href="/blog">blog</a> </li>
                     <li><a href="/contact">contact</a></li>
+                    <li><a href="/faq">FAQ</a></li>
                 </ul>
                 <!-- Module Signup  -->
                 @if (Route::has('login'))
@@ -133,11 +49,9 @@
                                 <ul class="dropdown-menu">
                                     <li><a href="#" title="Dashboard">Dashboard</a></li>
                                      <!-- Profile Menu-->
-                                     <li><a href="/admin/add-category">Add category</a></li>
-                                     <li><a href="/admin/add-features">Add features</a></li>
-                                     <li><a href="/admin/add-location">Add location</a></li>
-                                     <li><a href="/admin/add-slider">Add slider</a></li>
-                                     <li><a href="/admin/home">Setting</a></li>
+                                     <li><a href="/admin/properties">Properties</a></li>
+                                    <li><a href="/admin/add-slider">Add slider</a></li>
+                                    <li><a href="/admin/home">Setting</a></li>
                                      <!-- logout-->
                                     <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" title="Logout">Logout</a></li>
                                     <form id="logout-form" method="POST" action="{{ route('logout') }}">
@@ -149,7 +63,7 @@
                         </div>
                         <!-- Module Consultation  -->
                         <div class="module module-property pull-left">
-                            <a href="/user/add-property" target="_blank" class="btn"><i class="fa fa-plus"></i> add property</a>
+                            <a href="/admin/add-property" target="_blank" class="btn"><i class="fa fa-plus"></i> add property</a>
                         </div>
                         @else
                         <div class="module module-login pull-left">

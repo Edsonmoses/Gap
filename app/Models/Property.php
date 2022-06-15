@@ -8,9 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Property extends Model
 {
     use HasFactory;
+        protected $fillable = ['location_id','features_id','category_id'];
     
-    public function location()
+     public function locations()
     {
-        $this->belongsTo(Location::class);
+        return $this->belongsTo('App\Models\Location');
     }
 }

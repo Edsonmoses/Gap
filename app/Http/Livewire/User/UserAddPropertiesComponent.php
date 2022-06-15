@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\User;
 
+use App\Models\Location;
 use App\Models\Property;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -112,7 +113,7 @@ class UserAddPropertiesComponent extends Component
         $property->Aprice = $this->Aprice;
         $property->propertyID = $this->propertyID;
         $property->videoURL = $this->videoURL;
-        $property->features_id = $this->features_id;
+        $property->features_id = str_replace("\n",',',trim($this->features_id));
         if($this->gallery)
         {
             $galleryname ='';
@@ -133,6 +134,7 @@ class UserAddPropertiesComponent extends Component
     }
     public function render()
     {
-        return view('livewire.user.user-add-properties-component')->layout('layouts.base');
+        $locations = Location::all();
+        return view('livewire.user.user-add-properties-component',['locations'=>$locations])->layout('layouts.backend');
     }
 }

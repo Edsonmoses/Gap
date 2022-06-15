@@ -14,10 +14,6 @@ class AdminAddFeaturesComponent extends Component
     public $slug;
     public $postedby;
 
-    public $updateMode = false;
-    public $inputs = [];
-    public $i = 1;
-
     public function mount()
     {
         $this->postedby = Auth::user()->name;
@@ -28,59 +24,31 @@ class AdminAddFeaturesComponent extends Component
         $this->slug = Str::slug($this->name);
     }
 
-    public function add($i)
-    {
-        $i = $i + 1;
-        $this->i = $i;
-        array_push($this->inputs ,$i);
-    }
-    public function remove($i)
-    {
-        unset($this->inputs[$i]);
-    }
-
-    private function resetInputFields(){
-
-        $this->name = '';
-        $this->slug = '';
-    }
-
-    /*public function updated($fields)
+    public function updated($fields)
     {
         $this->validateOnly($fields,[
-            'name.0' => 'required',
-            'slug.0' => 'required',
-            'name.*' => 'required',
-            'slug.*' => 'required',
+            'name' => 'required',
+            'slug' => 'required',
         ]);
-    }*/
+    }
 
     public function storeFeatures()
     {
         $this->validate([
-            'name.0' => 'required',
-            'slug.0' => 'required',
-            'name.*' => 'required',
-            'slug.*' => 'required',
+            'name' => 'required',
+            'slug' => 'required',
         ]);
-
-        foreach ($this->name as $key => $value) {
-
-            Features::create(['name' => $this->name[$key], 'phone' => $this->slug[$key]]);
-
-        }
-        //$features = new Features();
-        //$features->name = $this->name;
-        //$features->slug = $this->slug;;
-        //$features->postedby = $this->postedby;
-        //$features->save();
-        $this->inputs = [];
-        $this->resetInputFields();
+        $features = new Features();
+        $features->name = $this->name;
+        $features->slug = $this->slug;;
+        $features->postedby = $this->postedby;
+        $features->save();
         session()->flash('message','Features has been created successfully!');
+         return redirect('/admin/add-features');
     }
 
     public function render()
     {
-        return view('livewire.admin.admin-add-features-component')->layout('layouts.base');
+        return view('livewire.admin.admin-add-features-component')->layout('layouts.backend');
     }
 }

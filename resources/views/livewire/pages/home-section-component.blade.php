@@ -92,15 +92,23 @@
         <!-- .row end -->
         <div class="row">
             <!-- City #1 -->
-            <div class="col-xs-12 col-sm-8 col-md-8">
-                <div class="property-city-item cp2">
+             @foreach ($lproperties as $lproperty)
+            <div class="col-xs-12 @if($lproperty->id % 2 == 0) col-sm-4 col-md-4 @else col-sm-8 col-md-8 @endif">
+               
+                <div class="property-city-item @if($lproperty->id % 2 == 0) cp @else cp2 @endif">
                     <div class="property--city-img">
-                        <a href="#">
-                <img src="{{asset('assets/user/assets/images/properties/city/1.jpg')}}" alt="city" class="img-responsive">
+                        <a href="{{ route('single_gallery',['slug'=>$lproperty->slug]) }}">
+                            @php
+                            $image = explode(",",$lproperty->gallery);
+                        @endphp
+                        @if (!empty($image[1]))
+                <img src="{{asset('assets/user/assets/images/properties')}}/{{ $image[1] }}" alt="{{ $lproperty->locations}}" class="img-responsive">
+                @endif
                 <div class="property--city-overlay">
                     <div class="property--item-content">
-                        <h5 class="property--title">New York</h5>
-                        <p class="property--numbers">16 Properties</p>
+                        <h5 class="property--title">{{ $lproperty->locations}}
+                        </h5>
+                        <p class="property--numbers">{{ $lproperty->location_id}} Properties</p>
                     </div>
                 </div>
                 </a>
@@ -110,67 +118,8 @@
                 <!-- . property-city-item end -->
             </div>
             <!-- .col-md-8 end -->
-            <!-- City #2 -->
-            <div class="col-xs-12 col-sm-4 col-md-4">
-                <div class="property-city-item cp">
-                    <div class="property--city-img">
-                        <a href="#">
-                <img src="{{asset('assets/user/assets/images/properties/city/2.jpg')}}" alt="city" class="img-responsive">
-                <div class="property--city-overlay">
-                    <div class="property--item-content">
-                        <h5 class="property--title">Chicago</h5>
-                        <p class="property--numbers">14 Properties</p>
-                    </div>
-                </div>
-                </a>
-                    </div>
-                    <!-- .property-city-img end -->
-                </div>
-                <!-- . property-city-item end -->
-            </div>
-            <!-- .col-md-8 end -->
-        </div>
-        <!-- .row end -->
-        <div class="row">
-
-            <!-- City #3 -->
-            <div class="col-xs-12 col-sm-4 col-md-4">
-                <div class="property-city-item cp">
-                    <div class="property--city-img">
-                        <a href="#">
-                <img src="{{asset('assets/user/assets/images/properties/city/3.jpg')}}" alt="city" class="img-responsive">
-                <div class="property--city-overlay">
-                    <div class="property--item-content">
-                        <h5 class="property--title">Manhatten</h5>
-                        <p class="property--numbers">18 Properties</p>
-                    </div>
-                </div>
-                </a>
-                    </div>
-                    <!-- .property-city-img end -->
-                </div>
-                <!-- . property-city-item end -->
-            </div>
-            <!-- .col-md-8 end -->
-            <!-- City #4 -->
-            <div class="col-xs-12 col-sm-8 col-md-8">
-                <div class="property-city-item cp2">
-                    <div class="property--city-img">
-                        <a href="#">
-                <img src="{{asset('assets/user/assets/images/properties/city/4.jpg')}}" alt="city" class="img-responsive">
-                <div class="property--city-overlay">
-                    <div class="property--item-content">
-                        <h5 class="property--title">Los Angeles</h5>
-                        <p class="property--numbers">10 Properties</p>
-                    </div>
-                </div>
-                </a>
-                    </div>
-                    <!-- .property-city-img end -->
-                </div>
-                <!-- . property-city-item end -->
-            </div>
-            <!-- .col-md-8 end -->
+             @endforeach
+            
         </div>
         <!-- .row end -->
     </div>

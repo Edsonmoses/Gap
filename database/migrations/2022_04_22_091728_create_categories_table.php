@@ -18,6 +18,7 @@ class CreateCategoriesTable extends Migration
             $table->string('name')->default('name');
             $table->string('slug')->default('slug');
             $table->string('image')->default('image');
+            $table->string('cover')->default('cover');
             $table->string('postedby')->default('postedby');
             $table->timestamps();
         });

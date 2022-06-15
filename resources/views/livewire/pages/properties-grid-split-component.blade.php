@@ -256,125 +256,27 @@
                     </div>
                     <div class="properties properties-grid plp">
                         <!-- .property-item #1 -->
+                         @foreach ($lproperties as $lproperty)
                         <div class="col-xs-12 col-sm-6 col-md-6">
                             <div class="property-item">
                                 <div class="property--img">
                                     <a href="property-single-gallery.html">
-                        <img src="{{asset('assets/user/assets/images/properties/2.jpg')}}" alt="property image" class="img-responsive">
+                        <img src="{{asset('assets/user/assets/images/properties')}}/{{ $lproperty->gallery }}" alt="p{{ $lproperty->name }}" class="img-responsive">
                         </a>
                                     <span class="property--status">For Sale</span>
                                 </div>
                                 <div class="property--content">
                                     <div class="property--info">
-                                        <h5 class="property--title"><a href="property-single-gallery.html">House in Kent Street</a></h5>
-                                        <p class="property--location">127 Kent Street, Sydney, NSW 2000</p>
-                                        <p class="property--price">$130,000</p>
+                                        <h5 class="property--title"><a href="property-single-gallery.html">{{ $lproperty->name }}</a></h5>
+                                        <p class="property--location">{{ $lproperty->locations}}</p>
+                                        <p class="property--price">{{ $lproperty->SRprice }}</p>
                                     </div>
                                     <!-- .property-info end -->
                                 </div>
                             </div>
                         </div>
                         <!-- .property item end -->
-                        <!-- .property-item #2 -->
-                        <div class="col-xs-12 col-sm-6 col-md-6">
-                            <div class="property-item">
-                                <div class="property--img">
-                                    <a href="property-single-gallery.html">
-                       <img src="{{asset('assets/user/assets/images/properties/5.jpg')}}" alt="property image" class="img-responsive">
-                        </a>
-                                    <span class="property--status">For Rent</span>
-                                </div>
-                                <div class="property--content">
-                                    <div class="property--info">
-                                        <h5 class="property--title"><a href="property-single-gallery.html">2750 House in Urban St.</a></h5>
-                                        <p class="property--location">2750 Urban Street Dr, Anderson, IN 46011</p>
-                                        <p class="property--price">$1,550<span class="time">month</span></p>
-                                    </div>
-                                    <!-- .property-info end -->
-                                </div>
-                            </div>
-                        </div>
-                        <!-- .property item end -->
-                        <!-- .property-item #3 -->
-                        <div class="col-xs-12 col-sm-6 col-md-6">
-                            <div class="property-item">
-                                <div class="property--img">
-                                    <a href="property-single-gallery.html">
-                        <img src="{{asset('assets/user/assets/images/properties/7.jpg')}}" alt="property image" class="img-responsive">
-                        </a>
-                                    <span class="property--status">For Sale</span>
-                                </div>
-                                <div class="property--content">
-                                    <div class="property--info">
-                                        <h5 class="property--title"><a href="property-single-gallery.html">House in Kent Street</a></h5>
-                                        <p class="property--location">127 Kent Street, Sydney, NSW 2000</p>
-                                        <p class="property--price">$130,000</p>
-                                    </div>
-                                    <!-- .property-info end -->
-                                </div>
-                            </div>
-                        </div>
-                        <!-- .property item end -->
-                        <!-- .property-item #4 -->
-                        <div class="col-xs-12 col-sm-6 col-md-6">
-                            <div class="property-item">
-                                <div class="property--img">
-                                    <a href="property-single-gallery.html">
-                       <img src="{{asset('assets/user/assets/images/properties/6.jpg')}}" alt="property image" class="img-responsive">
-                        </a>
-                                    <span class="property--status">For Rent</span>
-                                </div>
-                                <div class="property--content">
-                                    <div class="property--info">
-                                        <h5 class="property--title"><a href="property-single-gallery.html">2750 House in Urban St.</a></h5>
-                                        <p class="property--location">2750 Urban Street Dr, Anderson, IN 46011</p>
-                                        <p class="property--price">$1,550<span class="time">month</span></p>
-                                    </div>
-                                    <!-- .property-info end -->
-                                </div>
-                            </div>
-                        </div>
-                        <!-- .property item end -->
-                        <!-- .property-item #5 -->
-                        <div class="col-xs-12 col-sm-6 col-md-6">
-                            <div class="property-item">
-                                <div class="property--img">
-                                    <a href="property-single-gallery.html">
-                        <img src="{{asset('assets/user/assets/images/properties/1.jpg')}}" alt="property image" class="img-responsive">
-                        </a>
-                                    <span class="property--status">For Sale</span>
-                                </div>
-                                <div class="property--content">
-                                    <div class="property--info">
-                                        <h5 class="property--title"><a href="property-single-gallery.html">House in Kent Street</a></h5>
-                                        <p class="property--location">127 Kent Street, Sydney, NSW 2000</p>
-                                        <p class="property--price">$130,000</p>
-                                    </div>
-                                    <!-- .property-info end -->
-                                </div>
-                            </div>
-                        </div>
-                        <!-- .property item end -->
-                        <!-- .property-item #6 -->
-                        <div class="col-xs-12 col-sm-6 col-md-6">
-                            <div class="property-item">
-                                <div class="property--img">
-                                    <a href="property-single-gallery.html">
-                       <img src="{{asset('assets/user/assets/images/properties/2.jpg')}}" alt="property image" class="img-responsive">
-                        </a>
-                                    <span class="property--status">For Rent</span>
-                                </div>
-                                <div class="property--content">
-                                    <div class="property--info">
-                                        <h5 class="property--title"><a href="property-single-gallery.html">2750 House in Urban St.</a></h5>
-                                        <p class="property--location">2750 Urban Street Dr, Anderson, IN 46011</p>
-                                        <p class="property--price">$1,550<span class="time">month</span></p>
-                                    </div>
-                                    <!-- .property-info end -->
-                                </div>
-                            </div>
-                        </div>
-                        <!-- .property item end -->
+                        @endforeach
                     </div>
                 </div>
                 <!-- .row -->

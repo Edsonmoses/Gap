@@ -8,6 +8,6 @@ class AdminFeaturesComponent extends Component
 {
     public function render()
     {
-        return view('livewire.admin.admin-features-component')->layout('layouts.base');
+        return view('livewire.admin.admin-features-component')->layout('layouts.backend');
     }
 }

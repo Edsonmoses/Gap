@@ -52,6 +52,6 @@ class AdminAddSliderComponent extends Component
 
     public function render()
     {
-        return view('livewire.admin.admin-add-slider-component')->layout('layouts.base');
+        return view('livewire.admin.admin-add-slider-component')->layout('layouts.backend');
     }
 }

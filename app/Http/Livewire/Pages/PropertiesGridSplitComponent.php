@@ -2,12 +2,14 @@
 
 namespace App\Http\Livewire\Pages;
 
+use App\Models\Property;
 use Livewire\Component;
 
 class PropertiesGridSplitComponent extends Component
 {
     public function render()
     {
-        return view('livewire.pages.properties-grid-split-component')->layout('layouts.base');
+        $lproperties= Property::orderBy('name','ASC')->paginate(20);
+        return view('livewire.pages.properties-grid-split-component',['lproperties'=>$lproperties])->layout('layouts.base');
     }
 }

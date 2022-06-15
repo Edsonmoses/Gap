@@ -166,10 +166,10 @@
                     <div class="widget--content">
                         <ul class="list-unstyled mb-0">
                             <li>
-                                <a href="#">For Rent <span>(25)</span></a>
+                                <a href="#">For Rent <span>({{ $rent }})</span></a>
                             </li>
                             <li>
-                                <a href="#">For Sale <span>(32)</span></a>
+                                <a href="#">For Sale <span>({{ $sale }})</span></a>
                             </li>
                         </ul>
                     </div>
@@ -292,27 +292,43 @@
                     </div>
                     <div class="properties properties-grid plp">
                         <!-- .col-md-12 end -->
+                        @foreach ($lproperties as $lproperty)
+                        <!-- .property-item #1 -->
                         <div class="col-xs-12 col-sm-6 col-md-6">
-                            <!-- .property-item #1 -->
                             <div class="property-item">
                                 <div class="property--img">
-                                    <a href="property-single-gallery.html">
-                        <img src="{{asset('assets/user/assets/images/properties/1.jpg')}}" alt="property image" class="img-responsive">
-                        </a>
-                                    <span class="property--status">For Sale</span>
+                                    <a href="{{ route('single_gallery',['slug'=>$lproperty->slug]) }}">
+                                         @php
+                                             $image = explode(",",$lproperty->gallery);
+                                         @endphp
+                                            @if (!empty($image[1]))
+                                            <img src="{{asset('assets/user/assets/images/properties')}}/{{ $image[1] }}" alt="{{ $lproperty->name }}" class="img-responsive">
+                                            @endif
+                                     </a>
+                                    @if ($lproperty->status == 'sale')
+                                       <span class="property--status">For Sale</span>
+                                    @else
+                                        <span class="property--status">For Rent</span>
+                                    @endif
                                 </div>
                                 <div class="property--content">
                                     <div class="property--info">
-                                        <h5 class="property--title"><a href="property-single-gallery.html">House in Kent Street</a></h5>
-                                        <p class="property--location">127 Kent Street, Sydney, NSW 2000</p>
-                                        <p class="property--price">$130,000</p>
+                                        <h5 class="property--title"><a href="{{ route('single_gallery',['slug'=>$lproperty->slug]) }}">{{ $lproperty->name }}</a></h5>
+                                        <p class="property--location">{{ $lproperty->locations}}</p>
+                                        <p class="property--price">{{ $lproperty->SRprice }}</p>
                                     </div>
                                     <!-- .property-info end -->
                                     <div class="property--features">
                                         <ul class="list-unstyled mb-0">
-                                            <li><span class="feature">Beds:</span><span class="feature-num">2</span></li>
-                                            <li><span class="feature">Baths:</span><span class="feature-num">2</span></li>
-                                            <li><span class="feature">Area:</span><span class="feature-num">587 sq ft</span></li>
+                                              @if ($lproperty->bedroom)
+                                                <li><span class="feature">Beds:</span><span class="feature-num">{{ $lproperty->bedrooms }}</span></li>
+                                                @endif
+                                                @if ($lproperty->bathrooms)
+                                                <li><span class="feature">Baths:</span><span class="feature-num">{{ $lproperty->bathrooms }}</span></li>
+                                                @endif
+                                                @if ($lproperty->area)
+                                                <li><span class="feature">Acre:</span><span class="feature-num">{{ $lproperty->area }}</span></li>
+                                                @endif
                                         </ul>
                                     </div>
                                     <!-- .property-features end -->
@@ -320,151 +336,7 @@
                             </div>
                         </div>
                         <!-- .property item end -->
-
-                        <!-- .property-item #2 -->
-                        <div class="col-xs-12 col-sm-6 col-md-6">
-                            <div class="property-item">
-                                <div class="property--img">
-                                    <a href="property-single-gallery.html">
-                        <img src="{{asset('assets/user/assets/images/properties/6.jpg')}}" alt="property image" class="img-responsive">
-                        </a>
-                                    <span class="property--status">For Rent</span>
-                                </div>
-                                <div class="property--content">
-                                    <div class="property--info">
-                                        <h5 class="property--title"><a href="property-single-gallery.html">Apartment For Rent</a></h5>
-                                        <p class="property--location">1609 N Richmond St, Chicago, IL 60647</p>
-                                        <p class="property--price">$900<span class="time">month</span></p>
-                                    </div>
-                                    <!-- .property-info end -->
-                                    <div class="property--features">
-                                        <ul class="list-unstyled mb-0">
-                                            <li><span class="feature">Beds:</span><span class="feature-num">1</span></li>
-                                            <li><span class="feature">Baths:</span><span class="feature-num">1</span></li>
-                                            <li><span class="feature">Area:</span><span class="feature-num">500 sq ft</span></li>
-                                        </ul>
-                                    </div>
-                                    <!-- .property-features end -->
-                                </div>
-                            </div>
-                        </div>
-                        <!-- .property item end -->
-
-                        <!-- .property-item #3 -->
-                        <div class="col-xs-12 col-sm-6 col-md-6">
-                            <div class="property-item">
-                                <div class="property--img">
-                                    <a href="property-single-gallery.html">
-                        <img src="{{asset('assets/user/assets/images/properties/5.jpg')}}" alt="property image" class="img-responsive">
-                        </a>
-                                    <span class="property--status">For Rent</span>
-                                </div>
-                                <div class="property--content">
-                                    <div class="property--info">
-                                        <h5 class="property--title"><a href="property-single-gallery.html">2750 House in Urban St.</a></h5>
-                                        <p class="property--location">2750 Urban Street Dr, Anderson, IN 46011</p>
-                                        <p class="property--price">$1.550<span class="time">month</span></p>
-                                    </div>
-                                    <!-- .property-info end -->
-                                    <div class="property--features">
-                                        <ul class="list-unstyled mb-0">
-                                            <li><span class="feature">Beds:</span><span class="feature-num">2</span></li>
-                                            <li><span class="feature">Baths:</span><span class="feature-num">1</span></li>
-                                            <li><span class="feature">Area:</span><span class="feature-num">1390 sq ft</span></li>
-                                        </ul>
-                                    </div>
-                                    <!-- .property-features end -->
-                                </div>
-                            </div>
-                        </div>
-                        <!-- .property item end -->
-
-                        <!-- .property-item #4 -->
-                        <div class="col-xs-12 col-sm-6 col-md-6">
-                            <div class="property-item">
-                                <div class="property--img">
-                                    <a href="property-single-gallery.html">
-                        <img src="{{asset('assets/user/assets/images/properties/12.jpg')}}" alt="property image" class="img-responsive">
-                        </a>
-                                    <span class="property--status">For Rent</span>
-                                </div>
-                                <div class="property--content">
-                                    <div class="property--info">
-                                        <h5 class="property--title"><a href="property-single-gallery.html">Modern Office For Rent</a></h5>
-                                        <p class="property--location">2003 Sheffield Ave, Anderson, IN 46011</p>
-                                        <p class="property--price">$530<span class="time">month</span></p>
-                                    </div>
-                                    <!-- .property-info end -->
-                                    <div class="property--features">
-                                        <ul class="list-unstyled mb-0">
-                                            <li><span class="feature">Beds:</span><span class="feature-num">0</span></li>
-                                            <li><span class="feature">Baths:</span><span class="feature-num">1</span></li>
-                                            <li><span class="feature">Area:</span><span class="feature-num">150 sq ft</span></li>
-                                        </ul>
-                                    </div>
-                                    <!-- .property-features end -->
-                                </div>
-                            </div>
-                        </div>
-                        <!-- .property item end -->
-
-                        <!-- .property-item #5 -->
-                        <div class="col-xs-12 col-sm-6 col-md-6">
-                            <div class="property-item">
-                                <div class="property--img">
-                                    <a href="property-single-gallery.html">
-                        <img src="{{asset('assets/user/assets/images/properties/3.jpg')}}" alt="property image" class="img-responsive">
-                        </a>
-                                    <span class="property--status">For Sale</span>
-                                </div>
-                                <div class="property--content">
-                                    <div class="property--info">
-                                        <h5 class="property--title"><a href="property-single-gallery.html">Apartment in Long St.</a></h5>
-                                        <p class="property--location">34 Long St, Jersey City, NJ 07305</p>
-                                        <p class="property--price">$70,000</p>
-                                    </div>
-                                    <!-- .property-info end -->
-                                    <div class="property--features">
-                                        <ul class="list-unstyled mb-0">
-                                            <li><span class="feature">Beds:</span><span class="feature-num">2</span></li>
-                                            <li><span class="feature">Baths:</span><span class="feature-num">1</span></li>
-                                            <li><span class="feature">Area:</span><span class="feature-num">200 sq ft</span></li>
-                                        </ul>
-                                    </div>
-                                    <!-- .property-features end -->
-                                </div>
-                            </div>
-                        </div>
-                        <!-- .property item end -->
-
-                        <!-- .property-item #6 -->
-                        <div class="col-xs-12 col-sm-6 col-md-6">
-                            <div class="property-item">
-                                <div class="property--img">
-                                    <a href="property-single-gallery.html">
-                        <img src="{{asset('assets/user/assets/images/properties/7.jpg')}}" alt="property image" class="img-responsive">
-                        </a>
-                                    <span class="property--status">For Sale</span>
-                                </div>
-                                <div class="property--content">
-                                    <div class="property--info">
-                                        <h5 class="property--title">House in Miami Town</h5>
-                                        <p class="property--location">415 E North Water, Miami 60611</p>
-                                        <p class="property--price">$210,000</p>
-                                    </div>
-                                    <!-- .property-info end -->
-                                    <div class="property--features">
-                                        <ul class="list-unstyled mb-0">
-                                            <li><span class="feature">Beds:</span><span class="feature-num">2</span></li>
-                                            <li><span class="feature">Baths:</span><span class="feature-num">2</span></li>
-                                            <li><span class="feature">Area:</span><span class="feature-num">1370 sq ft</span></li>
-                                        </ul>
-                                    </div>
-                                    <!-- .property-features end -->
-                                </div>
-                            </div>
-                        </div>
-                        <!-- .property item end -->
+                        @endforeach
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 text-center mt-50">
                         <ul class="pagination">

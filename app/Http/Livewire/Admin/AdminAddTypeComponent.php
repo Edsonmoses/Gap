@@ -3,8 +3,9 @@
 namespace App\Http\Livewire\Admin;
 
 use App\Models\Type;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class AdminAddTypeComponent extends Component
 {
@@ -16,6 +17,10 @@ class AdminAddTypeComponent extends Component
     {
         $this->postedby = Auth::user()->name;
     }
+      public function generateslug()
+    {
+        $this->slug = Str::slug($this->name);
+    }
 
     public function updated($fields)
     {
@@ -25,7 +30,7 @@ class AdminAddTypeComponent extends Component
         ]);
     }
 
-    public function storeAds()
+    public function storeType()
     {
         $this->validate([
             'name' => 'required',
@@ -37,10 +42,11 @@ class AdminAddTypeComponent extends Component
         $type->slug = $this->slug;
         $type->postedby = $this->postedby;
         $type->save();
-        session()->flash('message','Category has been created successfully!');
+        session()->flash('message','Property type has been created successfully!');
+        return redirect('/admin/add-type'); 
     }
     public function render()
     {
-        return view('livewire.admin.admin-add-type-component')->layout('layouts.base');
+        return view('livewire.admin.admin-add-type-component')->layout('layouts.backend');
     }
 }

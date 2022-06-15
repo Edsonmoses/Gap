@@ -6,6 +6,7 @@ use App\Models\Category;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 
 class AdminAddCategoryComponent extends Component
@@ -14,11 +15,16 @@ class AdminAddCategoryComponent extends Component
     public $name;
     public $slug;
     public $image;
+    public $cover;
     public $postedby;
 
     public function mount()
     {
         $this->postedby = Auth::user()->name;
+    }
+     public function generateslug()
+    {
+        $this->slug = Str::slug($this->name);
     }
 
     public function updated($fields)
@@ -30,7 +36,7 @@ class AdminAddCategoryComponent extends Component
         ]);
     }
 
-    public function storeAds()
+    public function storeCategory()
     {
         $this->validate([
             'name' => 'required',
@@ -44,12 +50,16 @@ class AdminAddCategoryComponent extends Component
         $imageName = Carbon::now()->timestamp. '.' . $this->image->extension();
         $this->image->storeAs('category',$imageName);
         $category->image = $imageName;
+         $imgName = Carbon::now()->timestamp. '.' . $this->cover->extension();
+        $this->image->storeAs('category',$imageName);
+        $category->cover = $imgName;
         $category->postedby = $this->postedby;
         $category->save();
         session()->flash('message','Category has been created successfully!');
+         return redirect('/admin/add-category');
     }
     public function render()
     {
-        return view('livewire.admin.admin-add-category-component')->layout('layouts.base');
+        return view('livewire.admin.admin-add-category-component')->layout('layouts.backend');
     }
 }

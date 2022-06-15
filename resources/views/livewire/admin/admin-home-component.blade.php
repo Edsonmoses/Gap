@@ -1,5 +1,5 @@
-
-<section id="page-title" class="page-title bg-overlay bg-overlay-dark2">
+<div id="page-title">
+ <section  class="page-title bg-overlay bg-overlay-dark2">
     <div class="bg-section">
         <img src="{{asset('assets/user/assets/images/page-titles/1.jpg')}}" alt="Background" />
     </div>
@@ -9,11 +9,11 @@
                 <div class="title title-1 text-center">
                     <div class="title--content">
                         <div class="title--heading">
-                            <h1>Add Home</h1>
+                            <h1>Add Property</h1>
                         </div>
                         <ol class="breadcrumb">
                             <li><a href="#">Home</a></li>
-                            <li class="active">Add Home</li>
+                            <li class="active">Add Property</li>
                         </ol>
                     </div>
                     <div class="clearfix"></div>
@@ -31,7 +31,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12">
-
+                      @if (Session::has('message'))
+                            <div class="alert alert-success" role="alert">{{ Session::get('message') }}</div>
+                        @endif
                     <form class="mb-0">
                         <div class="form-box">
                             <div class="row">
@@ -58,9 +60,9 @@
         
                                             <td>
                                                 @if ($setting->isActive == 'active')
-                                                <a href="#" onclick="confirm('Ara you sure, You want to activate this slider header') || event.stopImmediatePropagation()" wire:click.prevent="deactivate({{ $setting->id }})" style="margin-left: 10px"><i class="fa fa-power-off fa-1x text-danger"></i></a>
+                                                <a href="#" onclick="confirm('Ara you sure, You want to deactivate this slider header') || event.stopImmediatePropagation();" wire:click.prevent="deactivate({{ $setting->id }})" style="margin-left: 10px"><i class="fa fa-power-off fa-1x text-danger"></i></a>
                                                 @else
-                                                <a href="#" onclick="confirm('Ara you sure, You want to activate this slider header') || event.stopImmediatePropagation()" wire:click.prevent="updateSetting({{ $setting->id }})" style="margin-left: 10px"><i class="fa fa-power-off fa-1x text-success"></i></a>
+                                                <a href="#" onclick="confirm('Ara you sure, You want to activate this slider header') || event.stopImmediatePropagation();" wire:click.prevent="updateSetting({{ $setting->id }})" style="margin-left: 10px"><i class="fa fa-power-off fa-1x text-success"></i></a>
                                                 @endif
                                             </td>
                                             </tr>
@@ -81,3 +83,11 @@
         </div>
     </section>
     <!-- #social-profile  end -->
+</div>
+@if (Session::has('message'))
+    <script>
+        swal("Great Job","{!! Session::get('message') !!}","success"{
+            button:"Ok"
+        });
+    </script>
+@endif

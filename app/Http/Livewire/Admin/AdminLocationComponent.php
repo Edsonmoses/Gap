@@ -8,6 +8,6 @@ class AdminLocationComponent extends Component
 {
     public function render()
     {
-        return view('livewire.admin.admin-location-component')->layout('layouts.base');
+        return view('livewire.admin.admin-location-component')->layout('layouts.backend');
     }
 }
