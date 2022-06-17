@@ -11,7 +11,7 @@
                             <h1>Blog</h1>
                         </div>
                         <ol class="breadcrumb">
-                            <li><a href="#">Home</a></li>
+                            <li><a href="/">Home</a></li>
                             <li class="active">Blog</li>
                         </ol>
                     </div>
@@ -36,22 +36,17 @@
                 <!-- Blog Entry -->
                 <div class="blog-entry">
                     <div class="entry--img">
-                        <img src="{{asset('assets/user/assets/images/blog/standard/1.jpg')}}" alt="entry image" />
+                        <img src="{{asset('assets/user/assets/images/blog/grid')}}/{{ $post->image }}" alt="entry image" />
                     </div>
                     <div class="entry--content">
                         <div class="entry--meta">
-                            <a href="#">March 09, 2018</a><a href="#">2 Comments</a>
+                            <a href="#">{{\Carbon\Carbon::parse($post->created_at)->isoFormat('MMM Do YYYY') }}</a>
                         </div>
                         <div class="entry--title">
-                            <h4>10 Quick Tips About Real Estate</h4>
+                            <h4>{{ $post->name }}</h4>
                         </div>
                         <div class="entry--bio">
-                            <p>Nam nisl lacus, dignissim ac tristique ut, scelerisque eu massa. Vestibulum ligula nunc, rutrum in malesuada vitae, tempus sed augue. Curabitur quis lectus quis augue dapibus facilisis amusie tincidunt orci est, in vehicula nisi eleifend ut estibulm sagittis varius orci vitae.</p>
-                            <blockquote class="blockquote">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusod tempor incididunt ut labor et dolore magna aliqua. Ut enim ad minim venia quis nostrud exercitation ullamco laboris nisi ut aliquip.
-                            </blockquote>
-                            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.</p>
-                            <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequ magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et eleifend ut estibulm sagittis varius orci vitae dolore aliquam.</p>
+                            {{ $post->bio }}
                         </div>
                         <div class="entry--share">
                             <span class="share--title">share</span>
@@ -85,7 +80,7 @@
                 </div>
                 <!-- .entry-prev-next end -->
 
-                <div class="entry-widget entry-comments clearfix">
+               <!-- <div class="entry-widget entry-comments clearfix">
                     <div class="entry-widget-title">
                         <h4>3 Comments</h4>
                     </div>
@@ -112,11 +107,11 @@
                                             <p>Lorem ipsum dolor sit amet, consectet adipisicing elit, sed eiusmod tempor incididun ut labore dolor magna aliqua enim minim veniam, quis nostrud.</p>
                                         </div>
                                     </li>
-                                    <!-- comment end -->
+                                    <-- comment end --
                                 </ul>
-                                <!-- .comment-children end -->
+                                <-- .comment-children end --
                             </li>
-                            <!-- comment end -->
+                            <-- comment end --
 
                             <li class="comment-body">
                                 <div class="avatar">
@@ -129,14 +124,14 @@
                                     <p>Lorem ipsum dolor sit amet, consectet adipisicing elit, sed eiusmod tempor incididun ut labore dolor magna aliqua enim minim veniam, quis nostrud.</p>
                                 </div>
                             </li>
-                            <!-- comment end -->
+                            <-- comment end --
                         </ul>
-                        <!-- .comments-list end -->
+                        <-- .comments-list end --
                     </div>
-                </div>
+                </div>-->
                 <!-- .entry-comments end -->
 
-                <div class="entry-widget entry-add-comment clearfix">
+               <!-- <div class="entry-widget entry-add-comment clearfix">
                     <div class="entry-widget-title">
                         <h4>Leave a Comment</h4>
                     </div>
@@ -149,14 +144,14 @@
                                         <input type="text" class="form-control" id="name" required>
                                     </div>
                                 </div>
-                                <!-- .col-md-6 end -->
+                                <-- .col-md-6 end --
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label for="email">Your Email*</label>
                                         <input type="email" class="form-control" id="email" required>
                                     </div>
                                 </div>
-                                <!-- .col-md-6 end -->
+                                <-- .col-md-6 end --
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="comment">Comment</label>
@@ -169,7 +164,7 @@
                             </div>
                         </form>
                     </div>
-                </div>
+                </div>-->
                 <!-- .entry-comments end -->
             </div>
             <!-- .col-md-8 end -->
@@ -201,66 +196,23 @@
                         <h5>recent posts</h5>
                     </div>
                     <div class="widget--content">
+                        @foreach ($r_posts as $r_post )
                         <!-- entry #1 -->
                         <div class="entry">
-                            <a href="property-single-gallery.html">
-    <img src="{{asset('assets/user/assets/images/blog/thumb/1.jpg')}}" alt="thumb" />
+                            <a href="{{ route('blog.single',['slug'=>$r_post->slug]) }}">
+    <img src="{{asset('assets/user/assets/images/blog/grid')}}/{{ $r_post->image }}" alt="{{ $r_post->name }}" />
     </a>
                             <div class="entry-desc">
                                 <div class="entry-title">
-                                    <a href="#">Effective Real Estate Websites</a>
+                                    <a href="{{ route('blog.single',['slug'=>$r_post->slug]) }}">{{ $r_post->name }}</a>
                                 </div>
                                 <div class="entry-meta">
-                                    <a href="#">April 05, 2018</a>
+                                    <a href="{{ route('blog.single',['slug'=>$r_post->slug]) }}">{{\Carbon\Carbon::parse($r_post->created_at)->isoFormat('MMM Do YYYY') }}</a>
                                 </div>
                             </div>
                         </div>
                         <!-- .recent-entry end -->
-                        <!-- entry #2 -->
-                        <div class="entry">
-                            <a href="property-single-gallery.html">
-    <img src="{{asset('assets/user/assets/images/blog/thumb/2.jpg')}}" alt="thumb" />
-    </a>
-                            <div class="entry-desc">
-                                <div class="entry-title">
-                                    <a href="#">3 Key Tips For Selling a Home</a>
-                                </div>
-                                <div class="entry-meta">
-                                    <a href="#">June 21, 2018</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- .recent-entry end -->
-                        <!-- entry #3 -->
-                        <div class="entry">
-                            <a href="property-single-gallery.html">
-    <img src="{{asset('assets/user/assets/images/blog/thumb/3.jpg')}}" alt="thumb" />
-    </a>
-                            <div class="entry-desc">
-                                <div class="entry-title">
-                                    <a href="#">Creating a Capitve Audience</a>
-                                </div>
-                                <div class="entry-meta">
-                                    <a href="#">June 28, 2018</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- .recent-entry end -->
-                        <!-- entry #4 -->
-                        <div class="entry">
-                            <a href="property-single-gallery.html">
-    <img src="{{asset('assets/user/assets/images/blog/thumb/4.jpg')}}" alt="thumb" />
-    </a>
-                            <div class="entry-desc">
-                                <div class="entry-title">
-                                    <a href="#">Real Estate Email Marketing</a>
-                                </div>
-                                <div class="entry-meta">
-                                    <a href="#">October 17, 2018</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- .recent-entry end -->
+                        @endforeach
                     </div>
                 </div>
                 <!-- .widget-recent end -->
@@ -273,15 +225,11 @@
                     </div>
                     <div class="widget--content">
                         <ul class="list-unstyled mb-0">
+                            @foreach ($archives as $archive )
                             <li>
-                                <a href="#">December, 2017</a>
+                                <a href="#">{{\Carbon\Carbon::parse($r_post->created_at)->isoFormat('MMMM , YYYY') }}</a>
                             </li>
-                            <li>
-                                <a href="#">November, 2017</a>
-                            </li>
-                            <li>
-                                <a href="#">October, 2017</a>
-                            </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
@@ -299,86 +247,34 @@
                     </div>
                     <div class="entry-widget-content blog-grid">
                         <div class="row">
+                             @foreach ($r_posts as $r_post )
                             <!-- Related Post #1 -->
                             <div class="col-xs-6 col-sm-6 col-md-4">
                                 <div class="blog-entry">
                                     <div class="entry--img">
-                                        <a href="#">
-                                    <img src="{{asset('assets/user/assets/images/blog/grid/5.jpg')}}" alt="entry image"/>
+                                        <a href="{{ route('blog.single',['slug'=>$r_post->slug]) }}">
+                                    <img src="{{asset('assets/user/assets/images/blog/grid')}}/{{ $r_post->image }}" alt="{{ $r_post->name }}"/>
                                 </a>
                                     </div>
                                     <div class="entry--content">
                                         <div class="entry--meta">
-                                            <a href="#">June 26, 2018</a><a href="#">4 Comments</a>
+                                            <a href="{{ route('blog.single',['slug'=>$r_post->slug]) }}">{{\Carbon\Carbon::parse($r_post->created_at)->isoFormat('MMM Do YYYY') }}</a>
                                         </div>
                                         <div class="entry--title">
-                                            <h4><a href="#">Creating a Captive Audience</a></h4>
+                                             <h4><a href="{{ route('blog.single',['slug'=>$r_post->slug]) }}">{{ $r_post->name }}</a></h4>
                                         </div>
                                         <div class="entry--bio">
-                                            More real estate companies and agents are finally understanding the importance
+                                            {{substr($post->bio,0,82)}}
                                         </div>
                                         <div class="entry--more">
-                                            <a href="#">Read More<i class="fa fa-angle-double-right"></i></a>
+                                            <a href="{{ route('blog.single',['slug'=>$r_post->slug]) }}">Read More<i class="fa fa-angle-double-right"></i></a>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- .blog-entry end -->
                             </div>
                             <!-- .col-md-4 end -->
-                            <!-- Related Post #2 -->
-                            <div class="col-xs-6 col-sm-6 col-md-4">
-                                <div class="blog-entry">
-                                    <div class="entry--img">
-                                        <a href="#">
-                                    <img src="{{asset('assets/user/assets/images/blog/grid/6.jpg')}}" alt="entry image"/>
-                                </a>
-                                    </div>
-                                    <div class="entry--content">
-                                        <div class="entry--meta">
-                                            <a href="#">October 17, 2018</a><a href="#">2 Comments</a>
-                                        </div>
-                                        <div class="entry--title">
-                                            <h4><a href="#">Real Estate Email Marketing</a></h4>
-                                        </div>
-                                        <div class="entry--bio">
-                                            As a Realtor, you are constantlylooking for new and improved ways to.connect with.
-                                        </div>
-                                        <div class="entry--more">
-                                            <a href="#">Read More<i class="fa fa-angle-double-right"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- .blog-entry end -->
-                            </div>
-                            <!-- .col-md-4 end -->
-                            <!-- Related Post #3 -->
-                            <div class="col-xs-6 col-sm-6 col-md-4">
-                                <div class="blog-entry">
-                                    <div class="entry--img">
-                                        <a href="#">
-                                    <img src="{{asset('assets/user/assets/images/blog/grid/8.jpg')}}" alt="entry image"/>
-                                </a>
-                                    </div>
-                                    <div class="entry--content">
-                                        <div class="entry--meta">
-                                            <a href="#">January 09, 2018</a><a href="#">3 Comments</a>
-                                        </div>
-                                        <div class="entry--title">
-                                            <h4><a href="#">5 Ways to Boost Neighborhood</a></h4>
-                                        </div>
-                                        <div class="entry--bio">
-                                            One of the easiest ways to get information and updates from the people who live..
-                                        </div>
-                                        <div class="entry--more">
-                                            <a href="#">Read More<i class="fa fa-angle-double-right"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- .blog-entry end -->
-                            </div>
-                            <!-- .col-md-4 end -->
-
-
+                            @endforeach
                         </div>
                         <!-- .row end -->
                     </div>

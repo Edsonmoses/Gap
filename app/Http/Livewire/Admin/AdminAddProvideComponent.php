@@ -23,7 +23,7 @@ class AdminAddProvideComponent extends Component
     public function mount()
     {
         $this->postedby = Auth::user()->name;
-        $this->category_id = '1';
+        $this->category_id = '3';
     }
       public function generateslug()
     {
@@ -52,16 +52,16 @@ class AdminAddProvideComponent extends Component
         $page = new Page();
         $page->name = $this->name;
         $page->slug = $this->slug;
-        $imageName = Carbon::now()->timestamp. '.' . $this->image->extension();
-        $this->image->storeAs('pages',$imageName);
-        $page->image = $imageName;
-        $page->icon = $this->icon;
+        $imageName = Carbon::now()->timestamp. '.' . $this->icon->extension();
+        $this->icon->storeAs('features/icons',$imageName);
+        $page->icon = $imageName;
+        $page->image = $this->image;
         $page->description = $this->description;
         $page->category_id = $this->category_id;
         $page->postedby = $this->postedby;
         $page->save();
         session()->flash('message','Provide has been created successfully!');
-        return redirect('/admin/add-page');
+        return redirect('/admin/add-provide');
     }
     public function render()
     {

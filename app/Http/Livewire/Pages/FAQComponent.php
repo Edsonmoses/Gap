@@ -2,12 +2,16 @@
 
 namespace App\Http\Livewire\Pages;
 
+use App\Models\Faqs;
 use Livewire\Component;
+use App\Models\Pagetitle;
 
 class FAQComponent extends Component
 {
     public function render()
     {
-        return view('livewire.pages.f-a-q-component')->layout('layouts.base');
+        $faqs = Faqs::all();
+        $pagetitle = Pagetitle::where('hide', '=', 'Active')->get();
+        return view('livewire.pages.f-a-q-component', ['pagetitle' => $pagetitle, 'faqs' => $faqs])->layout('layouts.base');
     }
 }

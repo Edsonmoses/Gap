@@ -59,12 +59,12 @@
                             <!-- .col-md-4 end -->
                             <div class="col-xs-12 col-sm-4 col-md-4">
                                 <div class="form-group">
-                                    <label for="city">Image</label>
-                                   <input type="file" class="form-control" wire:model="newimage">
-                                        @if($newimage)
-                                            <img src="{{ $newimage->temporaryUrl() }}" width="120"/>
+                                    <label for="city">Icon</label>
+                                   <input type="file" class="form-control" wire:model="newicon">
+                                        @if($newicon)
+                                            <img src="{{ $newicon->temporaryUrl() }}" width="120"/>
                                         @else
-                                          <img src="{{asset('assets/user/assets/images/pages')}}/{{ $image }}" width="120"/>
+                                          <img src="{{asset('assets/user/assets/images/features/icon')}}/{{ $icon }}" width="120"/>
                                         @endif
                                 </div>
                             </div>

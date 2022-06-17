@@ -22,12 +22,12 @@
                         @foreach ($pages as $page)
                             <tr>
                                 <td>{{$page->id}}</td>
-                                <td><img src="{{ asset('assets/user/assets/images/pages') }}/{{ $page->image }}" width="60"/></td>
+                                <td><img src="{{ asset('assets/user/assets/images/features/icons') }}/{{ $page->icon }}" width="60"/></td>
                                 <td>{{$page->name}}</td>
                                 <td>{{$page->category_id}}</td>
                                 <td>{{$page->created_at}}</td>
                                 <td>
-                                    <a href="{{ route('admin.editpage',['slug'=>$page->slug]) }}"><i  class="fa fa-edit fa-1x"></i></a>
+                                    <a href="{{ route('admin.editsteps',['slug'=>$page->slug]) }}"><i  class="fa fa-edit fa-1x"></i></a>
                                     <a href="#" onclick="confirm('Ara you sure, You want to delete this vector') || event.stopImmediatePropagation()" wire:click.prevent="deleteProperty({{ $page->id }})" style="margin:0 10px 0 10px"><i class="fa fa-trash fa-1x text-danger"></i></a>
                                 </td>
                             </tr>

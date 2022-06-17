@@ -35,7 +35,6 @@
                         <li><a href="/admin/add-property">Add Property</a></li>
                 </ul>
     </li>
-    </li>
         <li><a href="#" data-toggle="dropdown" class="dropdown-toggle menu-item">Pages</a>
             <ul class="dropdown-menu">
                         <!-- Profile Menu-->
@@ -47,8 +46,39 @@
                         <li><a href="/admin/add-steps">Add Steps</a></li>
                 </ul>
     </li>
+     <li><a href="#" data-toggle="dropdown" class="dropdown-toggle menu-item">Agents</a>
+            <ul class="dropdown-menu">
+                        <!-- Profile Menu-->
+                        <li><a href="/admin/agents">All Agents</a></li>
+                        <li><a href="/admin/add-agent">Add Agent</a></li>
+                </ul>
     </li>
-        <li><a href="/admin/home">Setting</a>
+    <li><a href="#" data-toggle="dropdown" class="dropdown-toggle menu-item">Setting</a>
+            <ul class="dropdown-menu">
+                        <!-- Profile Menu-->
+                        <li><a href="/admin/home">All Home Header</a></li>
+                        <li><a href="/admin/add-slider">Add Slider</a></li>
+                </ul>
+                <ul class="dropdown-menu">
+                        <!-- Profile Menu-->
+                        <li><a href="/admin/titles">All Page Titles</a></li>
+                        <li><a href="/admin/add-title">Add Page Title</a></li>
+                </ul>
     </li>
+    <li><a href="#" data-toggle="dropdown" class="dropdown-toggle menu-item">Faqs</a>
+            <ul class="dropdown-menu">
+                        <!-- Profile Menu-->
+                        <li><a href="/admin/faqs">All Faqs</a></li>
+                        <li><a href="/admin/add-faq">Add Faq</a></li>
+                </ul>
+    </li>
+     <li><a href="#" data-toggle="dropdown" class="dropdown-toggle menu-item">Posts</a>
+            <ul class="dropdown-menu">
+                        <!-- Profile Menu-->
+                        <li><a href="/admin/posts">All Posts</a></li>
+                        <li><a href="/admin/add-post">Add Post</a></li>
+                </ul>
+    </li>
+    <li><a href="#" style="color: #fff !important">settings</a></li>
 </ul>
  </div>

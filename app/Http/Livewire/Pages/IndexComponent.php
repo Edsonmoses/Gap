@@ -3,8 +3,9 @@
 namespace App\Http\Livewire\Pages;
 
 use App\Models\Home;
-use App\Models\Property;
+use App\Models\Agents;
 use Livewire\Component;
+use App\Models\Property;
 
 class IndexComponent extends Component
 {

@@ -11,7 +11,7 @@
                             <h1>FAQ</h1>
                         </div>
                         <ol class="breadcrumb">
-                            <li><a href="#">Home</a></li>
+                            <li><a href="/">Home</a></li>
                             <li class="active">FAQ</li>
                         </ol>
                     </div>
@@ -29,64 +29,42 @@
 
 <!-- Accordion #1
 ============================================= -->
+@foreach ($pagetitle as $titles)
+    @if ($titles->podition == 'questions')
 <section id="accordion1" class="bg-white">
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="heading text-center mb-75">
-                    <h2 class="heading--title">Asked Questions</h2>
-                    <p class="heading--desc">Duis aute irure dolor in reprehed in volupted velit esse dolore</p>
+                    <h2 class="heading--title">{{ $titles->title }}</h2>
+                    <p class="heading--desc">{{ $titles->desc }}</p>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-xs-12 col-sm-7 col-md-7">
                 <div class="accordion accordion-1" id="accordion01">
-                    <!-- Panel 01 -->
+                    @foreach ($faqs as $faq )
+                    <!-- Panel 0{{ $faq->id }} -->
                     <div class="panel">
                         <div class="panel--heading">
-                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion01" href="#collapse01-1">What is a real estate broker?</a>
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion01" href="#collapse01-{{ $faq->id }}">{{ $faq->name }}</a>
                         </div>
-                        <div id="collapse01-1" class="panel--body panel-collapse collapse in">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit cras sollicitudin, tellus vitae condy egestas. Libero varius ligula a id nec libero amet.</p>
-                        </div>
-                    </div>
-
-                    <!-- Panel 01 -->
-                    <div class="panel">
-                        <div class="panel--heading">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion01" href="#collapse01-2">Why should I use a real estate salesperson?</a>
-                        </div>
-                        <div id="collapse01-2" class="panel--body panel-collapse collapse">
-                            Trends, vision dominates a lot of our subconscious interpretation of the world around us. On top it, pleasing images create a better user experience. Rounding up a bunch of specific designs.Trends, vision dominates a lot of our subconscious interpretation of the world around us.
+                        <div id="collapse01-{{ $faq->id }}" class="panel--body panel-collapse collapse @if ($loop->first) in @endif">
+                            <p>{{ $faq->desc }}</p>
                         </div>
                     </div>
-
-                    <!-- Panel 03 -->
-                    <div class="panel">
-                        <div class="panel--heading">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion01" href="#collapse01-3">What if my offer is rejected?</a>
-                        </div>
-                        <div id="collapse01-3" class="panel--body panel-collapse collapse">
-                            Trends, vision dominates a lot of our subconscious interpretation of the world around us. On top it, pleasing images create a better user experience. Rounding up a bunch of specific designs.Trends, vision dominates a lot of our subconscious interpretation of the world around us.
-                        </div>
-                    </div>
-
-                    <!-- Panel 04 -->
-                    <div class="panel">
-                        <div class="panel--heading">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion01" href="#collapse01-4">Should I buy or continue to rent?</a>
-                        </div>
-                        <div id="collapse01-4" class="panel--body panel-collapse collapse">
-                            Trends, vision dominates a lot of our subconscious interpretation of the world around us. On top it, pleasing images create a better user experience. Rounding up a bunch of specific designs.Trends, vision dominates a lot of our subconscious interpretation of the world around us.
-                        </div>
-                    </div>
+                   @endforeach
                 </div>
                 <!-- End .Accordion-->
             </div>
             <!-- .col-md-7 end -->
             <div class="col-xs-12 col-sm-5 col-md-4">
-                <img src="{{asset('assets/user/assets/images/accordion/1.jpg')}}" alt="img">
+                 @foreach ($faqs as $faq )
+                 @if ($loop->first)
+                     <img src="{{asset('assets/user/assets/images/accordion/')}}/{{ $faq->image }}" alt="{{ $faq->name }}">
+                 @endif
+                @endforeach
             </div>
             <!-- .col-md-4 end -->
         </div>
@@ -94,3 +72,5 @@
     </div>
     <!-- .container end -->
 </section>
+ @endif
+ @endforeach

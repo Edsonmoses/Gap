@@ -9,11 +9,11 @@
                 <div class="title title-1 text-center">
                     <div class="title--content">
                         <div class="title--heading">
-                            <h1>Add Property</h1>
+                            <h1>Setting</h1>
                         </div>
                         <ol class="breadcrumb">
                             <li><a href="#">Home</a></li>
-                            <li class="active">Add Property</li>
+                            <li class="active">Setting</li>
                         </ol>
                     </div>
                     <div class="clearfix"></div>
