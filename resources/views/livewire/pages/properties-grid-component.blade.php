@@ -131,7 +131,7 @@
             <div class="col-xs-12 col-sm-12 col-md-4">
                 <!-- widget property type
 =============================-->
-                <div class="widget widget-property">
+                {{--<div class="widget widget-property">
                     <div class="widget--title">
                         <h5>Property Type</h5>
                     </div>
@@ -202,7 +202,7 @@
                 </div>
                 <!-- . widget property city end -->
 
-
+--}}
                 <!-- widget featured property
 =============================-->
                 <div class="widget widget-featured-property">
@@ -211,54 +211,32 @@
                     </div>
                     <div class="widget--content plp">
                         <div class="carousel carousel-dots" data-slide="1" data-slide-rs="1" data-autoplay="false" data-nav="false" data-dots="true" data-space="0" data-loop="true" data-speed="800">
+                            @foreach ($Featured as $pfeatured)
                             <!-- .property-item #1 -->
                             <div class="property-item">
+                                <a href="{{ route('single_gallery',['slug'=>$pfeatured->slug]) }}">
                                 <div class="property--img">
-                                    <img src="{{asset('assets/user/assets/images/properties/13.jpg')}}" alt="property image" class="img-responsive">
-                                    <span class="property--status">For Rent</span>
+                                     @php
+                                             $image = explode(",",$pfeatured->gallery);
+                                         @endphp
+                                            @if (!empty($image[1]))
+                                    <img src="{{asset('assets/user/assets/images/properties')}}/{{ $image[1] }}" alt="property -{{ $pfeatured->name }}" class="img-responsive">
+                                     @endif
+                                       <span class="property--status">For Sale</span>
                                 </div>
+                                </a>
                                 <div class="property--content">
                                     <div class="property--info">
-                                        <h5 class="property--title"><a href="property-single-gallery.html">House in Chicago</a></h5>
-                                        <p class="property--location">1445 N State Pkwy, Chicago, IL 60610</p>
-                                        <p class="property--price">$1200<span class="time">month</span></p>
+                                        <h5 class="property--title"><a href="{{ route('single_gallery',['slug'=>$pfeatured->slug]) }}">{{ $pfeatured->name }}</a></h5>
+                                        <p class="property--location">{{ $pfeatured->locations }}</p>
+                                        <p class="property--price">${{ $pfeatured->SRprice }}<!--<span class="time">month</span>--></p>
                                     </div>
                                     <!-- .property-info end -->
                                 </div>
                             </div>
+                            @endforeach
                             <!-- .property item end -->
-                            <!-- .property-item #2 -->
-                            <div class="property-item">
-                                <div class="property--img">
-                                    <img src="{{asset('assets/user/assets/images/properties/2.jpg')}}" alt="property image" class="img-responsive">
-                                    <span class="property--status">For Rent</span>
-                                </div>
-                                <div class="property--content">
-                                    <div class="property--info">
-                                        <h5 class="property--title"><a href="property-single-gallery.html">Villa in Oglesby Ave</a></h5>
-                                        <p class="property--location">1035 Oglesby Ave, Chicago, IL 60617</p>
-                                        <p class="property--price">$130,000<span class="time">month</span></p>
-                                    </div>
-                                    <!-- .property-info end -->
-                                </div>
-                            </div>
-                            <!-- .property item end -->
-                            <!-- .property-item #3 -->
-                            <div class="property-item">
-                                <div class="property--img">
-                                    <img src="{{asset('assets/user/assets/images/properties/3.jpg')}}" alt="property image" class="img-responsive">
-                                    <span class="property--status">For Sale</span>
-                                </div>
-                                <div class="property--content">
-                                    <div class="property--info">
-                                        <h5 class="property--title"><a href="property-single-gallery.html">Apartment in Long St.</a></h5>
-                                        <p class="property--location">34 Long St, Jersey City, NJ 07305</p>
-                                        <p class="property--price">$70,000</p>
-                                    </div>
-                                    <!-- .property-info end -->
-                                </div>
-                            </div>
-                            <!-- .property item end -->
+                           
                         </div>
                         <!-- .carousel end -->
                     </div>
