@@ -8,11 +8,31 @@ use Livewire\WithPagination;
 
 class AdminPropertyComponent extends Component
 {
-     use WithPagination;
-     
+    use WithPagination;
+    public function deleteProperty($id)
+    {
+        $property = Property::find($id);
+        $property->delete();
+        session()->flash('message', 'Property has been deleted successfully!');
+    }
+    public function activate($id)
+    {
+        $property = Property::find($id);
+        $property->exclusive = 'exclusive';
+        $property->save();
+        session()->flash('message', 'Property title has been add to exclusive section successfully!');
+    }
+    public function deactivate($id)
+    {
+        $property = Property::find($id);
+        $property->exclusive = 'inexclusive';
+        $property->save();
+        session()->flash('message', 'Property title has been remove from exclusive section successfully!');
+    }
+
     public function render()
     {
-        $property = Property::orderBy('name','ASC')->paginate(20);
-        return view('livewire.admin.admin-property-component',['property'=>$property])->layout('layouts.backend');
+        $property = Property::orderBy('name', 'ASC')->paginate(20);
+        return view('livewire.admin.admin-property-component', ['property' => $property])->layout('layouts.backend');
     }
 }

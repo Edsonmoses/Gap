@@ -18,7 +18,7 @@ class CreatePropertiesTable extends Migration
             $table->string('name');
             $table->string('slug');
             $table->string('image');
-             $table->longText('description');
+            $table->longText('description');
             $table->bigInteger('type_id')->unsigned()->nullable();
             $table->string('status')->nullable();
             $table->bigInteger('location_id')->unsigned()->nullable();
@@ -37,7 +37,8 @@ class CreatePropertiesTable extends Migration
             $table->bigInteger('features_id')->unsigned()->nullable();
             $table->longText('gallery');
             $table->bigInteger('category_id')->unsigned()->nullable();
-            $table->longText('featured')->default(false);
+            $table->longText('featured')->default('inexclusive');
+            $table->string('exclusive')->default('null');
             $table->string('postedby')->default('postedby');
             $table->timestamps();
             $table->foreign('type_id')->references('id')->on('types')->onDelete('cascade');

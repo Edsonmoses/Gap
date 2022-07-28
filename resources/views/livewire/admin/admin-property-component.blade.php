@@ -29,6 +29,11 @@
                                 <td>
                                     <a href="{{ route('admin.editproperty',['slug'=>$property->slug]) }}"><i  class="fa fa-edit fa-1x"></i></a>
                                     <a href="#" onclick="confirm('Ara you sure, You want to delete this vector') || event.stopImmediatePropagation()" wire:click.prevent="deleteProperty({{ $property->id }})" style="margin:0 10px 0 10px"><i class="fa fa-trash fa-1x text-danger"></i></a>
+                                    @if ($property->exclusive == 'exclusive')
+                                     <a href="#" onclick="confirm('Ara you sure, You want to remove this property from exclusive section') || event.stopImmediatePropagation()" wire:click.prevent="deactivate({{ $property->id }})" style="margin:0 10px 0 10px"><i class="fa fa-toggle-on h fa-1x text-success"></i></a> 
+                                    @else
+                                     <a href="#" onclick="confirm('Ara you sure, You want to add this property to exclusive section') || event.stopImmediatePropagation()" wire:click.prevent="activate({{ $property->id }})" style="margin:0 10px 0 10px"><i class="fa fa-toggle-off fa-1x text-danger"></i></a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

@@ -44,6 +44,7 @@ use App\Http\Livewire\Pages\BlogLeftSidebarComponent;
 use App\Http\Livewire\Pages\BlogRightSidebarComponent;
 use App\Http\Livewire\Pages\BlogSingleComponent;
 use App\Http\Livewire\Pages\ContactComponent;
+use App\Http\Livewire\Pages\ExclusivePropertiesComponent;
 use App\Http\Livewire\Pages\FAQComponent;
 use App\Http\Livewire\Pages\IndexComponent;
 use App\Http\Livewire\Pages\Page404Component;
@@ -98,6 +99,7 @@ Route::get('/faq', FAQComponent::class)->name('faq');
 Route::get('/page-404', Page404Component::class);
 //Properties
 Route::get('/properties', PropertiesGridComponent::class)->name('properties');
+Route::get('/exclusive-properties', ExclusivePropertiesComponent::class)->name('eproperties');
 Route::get('/properties-grid-split', PropertiesGridSplitComponent::class)->name('propsplit');
 Route::get('/properties-list', PropertieSlistComponent::class)->name('proplist');
 Route::get('/properties-list-split', PropertieSlistSplitComponent::class)->name('proplistspl');

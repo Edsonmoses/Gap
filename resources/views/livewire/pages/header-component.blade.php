@@ -33,6 +33,9 @@
                     <!-- li end -->
                     <!-- Properties Menu-->
                      <li><a href="/properties">properties</a></li>
+                     @if (Auth::check())
+                      <li><a href="/exclusive-properties">exclusive properties</a></li>
+                     @endif
                     <!-- li end -->
                      <li><a href="/blog">blog</a> </li>
                     <li><a href="/contact">contact</a></li>

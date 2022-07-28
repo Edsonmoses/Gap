@@ -16,7 +16,7 @@
 	13. SHOW OPTIONS
 
 */
-(function($) {
+(function ($) {
     "use strict";
 
     /* ------------------  Background INSERT ------------------ */
@@ -25,47 +25,47 @@
     var $bgPattern = $(".bg-pattern");
     var $colBg = $(".col-bg");
 
-    $bgSection.each(function() {
+    $bgSection.each(function () {
         var bgSrc = $(this).children("img").attr("src");
-        var bgUrl = 'url(' + bgSrc + ')';
+        var bgUrl = "url(" + bgSrc + ")";
         $(this).parent().css("backgroundImage", bgUrl);
         $(this).parent().addClass("bg-section");
         $(this).remove();
     });
 
-    $bgPattern.each(function() {
+    $bgPattern.each(function () {
         var bgSrc = $(this).children("img").attr("src");
-        var bgUrl = 'url(' + bgSrc + ')';
+        var bgUrl = "url(" + bgSrc + ")";
         $(this).parent().css("backgroundImage", bgUrl);
         $(this).parent().addClass("bg-pattern");
         $(this).remove();
     });
 
-    $colBg.each(function() {
+    $colBg.each(function () {
         var bgSrc = $(this).children("img").attr("src");
-        var bgUrl = 'url(' + bgSrc + ')';
+        var bgUrl = "url(" + bgSrc + ")";
         $(this).parent().css("backgroundImage", bgUrl);
         $(this).parent().addClass("col-bg");
         $(this).remove();
     });
 
     /* ------------------  NAV MODULE  ------------------ */
-	
+
     var $moduleIcon = $(".module-icon"),
         $moduleCancel = $(".module-cancel");
-    $moduleIcon.on("click", function(e) {
-        $(this).parent().siblings().removeClass('module-active'); // Remove the class .active form any sibiling.
+    $moduleIcon.on("click", function (e) {
+        $(this).parent().siblings().removeClass("module-active"); // Remove the class .active form any sibiling.
         $(this).parent(".module").toggleClass("module-active"); //Add the class .active to parent .module for this element.
         e.stopPropagation();
     });
     // If Click on [ Search-cancel ] Link
-    $moduleCancel.on("click", function(e) {
+    $moduleCancel.on("click", function (e) {
         $(".module").removeClass("module-active");
         e.stopPropagation();
     });
 
-    $(".side-nav-icon").on("click", function() {
-        if ($(this).parent().hasClass('module-active')) {
+    $(".side-nav-icon").on("click", function () {
+        if ($(this).parent().hasClass("module-active")) {
             $(".wrapper").addClass("hamburger-active");
             $(this).addClass("module-hamburger-close");
         } else {
@@ -73,10 +73,14 @@
             $(this).removeClass("module-hamburger-close");
         }
     });
-	
+
     // If Click on [ Document ] and this click outside [ hamburger panel ]
-    $(document).on("click", function(e) {
-        if ($(e.target).is(".hamburger-panel,.hamburger-panel .list-links,.hamburger-panel .list-links a,.hamburger-panel .social-share,.hamburger-panel .social-share a i,.hamburger-panel .social-share a,.hamburger-panel .copywright") === false) {
+    $(document).on("click", function (e) {
+        if (
+            $(e.target).is(
+                ".hamburger-panel,.hamburger-panel .list-links,.hamburger-panel .list-links a,.hamburger-panel .social-share,.hamburger-panel .social-share a i,.hamburger-panel .social-share a,.hamburger-panel .copywright"
+            ) === false
+        ) {
             $(".wrapper").removeClass("page-transform"); // Remove the class .active form .module when click on outside the div.
             $(".module-side-nav").removeClass("module-active");
             e.stopPropagation();
@@ -84,8 +88,12 @@
     });
 
     // If Click on [ Document ] and this click outside [ module ]
-    $(document).on("click", function(e) {
-        if ($(e.target).is(".module, .module-content, .search-form input,.cart-control .btn,.cart-overview a.cancel,.cart-box") === false) {
+    $(document).on("click", function (e) {
+        if (
+            $(e.target).is(
+                ".module, .module-content, .search-form input,.cart-control .btn,.cart-overview a.cancel,.cart-box"
+            ) === false
+        ) {
             $module.removeClass("module-active"); // Remove the class .active form .module when click on outside the div.
             e.stopPropagation();
         }
@@ -95,55 +103,57 @@
 
     var $dropToggle = $("ul.dropdown-menu [data-toggle=dropdown]"),
         $module = $(".module");
-    $dropToggle.on("click", function(event) {
+    $dropToggle.on("click", function (event) {
         event.preventDefault();
         event.stopPropagation();
         $(this).parent().siblings().removeClass("open");
         $(this).parent().toggleClass("open");
     });
 
-    $module.on("click", function() {
+    $module.on("click", function () {
         $(this).toggleClass("toggle-module");
     });
-	
-    $module.find("input.form-control", ".btn", ".module-cancel").on("click", function(e) {
-        e.stopPropagation();
-    });
+
+    $module
+        .find("input.form-control", ".btn", ".module-cancel")
+        .on("click", function (e) {
+            e.stopPropagation();
+        });
 
     /* ------------------ HEADER AFFIX ------------------ */
 
     var $navAffix = $(".header-fixed .navbar-fixed-top");
     $navAffix.affix({
         offset: {
-            top: 50
-        }
+            top: 50,
+        },
     });
 
     /* ------------------ OWL CAROUSEL ------------------ */
 
-    $(".carousel").each(function() {
+    $(".carousel").each(function () {
         var $Carousel = $(this);
         $Carousel.owlCarousel({
-            loop: $Carousel.data('loop'),
+            loop: $Carousel.data("loop"),
             autoplay: $Carousel.data("autoplay"),
-            margin: $Carousel.data('space'),
-            nav: $Carousel.data('nav'),
-            dots: $Carousel.data('dots'),
-            center: $Carousel.data('center'),
-            dotsSpeed: $Carousel.data('speed'),
-            thumbs: $Carousel.data('thumbs'),
-            thumbsPrerendered: $Carousel.data('thumbs'),
+            margin: $Carousel.data("space"),
+            nav: $Carousel.data("nav"),
+            dots: $Carousel.data("dots"),
+            center: $Carousel.data("center"),
+            dotsSpeed: $Carousel.data("speed"),
+            thumbs: $Carousel.data("thumbs"),
+            thumbsPrerendered: $Carousel.data("thumbs"),
             responsive: {
                 0: {
                     items: 1,
                 },
                 600: {
-                    items: $Carousel.data('slide-rs'),
+                    items: $Carousel.data("slide-rs"),
                 },
                 1000: {
-                    items: $Carousel.data('slide'),
-                }
-            }
+                    items: $Carousel.data("slide"),
+                },
+            },
         });
     });
 
@@ -151,75 +161,76 @@
 
     var $imgPopup = $(".img-popup");
     $imgPopup.magnificPopup({
-        type: "image"
+        type: "image",
     });
-    $('.img-gallery-item').magnificPopup({
-        type: 'image',
+    $(".img-gallery-item").magnificPopup({
+        type: "image",
         gallery: {
-            enabled: true
-        }
+            enabled: true,
+        },
     });
-	
+
     /* ------------------  MAGNIFIC POPUP VIDEO ------------------ */
 
-    $('.popup-video,.popup-gmaps').magnificPopup({
+    $(".popup-video,.popup-gmaps").magnificPopup({
         disableOn: 700,
-        mainClass: 'mfp-fade',
+        mainClass: "mfp-fade",
         removalDelay: 0,
         preloader: false,
         fixedContentPos: false,
-        type: 'iframe',
+        type: "iframe",
         iframe: {
-            markup: '<div class="mfp-iframe-scaler">' +
+            markup:
+                '<div class="mfp-iframe-scaler">' +
                 '<div class="mfp-close"></div>' +
                 '<iframe class="mfp-iframe" frameborder="0" allowfullscreen></iframe>' +
-                '</div>',
+                "</div>",
             patterns: {
                 youtube: {
-                    index: 'youtube.com/',
-                    id: 'v=',
-                    src: '//www.youtube.com/embed/%id%?autoplay=1'
-                }
+                    index: "youtube.com/",
+                    id: "v=",
+                    src: "//www.youtube.com/embed/%id%?autoplay=1",
+                },
             },
-            srcAction: 'iframe_src',
-        }
+            srcAction: "iframe_src",
+        },
     });
 
     /* ------------------  SWITCH GRID ------------------ */
 
-    $('#switch-list').on("click", function(event) {
+    $("#switch-list").on("click", function (event) {
         event.preventDefault();
-        $(this).addClass('active');
+        $(this).addClass("active");
         $(this).siblings().removeClass("active");
-        $(".properties").each(function() {
-            $(this).addClass('properties-list');
-            $(this).removeClass('properties-grid');
+        $(".properties").each(function () {
+            $(this).addClass("properties-list");
+            $(this).removeClass("properties-grid");
         });
-
     });
-	
-    $('#switch-grid').on("click", function(event) {
 
+    $("#switch-grid").on("click", function (event) {
         event.preventDefault();
-        $(this).addClass('active');
+        $(this).addClass("active");
         $(this).siblings().removeClass("active");
-        $(".properties").each(function() {
-            $(this).addClass('properties-grid');
-            $(this).removeClass('properties-list');
+        $(".properties").each(function () {
+            $(this).addClass("properties-grid");
+            $(this).removeClass("properties-list");
         });
-
     });
 
     /* ------------------  SCROLL TO ------------------ */
 
     var aScroll = $('a[data-scroll="scrollTo"]');
-    aScroll.on('click', function(event) {
-        var target = $($(this).attr('href'));
+    aScroll.on("click", function (event) {
+        var target = $($(this).attr("href"));
         if (target.length) {
             event.preventDefault();
-            $('html, body').animate({
-                scrollTop: target.offset().top - 100
-            }, 1000);
+            $("html, body").animate(
+                {
+                    scrollTop: target.offset().top - 100,
+                },
+                1000
+            );
             if ($(this).hasClass("menu-item")) {
                 $(this).parent().addClass("active");
                 $(this).parent().siblings().removeClass("active");
@@ -231,17 +242,28 @@
 
     var $sliderRange = $(".slider-range"),
         $sliderAmount = $(".amount");
-    $sliderRange.each(function() {
+    $sliderRange.each(function () {
         $(this).slider({
             range: true,
             min: 0,
-            max: 1000,
-            values: [0, 1000],
-            slide: function(event, ui) {
-                $(this).closest('.filter').find($sliderAmount).val("$" + ui.values[0] + " - $" + ui.values[1]);
-            }
+            max: 100000000,
+            values: [0, 100000000],
+            slide: function (event, ui) {
+                $(this)
+                    .closest(".filter")
+                    .find($sliderAmount)
+                    .val(ui.values[0] + "" + "M - " + ui.values[1] + "" + "M");
+            },
         });
-        $(this).closest('.filter').find($sliderAmount).val("$" + $sliderRange.slider("values", 0) + " - $" + $sliderRange.slider("values", 1));
+        $(this)
+            .closest(".filter")
+            .find($sliderAmount)
+            .val(
+                "$" +
+                    $sliderRange.slider("values", 0) +
+                    " - $" +
+                    $sliderRange.slider("values", 1)
+            );
     });
 
     /*-------------------  Dropzone UPLOAD ---------------------*/
@@ -251,30 +273,29 @@
         $("#dZUpload").dropzone({
             url: "hn_SimpeFileUploader.ashx",
             addRemoveLinks: true,
-            success: function(file, response) {
+            success: function (file, response) {
                 var imgName = response;
                 file.previewElement.classList.add("dz-success");
                 console.log("Successfully uploaded :" + imgName);
             },
-            error: function(file, response) {
+            error: function (file, response) {
                 file.previewElement.classList.add("dz-error");
-            }
+            },
         });
     }
 
     /*------------ REMOVE PROFILE PHOTO --------*/
-	
-    $('.delete--img').on("click", function() {
-        $('.output--img').remove();
-        event.preventDefault();
-    });
-	
-    /*------------ SHOW OPTIONS --------*/
-	
-    $('.less--options').on("click", function() {
-        $('.option-hide').slideToggle('slow');
-        $(this).toggleClass('active');
+
+    $(".delete--img").on("click", function () {
+        $(".output--img").remove();
         event.preventDefault();
     });
 
-}(jQuery));
+    /*------------ SHOW OPTIONS --------*/
+
+    $(".less--options").on("click", function () {
+        $(".option-hide").slideToggle("slow");
+        $(this).toggleClass("active");
+        event.preventDefault();
+    });
+})(jQuery);

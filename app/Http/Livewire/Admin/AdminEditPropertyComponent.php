@@ -14,7 +14,7 @@ use Livewire\WithFileUploads;
 
 class AdminEditPropertyComponent extends Component
 {
-     use WithFileUploads;
+    use WithFileUploads;
     public $name;
     public $slug;
     public $image;
@@ -22,7 +22,7 @@ class AdminEditPropertyComponent extends Component
     public $type_id;
     public $status;
     public $location_id;
-     public $locations;
+    public $locations;
     public $bedrooms;
     public $bathrooms;
     public $floors;
@@ -39,12 +39,13 @@ class AdminEditPropertyComponent extends Component
     public $category_id;
     public $featured;
     public $postedby;
-     public $newimage;
+    public $newimage;
     public $newgallery;
+    public $exclusive;
 
-     public function mount($slug)
+    public function mount($slug)
     {
-         $property = Property::where('slug',$slug)->first();
+        $property = Property::where('slug', $slug)->first();
         $this->name = $property->name;
         $this->slug = $property->slug;
         $this->image = $property->image;
@@ -65,13 +66,14 @@ class AdminEditPropertyComponent extends Component
         $this->propertyID = $property->propertyID;
         $this->videoURL = $property->videoURL;
         $this->features_id = $property->features_id;
-        $this->gallery = explode(",",$property->gallery);
+        $this->gallery = explode(",", $property->gallery);
         $this->property_id = $property->id;
-        $this->featured = str_replace("\n",',',trim($property->featured));
+        $this->featured = str_replace("\n", ',', trim($property->featured));
+        $this->exclusive = $property->exclusive;
         $this->postedby = Auth::user()->name;
         $this->category_id = '0';
     }
-      public function generateslug()
+    public function generateslug()
     {
         $this->slug = Str::slug($this->name);
     }
@@ -114,7 +116,7 @@ class AdminEditPropertyComponent extends Component
 
     public function storeProperty()
     {
-       /* $this->validate([
+        /* $this->validate([
             'name' => 'required',
             'slug' => 'required',
             'description' => 'required',
@@ -167,51 +169,46 @@ class AdminEditPropertyComponent extends Component
         $property->propertyID = $this->propertyID;
         $property->videoURL = $this->videoURL;
         $property->features_id = $this->features_id;
-        if($this->newimage)
-        {
-            if($property->image)
-            {
-               unlink('assets/user/assets/images/page-titles'.'/'.$property->image);
+        if ($this->newimage) {
+            if ($property->image) {
+                unlink('assets/user/assets/images/page-titles' . '/' . $property->image);
             }
-            $imageName = Carbon::now()->timestamp. '.' . $this->newimage->extension();
-            $this->newimage->storeAs('page-titles',$imageName);
+            $imageName = Carbon::now()->timestamp . '.' . $this->newimage->extension();
+            $this->newimage->storeAs('page-titles', $imageName);
             $property->newimage = $imageName;
         }
-         if($this->newgallery)
-        {
-           if($property->gallery)
-            {
-                $images = explode(",",$property->gallery);
-                foreach($images as $image)
-                {
-                   /* if($image)
+        if ($this->newgallery) {
+            if ($property->gallery) {
+                $images = explode(",", $property->gallery);
+                foreach ($images as $image) {
+                    /* if($image)
                     {
                         unlink('passets/user/assets/images/roperties/slider'.'/'.$image); 
                     }*/
                 }
             }
 
-            $imagesname ='';
-            foreach($this->newgallery as $key=>$image)
-            {
+            $imagesname = '';
+            foreach ($this->newgallery as $key => $image) {
                 $imgName = Carbon::now()->timestamp . $key . '.' . $image->extension();
-                $image->storeAs('properties',$imgName);
+                $image->storeAs('properties', $imgName);
                 $imagesname = $imagesname . ',' . $imgName;
             }
             $property->gallery =  $imagesname;
         }
-        
-        $property->featured = str_replace("\n",',',trim($this->featured));
+
+        $property->featured = str_replace("\n", ',', trim($this->featured));
+        $property->exclusive = $this->exclusive;
         $property->postedby = $this->postedby;
         $property->save();
-        session()->flash('message','Property has been updated successfully!');
-        return redirect('/admin/add-property'); 
+        session()->flash('message', 'Property has been updated successfully!');
+        return redirect('/admin/add-property');
     }
     public function render()
     {
-         $Locations = Location::all();
+        $Locations = Location::all();
         $ptype = Type::all();
         $featureds = Features::all();
-        return view('livewire.admin.admin-edit-property-component',['Locations'=>$Locations,'ptype'=>$ptype,'featureds'=>$featureds])->layout('layouts.backend');
+        return view('livewire.admin.admin-edit-property-component', ['Locations' => $Locations, 'ptype' => $ptype, 'featureds' => $featureds])->layout('layouts.backend');
     }
 }

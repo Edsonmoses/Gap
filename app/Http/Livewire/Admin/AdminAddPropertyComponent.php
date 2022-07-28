@@ -22,7 +22,7 @@ class AdminAddPropertyComponent extends Component
     public $type_id;
     public $status;
     public $location_id;
-     public $locations;
+    public $locations;
     public $bedrooms;
     public $bathrooms;
     public $floors;
@@ -38,6 +38,7 @@ class AdminAddPropertyComponent extends Component
     public $gallery;
     public $category_id;
     public $featured;
+    public $exclusive;
     public $postedby;
 
     public function mount()
@@ -45,7 +46,7 @@ class AdminAddPropertyComponent extends Component
         $this->postedby = Auth::user()->name;
         $this->category_id = '0';
     }
-      public function generateslug()
+    public function generateslug()
     {
         $this->slug = Str::slug($this->name);
     }
@@ -141,26 +142,25 @@ class AdminAddPropertyComponent extends Component
         $property->propertyID = $this->propertyID;
         $property->videoURL = $this->videoURL;
         $property->features_id = $this->features_id;
-         $imageName = Carbon::now()->timestamp. '.' . $this->image->extension();
-        $this->image->storeAs('page-titles',$imageName);
+        $imageName = Carbon::now()->timestamp . '.' . $this->image->extension();
+        $this->image->storeAs('page-titles', $imageName);
         $property->image = $imageName;
-          if($this->gallery)
-        {
-            $imagesname ='';
-            foreach($this->gallery as $key=>$image)
-            {
+        if ($this->gallery) {
+            $imagesname = '';
+            foreach ($this->gallery as $key => $image) {
                 $imgName = Carbon::now()->timestamp . $key . '.' . $image->extension();
-                $image->storeAs('properties',$imgName);
+                $image->storeAs('properties', $imgName);
                 $imagesname = $imagesname . ',' . $imgName;
             }
             $property->gallery =  $imagesname;
         }
-        
-        $property->featured = str_replace("\n",',',trim($this->featured));
+
+        $property->featured = str_replace("\n", ',', trim($this->featured));
+        $property->exclusive = $this->exclusive;
         $property->postedby = $this->postedby;
         $property->save();
-        session()->flash('message','Property has been created successfully!');
-        return redirect('/admin/add-property'); 
+        session()->flash('message', 'Property has been created successfully!');
+        return redirect('/admin/add-property');
     }
 
     public function render()
@@ -168,6 +168,6 @@ class AdminAddPropertyComponent extends Component
         $Locations = Location::all();
         $ptype = Type::all();
         $featureds = Features::all();
-        return view('livewire.admin.admin-add-property-component',['Locations'=>$Locations,'ptype'=>$ptype,'featureds'=>$featureds])->layout('layouts.backend');
+        return view('livewire.admin.admin-add-property-component', ['Locations' => $Locations, 'ptype' => $ptype, 'featureds' => $featureds])->layout('layouts.backend');
     }
 }
