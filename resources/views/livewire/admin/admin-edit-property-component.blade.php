@@ -182,6 +182,13 @@
                                 </div>
                             </div>
                             <!-- .col-md-4 end -->
+                            <div class="col-xs-12 col-sm-4 col-md-4">
+                                <div class="form-group">
+                                    <label for="pin">Google Pin</label>
+                                    <input type="text" class="form-control" name="pin" id="pin" placeholder="Google pin.." wire:model="pin">
+                                </div>
+                            </div>
+                            <!-- .col-md-4 end -->
                         </div>
                         <!-- .row end -->
                     </div>
@@ -262,6 +269,49 @@
                                     </div>
                                 </div>
                             </div>
+                             <!-- .col-md-4 end -->
+                            <div class="col-xs-12 col-sm-4 col-md-4">
+                                <div class="form-group">
+                                    <div class="select--box">
+                                        <i class="fa fa-angle-down"></i>
+                                        <select id="select-country" wire:model="category_id">
+                                    <option value="">Select Category</option>
+                                     @foreach($category as $category)
+                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                     @endforeach
+                                 </select>
+                                    </div>
+                                </div>
+                            </div>
+                             <!-- .col-md-4 end -->
+                             <div class="col-xs-12 col-sm-4 col-md-4">
+                                <div class="form-group">
+                                    <div class="input-group date" data-provide="datepicker">
+                                        <input wire:model="fromDate"
+                    type="text" class="form-control input-md datepicker" placeholder="Start Date" autocomplete="off"
+                    data-provide="datepicker" data-datetime-autoclose="true" data-date-format="mm/dd/yyyy" data-date-today-highlight="true"                        
+                    onchange="this.dispatchEvent(new InputEvent('input'))" id="datepicker">
+                                        <div class="input-group-addon">
+                                            <span class="fa fa-calendar"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                             <!-- .col-md-4 end -->
+                            <div class="col-xs-12 col-sm-4 col-md-4">
+                                <div class="form-group">
+                                    <div class="input-group date" data-provide="datepicker">
+                                        <input wire:model="toDate"
+                    type="text" class="form-control input-md datepicker" placeholder="End Date" autocomplete="off"
+                    data-provide="datepicker" data-datetime-autoclose="true" data-date-format="mm/dd/yyyy" data-date-today-highlight="true"                        
+                    onchange="this.dispatchEvent(new InputEvent('input'))" id="datepickers">
+                                        <div class="input-group-addon">
+                                            <span class="fa fa-calendar"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                             <!-- .col-md-4 end -->
                            <!-- <!-- .col-md-12 end --
                             <div class="col-xs-12 col-sm-4 col-md-4">
                                 <div class="form-group">

@@ -68,7 +68,7 @@
                             <li><a href="#">Privacy</a></li>
                             <li><a href="#">Terms & Conditions</a></li>
                             <li><a href="/user/profile">Account</a></li>
-                            <li><a href="/faq">FAQ</a></li>
+                            <!--<li><a href="/faq">FAQ</a></li>-->
                         </ul>
                     </div>
                 </div>

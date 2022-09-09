@@ -21,7 +21,7 @@
                         @foreach ($categories as $category)
                             <tr>
                                 <td>{{$category->id}}</td>
-                                <td><img src="{{ asset('assets/user/assets/images/pages') }}/{{ $category->image }}" width="60"/></td>
+                                <td><img src="{{ asset('assets/user/assets/images/category') }}/{{ $category->image }}" width="60"/></td>
                                 <td>{{$category->name}}</td>
                                 <td>{{$category->created_at}}</td>
                                 <td>

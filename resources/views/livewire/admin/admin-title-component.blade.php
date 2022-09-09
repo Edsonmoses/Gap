@@ -33,6 +33,9 @@
                 <div class="col-xs-12 col-sm-12 col-md-12 text-right mt-0">
             <a href="/admin/add-title" class="btn btn--primary" style="margin-bottom: 15px;">Add page Title</a>
             </div>
+            <div class="col-xs-12 col-sm-12 col-md-4">
+                            @livewire('admin.admin-side-menu-component')
+                    </div>
                 <div class="col-xs-12 col-sm-12 col-md-12">
                       @if (Session::has('message'))
                             <div class="alert alert-success" role="alert">{{ Session::get('message') }}</div>

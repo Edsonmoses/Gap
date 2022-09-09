@@ -20,17 +20,23 @@ use App\Http\Livewire\Admin\AdminEditAgentsComponent;
 use App\Http\Livewire\Admin\AdminEditBlogComponent;
 use App\Http\Livewire\Admin\AdminEditCategoryComponent;
 use App\Http\Livewire\Admin\AdminEditFAQComponent;
+use App\Http\Livewire\Admin\AdminEditOurCarsComponet;
 use App\Http\Livewire\Admin\AdminEditPagesComponent;
+use App\Http\Livewire\Admin\AdminEditPartnersComponet;
 use App\Http\Livewire\Admin\AdminEditPropertyComponent;
 use App\Http\Livewire\Admin\AdminEditProvideComponent;
+use App\Http\Livewire\Admin\AdminEditResourcesComponet;
 use App\Http\Livewire\Admin\AdminEditStepsComponent;
 use App\Http\Livewire\Admin\AdminEditTitleComponent;
 use App\Http\Livewire\Admin\AdminFAQComponent;
 use App\Http\Livewire\Admin\AdminHomeComponent;
 use App\Http\Livewire\Admin\AdminMainSlidersComponent;
+use App\Http\Livewire\Admin\AdminOurCarsComponet;
 use App\Http\Livewire\Admin\AdminPagesComponent;
+use App\Http\Livewire\Admin\AdminPartnersComponet;
 use App\Http\Livewire\Admin\AdminPropertyComponent;
 use App\Http\Livewire\Admin\AdminProvideComponent;
+use App\Http\Livewire\Admin\AdminResourcesComponet;
 use App\Http\Livewire\Admin\AdminSliderComponent;
 use App\Http\Livewire\Admin\AdminStepsComponent;
 use App\Http\Livewire\Admin\AdminTitleComponent;
@@ -39,6 +45,8 @@ use App\Http\Livewire\Pages\AgencyComponent;
 use App\Http\Livewire\Pages\AgencyProfileComponent;
 use App\Http\Livewire\Pages\AgentsComponent;
 use App\Http\Livewire\Pages\AgentsProfileComponent;
+use App\Http\Livewire\Pages\AirBnbDetailComponent;
+use App\Http\Livewire\Pages\AirbnComponent;
 use App\Http\Livewire\Pages\BlogComponent;
 use App\Http\Livewire\Pages\BlogLeftSidebarComponent;
 use App\Http\Livewire\Pages\BlogRightSidebarComponent;
@@ -47,13 +55,17 @@ use App\Http\Livewire\Pages\ContactComponent;
 use App\Http\Livewire\Pages\ExclusivePropertiesComponent;
 use App\Http\Livewire\Pages\FAQComponent;
 use App\Http\Livewire\Pages\IndexComponent;
+use App\Http\Livewire\Pages\OurCarsComponent;
+use App\Http\Livewire\Pages\OurCarsDetailComponent;
 use App\Http\Livewire\Pages\Page404Component;
+use App\Http\Livewire\Pages\PartnersComponent;
 use App\Http\Livewire\Pages\PropertiesGridComponent;
 use App\Http\Livewire\Pages\PropertiesGridSplitComponent;
 use App\Http\Livewire\Pages\PropertieSingleGalleryComponent;
 use App\Http\Livewire\Pages\PropertieSingleSliderComponent;
 use App\Http\Livewire\Pages\PropertieSlistComponent;
 use App\Http\Livewire\Pages\PropertieSlistSplitComponent;
+use App\Http\Livewire\Pages\ResourcesComponent;
 use App\Http\Livewire\User\UserAddPropertiesComponent;
 use App\Http\Livewire\User\UserFavouritePropertiesComponent;
 use App\Http\Livewire\User\UserProfileComponent;
@@ -91,6 +103,12 @@ Route::get('/blog-sidebar-left', BlogLeftSidebarComponent::class)->name('blog.le
 Route::get('/blog-single/{slug}', BlogSingleComponent::class)->name('blog.single');
 //About
 Route::get('/about', AboutComponent::class)->name('about');
+Route::get('/partners', PartnersComponent::class)->name('partners');
+Route::get('/resources', ResourcesComponent::class)->name('resources');
+Route::get('/airbnb', AirbnComponent::class)->name('airbnb');
+Route::get('/airbnb/{slug}', AirBnbDetailComponent::class)->name('airbnbdetail');
+Route::get('/our-cars', OurCarsComponent::class)->name('ourcars');
+Route::get('/our-cars/{slug}', OurCarsDetailComponent::class)->name('cardetail');
 //Contact
 Route::get('/contact', ContactComponent::class)->name('contact');
 //FAQ
@@ -119,6 +137,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
 //For Admin
 Route::middleware(['auth:sanctum', 'verified', 'authadmin'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
     //For Setting
     Route::get('/admin/home', AdminHomeComponent::class)->name('admin.home');
     //For Category
@@ -163,6 +184,15 @@ Route::middleware(['auth:sanctum', 'verified', 'authadmin'])->group(function () 
     Route::get('/admin/posts', AdminBlogComponent::class)->name('admin.posts');
     Route::get('/admin/add-post', AdminAddBlogComponent::class)->name('admin.addpost');
     Route::get('/admin/edit-post/{slug}', AdminEditBlogComponent::class)->name('admin.editpost');
+    //Partners
+    Route::get('/admin/partners', AdminPartnersComponet::class)->name('admin.partners');
+    Route::get('/admin/edit-partners/{slug}', AdminEditPartnersComponet::class)->name('admin.editpartners');
+    //Resources
+    Route::get('/admin/resources', AdminResourcesComponet::class)->name('admin.resources');
+    Route::get('/admin/edit-resources/{slug}', AdminEditResourcesComponet::class)->name('admin.editresources');
+    //Cars
+    Route::get('/admin/our-cars', AdminOurCarsComponet::class)->name('admin.ourcars');
+    Route::get('/admin/edit-cars/{slug}', AdminEditOurCarsComponet::class)->name('admin.editourcars');
 });
 
 /*Route::middleware([

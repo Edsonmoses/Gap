@@ -5109,6 +5109,19 @@ ul.dropdown-menu > li.has-dropdown > a:before {
     width: 100%;
     height: 630px;
 }
+#overlays {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 630px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+    cursor: pointer;
+}
 
 .hero-map .form-box {
     margin-bottom: 0;
@@ -5832,7 +5845,7 @@ ul.dropdown-menu > li.has-dropdown > a:before {
 
 .property-item .property--price {
     color: #947a67;
-    font-size: 30px;
+    font-size: 22px;
     font-weight: 500;
     display: block;
     line-height: 1;

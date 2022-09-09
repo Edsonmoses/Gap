@@ -22,14 +22,14 @@ class AdminAddCategoryComponent extends Component
     {
         $this->postedby = Auth::user()->name;
     }
-     public function generateslug()
+    public function generateslug()
     {
         $this->slug = Str::slug($this->name);
     }
 
     public function updated($fields)
     {
-        $this->validateOnly($fields,[
+        $this->validateOnly($fields, [
             'name' => 'required',
             'slug' => 'required',
             'image' => 'required|mimes:png,jpg,jpeg,webp',
@@ -47,16 +47,16 @@ class AdminAddCategoryComponent extends Component
         $category = new Category();
         $category->name = $this->name;
         $category->slug = $this->slug;
-        $imageName = Carbon::now()->timestamp. '.' . $this->image->extension();
-        $this->image->storeAs('category',$imageName);
+        $imageName = Carbon::now()->timestamp . '.' . $this->image->extension();
+        $this->image->storeAs('category', $imageName);
         $category->image = $imageName;
-         $imgName = Carbon::now()->timestamp. '.' . $this->cover->extension();
-        $this->image->storeAs('category',$imageName);
+        $imgName = Carbon::now()->timestamp . '.' . $this->cover->extension();
+        $this->image->storeAs('page-titles', $imageName);
         $category->cover = $imgName;
         $category->postedby = $this->postedby;
         $category->save();
-        session()->flash('message','Category has been created successfully!');
-         return redirect('/admin/add-category');
+        session()->flash('message', 'Category has been created successfully!');
+        return redirect('/admin/add-category');
     }
     public function render()
     {

@@ -2,7 +2,9 @@
     <div class="container-fluid pr-0 pl-0">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
-                <div id="googleMap"></div>
+                <div id="overlays"></div>
+                <!--<div id="googleMap"></div>-->
+                 <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d63820.700129724835!2d36.76227187014831!3d-1.2984927714313115!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sGAP%20Pamstech%20House!5e0!3m2!1sen!2ske!4v1659515512356!5m2!1sen!2ske" width="100%" height="630" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
             <!-- .col-md-12 end -->
         </div>
@@ -229,7 +231,10 @@
                                     <div class="property--info">
                                         <h5 class="property--title"><a href="{{ route('single_gallery',['slug'=>$pfeatured->slug]) }}">{{ $pfeatured->name }}</a></h5>
                                         <p class="property--location">{{ $pfeatured->locations }}</p>
-                                        <p class="property--price">${{ $pfeatured->SRprice }}<!--<span class="time">month</span>--></p>
+                                        <p class="property--price">Ksh {{ $pfeatured->SRprice }}<!--<span class="time">month</span>--></p>
+                                         @if ($pfeatured->pin)
+                                            <p class="mt-10"><a href="{{ $pfeatured->pin }}" target="_blank"><span class="feature"><i class="fa fa-map-marker" aria-hidden="true" style="color:red; font-size:25px;"></i></span><span class="feature-num ml-10">Google Pin</span></a></p>
+                                        @endif
                                     </div>
                                     <!-- .property-info end -->
                                 </div>
@@ -293,7 +298,7 @@
                                     <div class="property--info">
                                         <h5 class="property--title"><a href="{{ route('single_gallery',['slug'=>$lproperty->slug]) }}">{{ $lproperty->name }}</a></h5>
                                         <p class="property--location">{{ $lproperty->locations}}</p>
-                                        <p class="property--price">{{ $lproperty->SRprice }}</p>
+                                        <p class="property--price">Ksh {{ $lproperty->SRprice }}</p>
                                     </div>
                                     <!-- .property-info end -->
                                     <div class="property--features">
@@ -306,6 +311,9 @@
                                                 @endif
                                                 @if ($lproperty->area)
                                                 <li><span class="feature">Acre:</span><span class="feature-num">{{ $lproperty->area }}</span></li>
+                                                @endif
+                                                @if ($pfeatured->pin)
+                                                    <li><a href="{{ $pfeatured->pin }}" target="_blank"><span class="feature"><i class="fa fa-map-marker" aria-hidden="true" style="color:red; font-size:25px;"></i></span><span class="feature-num">Google Pin</span></a></li>
                                                 @endif
                                         </ul>
                                     </div>

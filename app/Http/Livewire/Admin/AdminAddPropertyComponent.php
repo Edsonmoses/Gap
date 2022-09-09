@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin;
 
+use App\Models\Category;
 use App\Models\Features;
 use App\Models\Location;
 use App\Models\Property;
@@ -40,6 +41,7 @@ class AdminAddPropertyComponent extends Component
     public $featured;
     public $exclusive;
     public $postedby;
+    public $pin;
 
     public function mount()
     {
@@ -158,6 +160,8 @@ class AdminAddPropertyComponent extends Component
         $property->featured = str_replace("\n", ',', trim($this->featured));
         $property->exclusive = $this->exclusive;
         $property->postedby = $this->postedby;
+        $property->category_id = $this->category_id;
+        $property->pin = $this->pin;
         $property->save();
         session()->flash('message', 'Property has been created successfully!');
         return redirect('/admin/add-property');
@@ -168,6 +172,7 @@ class AdminAddPropertyComponent extends Component
         $Locations = Location::all();
         $ptype = Type::all();
         $featureds = Features::all();
-        return view('livewire.admin.admin-add-property-component', ['Locations' => $Locations, 'ptype' => $ptype, 'featureds' => $featureds])->layout('layouts.backend');
+        $category = Category::all();
+        return view('livewire.admin.admin-add-property-component', ['Locations' => $Locations, 'ptype' => $ptype, 'featureds' => $featureds, 'category' => $category])->layout('layouts.backend');
     }
 }

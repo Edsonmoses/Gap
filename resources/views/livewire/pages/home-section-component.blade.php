@@ -4,7 +4,7 @@
 ============================================= -->
 @foreach ($pagetitle as $titles)
     @if ($titles->podition == 'latest')
-        <section id="properties-carousel" class="properties-carousel pt-90 pb-90">
+        <section id="properties-carousel" class="properties-carousel pt-90 pb-0">
             <div class="container">
                 @livewire('pages.latest-properties-component')
                 <!-- .row -->

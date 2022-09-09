@@ -79,6 +79,27 @@
                         <li><a href="/admin/add-post">Add Post</a></li>
                 </ul>
     </li>
+     <li><a href="#" data-toggle="dropdown" class="dropdown-toggle menu-item">Partners</a>
+            <ul class="dropdown-menu">
+                        <!-- Profile Menu-->
+                        <li><a href="/admin/partners">All Partners</a></li>
+                        <li><a href="/admin/partners">Add Partner</a></li>
+                </ul>
+    </li>
+     <li><a href="#" data-toggle="dropdown" class="dropdown-toggle menu-item">Cars</a>
+            <ul class="dropdown-menu">
+                        <!-- Profile Menu-->
+                        <li><a href="/admin/our-cars">All Cars</a></li>
+                        <li><a href="/admin/our-cars">Add Car</a></li>
+                </ul>
+    </li>
+     <li><a href="#" data-toggle="dropdown" class="dropdown-toggle menu-item">Resources</a>
+            <ul class="dropdown-menu">
+                        <!-- Profile Menu-->
+                        <li><a href="/admin/resources">All Resources</a></li>
+                        <li><a href="/admin/resources">Add Resource</a></li>
+                </ul>
+    </li>
     <li><a href="#" style="color: #fff !important">settings</a></li>
 </ul>
  </div>

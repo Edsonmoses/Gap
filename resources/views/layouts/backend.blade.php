@@ -17,6 +17,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i%7CPoppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <!-- Stylesheets
     ============================================= -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
     <link href="{{asset('assets/user/assets/css/external.css')}}" rel="stylesheet">
     <link href="{{asset('assets/user/assets/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('assets/user/assets/css/style.css')}}" rel="stylesheet">
@@ -66,16 +67,28 @@
             
                                  <!-- Pages Menu-->
                     <li><a href="/about">about</a></li>
+                    <li class="has-dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle menu-item">services</a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="/airbnb">airbnb</a>
+                            </li>
+                            <li>
+                                <a href="/our-cars">our cars</a>
+                            </li>
+                        </ul>
+                        </li>
                     <!-- li end -->
                     <!-- Properties Menu-->
                      <li><a href="/properties">properties</a></li>
+                    <li><a href="/partners">partners</a></li>
+                       <li><a href="/resources">resources</a></li>
                      @if (Auth::check())
-                      <li><a href="/exclusive-properties">exclusive properties</a></li>
+                      <li><a href="/exclusive-properties">exclusive</a></li>
                      @endif
                     <!-- li end -->
-                     <li><a href="/blog">blog</a> </li>
+                    <!-- <li><a href="/blog">blog</a> </li>-->
                     <li><a href="/contact">contact</a></li>
-                    <li><a href="/faq">FAQ</a></li>
                             </ul>
                             <!-- Module Signup  -->
                             @if (Route::has('login'))
@@ -84,7 +97,7 @@
                                     <div class="module module-login pull-left">
                                         <ul class="nav navbar-nav navbar-left">
                                         <li class="has-dropdown">
-                                            <a href="#" data-toggle="dropdown" class="dropdown-toggle menu-item">My Account ({{ Auth::user()->name }})</a>
+                                            <a href="#" data-toggle="dropdown" class="dropdown-toggle menu-item"><i class="fa fa-user" aria-hidden="true"></i> ({{ Auth::user()->name }})</a>
                                             <ul class="dropdown-menu">
                                                 <li><a href="#" title="Dashboard">Dashboard</a></li>
                                                  <!-- Profile Menu-->
@@ -356,13 +369,37 @@
     <!-- Footer Scripts
 ============================================= -->
     <script src="{{asset('assets/user/assets/js/jquery-2.2.4.min.js')}}"></script>
-   
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
     <script src="{{asset('assets/user/assets/js/plugins.js')}}"></script>
     <script src="{{asset('assets/user/assets/js/dropzone.js')}}"></script>
     <script src="{{asset('assets/user/assets/js/functions.js')}}"></script>
     <script src="http://maps.google.com/maps/api/js?sensor=true&amp;key=AIzaSyCiRALrXFl5vovX0hAkccXXBFh7zP8AOW8"></script>
     <script src="{{asset('assets/user/assets/js/plugins/jquery.gmap.min.js')}}"></script>
-    <script>
+    <style type="text/css">
+        .datepicker {
+            font-size: 0.875em;
+        }
+        /* solution 2: the original datepicker use 20px so replace with the following:*/
+        
+        .datepicker td, .datepicker th {
+            width: 1.5em;
+            height: 1.5em;
+        }
+        .ui-datepicker-next{
+            padding-left: 15px !important;
+        }
+        
+    </style>
+<script type="text/javascript">
+    $('#datepicker,#datepickers').datepicker({
+        format: "mm/dd/yyyy",
+        weekStart: 1,
+        daysOfWeekHighlighted: "6,0",
+        autoclose: true,
+        todayHighlight: true,
+    });
+    $('#datepicker,#datepickers').datepicker("setDate", new Date());
+
         $('#googleMap').gMap({
             address: "121 King St,Melbourne, Australia",
             zoom: 12,
@@ -381,6 +418,7 @@
     </script>
     <script src="{{asset('assets/user/assets/js/map-custom.js')}}"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    
    
 </body>
 

@@ -13,7 +13,7 @@
         <!-- .row end -->
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="carousel carousel-dots lp" data-slide="3" data-slide-rs="2" data-autoplay="true" data-nav="false" data-dots="true" data-space="25" data-loop="true" data-speed="800">
+                <div class="carousel carousel-dots lp" data-slide="3" data-slide-rs="2" data-autoplay="true" data-nav="false" data-dots="false" data-space="25" data-loop="true" data-speed="800">
                     <!-- .property-item #1 -->
                 @foreach ($lproperties as $lproperty)
                     <div class="property-item">
@@ -32,7 +32,7 @@
                             <div class="property--info">
                                 <h5 class="property--title"><a href="{{ route('single_gallery',['slug'=>$lproperty->slug]) }}">{{ $lproperty->name }}</a></h5>
                                 <p class="property--location">{{ $lproperty->locations}}</p>
-                                <p class="property--price">{{ $lproperty->SRprice }}</p>
+                                <p class="property--price">Ksh {{ $lproperty->SRprice }}</p>
                             </div>
                             <!-- .property-info end -->
                             <div class="property--features">
@@ -45,6 +45,9 @@
                                     @endif
                                     @if ($lproperty->area)
                                     <li><span class="feature">Acre:</span><span class="feature-num">{{ $lproperty->area }}</span></li>
+                                    @endif
+                                    @if ($lproperty->pin)
+                                    <li><a href="{{ $lproperty->pin }}" target="_blank"><span class="feature"><i class="fa fa-map-marker" aria-hidden="true" style="color:red; font-size:25px;"></i></span><span class="feature-num">Google Pin</span></a></li>
                                     @endif
                                 </ul>
                             </div>

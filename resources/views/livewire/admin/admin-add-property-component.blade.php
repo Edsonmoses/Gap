@@ -180,6 +180,13 @@
                                 </div>
                             </div>
                             <!-- .col-md-4 end -->
+                            <div class="col-xs-12 col-sm-4 col-md-4">
+                                <div class="form-group">
+                                    <label for="pin">Google Pin</label>
+                                    <input type="text" class="form-control" name="pin" id="pin" placeholder="Google pin.." wire:model="pin">
+                                </div>
+                            </div>
+                            <!-- .col-md-4 end -->
                         </div>
                         <!-- .row end -->
                     </div>
@@ -250,14 +257,51 @@
                                     </div>
                                 </div>
                             </div>
-                           <!-- <!-- .col-md-12 end --
+                             <!-- .col-md-4 end -->
+                            <div class="col-xs-12 col-sm-4 col-md-4">
+                                <div class="form-group">
+                                    <div class="select--box">
+                                        <i class="fa fa-angle-down"></i>
+                                        <select id="select-country" wire:model="category_id">
+                                    <option value="">Select Category</option>
+                                     @foreach($category as $category)
+                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                     @endforeach
+                                 </select>
+                                    </div>
+                                </div>
+                            </div>
+                              <!-- .col-md-4 end -->
+                            <div class="col-xs-12 col-sm-4 col-md-4">
+                                <div class="form-group">
+                                    <div class="input-group date" data-provide="datepicker">
+                                        <input type="text" class="form-control" data-date-format="dd/mm/yyyy" id="datepicker" wire:model="fromDate">
+                                        <div class="input-group-addon">
+                                            <span class="fa fa-calendar"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                             <!-- .col-md-4 end -->
+                            <div class="col-xs-12 col-sm-4 col-md-4">
+                                <div class="form-group">
+                                    <div class="input-group date" data-provide="datepicker">
+                                        <input type="text" class="form-control" data-date-format="dd/mm/yyyy" id="datepickers" wire:model="toDate">
+                                        <div class="input-group-addon">
+                                            <span class="fa fa-calendar"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                             <!-- .col-md-4 end -->
+                           <!-- <-- .col-md-12 end --
                             <div class="col-xs-12 col-sm-4 col-md-4">
                                 <div class="form-group">
                                     <label for="address">Address*</label>
                                     <input type="text" class="form-control" name="address" id="address" placeholder="Enter your property address" required>
                                 </div>
                             </div>
-                            <!-- .col-md-4 end --
+                            <-- .col-md-4 end --
                             <div class="col-xs-12 col-sm-4 col-md-4">
                                 <div class="form-group">
                                     <label for="select-country">Country</label>
@@ -270,35 +314,35 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- .col-md-4 end --
+                            <-- .col-md-4 end --
                             <div class="col-xs-12 col-sm-4 col-md-4">
                                 <div class="form-group">
                                     <label for="city">City</label>
                                     <input class="form-control" name="city" id="city">
                                 </div>
                             </div>
-                            <!-- .col-md-4 end --
+                            <-- .col-md-4 end --
                             <div class="col-xs-12 col-sm-4 col-md-4">
                                 <div class="form-group">
                                     <label for="state">State</label>
                                     <input type="text" class="form-control" name="state" id="state">
                                 </div>
                             </div>
-                            <!-- .col-md-4 end --
+                            <-- .col-md-4 end --
                             <div class="col-xs-12 col-sm-4 col-md-4">
                                 <div class="form-group">
                                     <label for="Zip/Postal-code">Zip/Postal Code</label>
                                     <input type="text" class="form-control" name="Zip/Postal-code" id="Zip/Postal-code">
                                 </div>
                             </div>
-                            <!-- .col-md-4 end --
+                            <-- .col-md-4 end --
                             <div class="col-xs-12 col-sm-4 col-md-4">
                                 <div class="form-group">
                                     <label for="neighborhood">Neighborhood</label>
                                     <input type="text" class="form-control" name="neighborhood" id="neighborhood">
                                 </div>
                             </div>
-                            <!-- .col-md-4 end --
+                            <-- .col-md-4 end --
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div id="googleMap" style="width:100%;height:380px;"></div>
                             </div>-->
@@ -316,3 +360,9 @@
     </div>
 </section>
 </div>
+<script>
+    $.fn.datepicker.defaults.format = "mm/dd/yyyy";
+$('.datepicker').datepicker({
+    startDate: '-3d'
+});
+</script>

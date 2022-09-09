@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreatePropertiesTable extends Migration
 {
@@ -40,6 +41,9 @@ class CreatePropertiesTable extends Migration
             $table->longText('featured')->default('inexclusive');
             $table->string('exclusive')->default('null');
             $table->string('postedby')->default('postedby');
+            $table->string('pin')->nullable();
+            $table->string('fromDate')->nullable();
+            $table->string('toDate')->nullable();
             $table->timestamps();
             $table->foreign('type_id')->references('id')->on('types')->onDelete('cascade');
             $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');

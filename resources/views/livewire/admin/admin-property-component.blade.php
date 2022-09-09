@@ -19,7 +19,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($property as $property)
+                        @foreach ($properties as $property)
                             <tr>
                                 <td>{{$property->id}}</td>
                                 <td><img src="{{ asset('assets/user/assets/images/page-titles') }}/{{ $property->image }}" width="60"/></td>
@@ -39,7 +39,7 @@
                         @endforeach
                     </tbody>
                 </table>
-                {{-- $property->links() --}}
+                {{$properties->links()}}
                     </div>
                     <!-- .col-md-8 end -->
                 </div>

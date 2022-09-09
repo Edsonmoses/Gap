@@ -10,8 +10,8 @@ class TrustedAgentsComponent extends Component
 {
     public function render()
     {
-        $agents = Agents::all()->take(3);
-        $pagetitle = Pagetitle::where('hide','=','Active')->get();
-        return view('livewire.pages.trusted-agents-component',['agents'=>$agents,'pagetitle'=>$pagetitle]);
+        $agents = Agents::where('status', '1')->get()->take(3);
+        $pagetitle = Pagetitle::where('hide', '=', 'Active')->get();
+        return view('livewire.pages.trusted-agents-component', ['agents' => $agents, 'pagetitle' => $pagetitle]);
     }
 }

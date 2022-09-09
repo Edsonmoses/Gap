@@ -17,6 +17,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i%7CPoppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <!-- Stylesheets
     ============================================= -->
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
     <link href="{{asset('assets/user/assets/css/external.css')}}" rel="stylesheet">
     <link href="{{asset('assets/user/assets/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('assets/user/assets/css/style.css')}}" rel="stylesheet">
@@ -48,6 +49,17 @@
          @livewire('pages.main-footer-component')
          @endif
 @livewireScripts
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+ <script>
+
+           $('#datepicker,#datepickers').datepicker({
+        weekStart: 1,
+        daysOfWeekHighlighted: "6,0",
+        autoclose: true,
+        todayHighlight: true,
+    });
+    $('#datepicker,#datepickers').datepicker("setDate", new Date());
+</script>
 </body>
 
 </html>

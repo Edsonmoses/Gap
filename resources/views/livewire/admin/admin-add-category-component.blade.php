@@ -1,7 +1,7 @@
 <div>
 <section id="page-title" class="page-title bg-overlay bg-overlay-dark2">
     <div class="bg-section">
-        <img src="{{asset('assets/user/assets/images/page-titles')}}/{{ $image }}" alt="Background" />
+        <img src="{{asset('assets/user/assets/images/page-titles')}}/{{ $cover }}" alt="Background" />
     </div>
     <div class="container">
         <div class="row">

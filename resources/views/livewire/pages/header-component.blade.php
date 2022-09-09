@@ -30,16 +30,28 @@
 
                     <!-- Pages Menu-->
                     <li><a href="/about">about</a></li>
+                    <li class="has-dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle menu-item">services</a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="/airbnb">airbnb</a>
+                            </li>
+                            <li>
+                                <a href="/our-cars">our cars</a>
+                            </li>
+                        </ul>
+                        </li>
                     <!-- li end -->
                     <!-- Properties Menu-->
                      <li><a href="/properties">properties</a></li>
+                      <li><a href="/partners">partners</a></li>
+                       <li><a href="/resources">resources</a></li>
                      @if (Auth::check())
-                      <li><a href="/exclusive-properties">exclusive properties</a></li>
+                      <li><a href="/exclusive-properties">exclusive</a></li>
                      @endif
                     <!-- li end -->
-                     <li><a href="/blog">blog</a> </li>
+                    <!-- <li><a href="/blog">blog</a> </li>-->
                     <li><a href="/contact">contact</a></li>
-                    <li><a href="/faq">FAQ</a></li>
                 </ul>
                 <!-- Module Signup  -->
                 @if (Route::has('login'))
@@ -48,7 +60,7 @@
                         <div class="module module-login pull-left">
                             <ul class="nav navbar-nav navbar-left">
                             <li class="has-dropdown">
-                                <a href="#" data-toggle="dropdown" class="dropdown-toggle menu-item">My Account ({{ Auth::user()->name }})</a>
+                                <a href="#" data-toggle="dropdown" class="dropdown-toggle menu-item"><i class="fa fa-user" aria-hidden="true"></i> ({{ Auth::user()->name }})</a>
                                 <ul class="dropdown-menu">
                                     <li><a href="#" title="Dashboard">Dashboard</a></li>
                                      <!-- Profile Menu-->
@@ -200,4 +212,3 @@
     </nav>
 
 </header>
-

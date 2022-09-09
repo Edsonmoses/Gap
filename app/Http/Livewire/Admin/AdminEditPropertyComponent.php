@@ -2,15 +2,16 @@
 
 namespace App\Http\Livewire\Admin;
 
+use Carbon\Carbon;
+use App\Models\Type;
+use Livewire\Component;
+use App\Models\Category;
 use App\Models\Features;
 use App\Models\Location;
 use App\Models\Property;
-use App\Models\Type;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
-use Livewire\Component;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Auth;
 
 class AdminEditPropertyComponent extends Component
 {
@@ -42,6 +43,9 @@ class AdminEditPropertyComponent extends Component
     public $newimage;
     public $newgallery;
     public $exclusive;
+    public $pin;
+    public $fromDate;
+    public $toDate;
 
     public function mount($slug)
     {
@@ -70,6 +74,10 @@ class AdminEditPropertyComponent extends Component
         $this->property_id = $property->id;
         $this->featured = str_replace("\n", ',', trim($property->featured));
         $this->exclusive = $property->exclusive;
+        $this->category_id = $property->category_id;;
+        $this->pin = $property->pin;
+        $this->pin = $property->fromDate;
+        $this->pin = $property->toDate;
         $this->postedby = Auth::user()->name;
         $this->category_id = '0';
     }
@@ -175,7 +183,7 @@ class AdminEditPropertyComponent extends Component
             }
             $imageName = Carbon::now()->timestamp . '.' . $this->newimage->extension();
             $this->newimage->storeAs('page-titles', $imageName);
-            $property->newimage = $imageName;
+            $property->image = $imageName;
         }
         if ($this->newgallery) {
             if ($property->gallery) {
@@ -200,6 +208,10 @@ class AdminEditPropertyComponent extends Component
         $property->featured = str_replace("\n", ',', trim($this->featured));
         $property->exclusive = $this->exclusive;
         $property->postedby = $this->postedby;
+        $property->category_id = $this->category_id;
+        $property->pin = $this->pin;
+        $property->fromDate = $this->fromDate;
+        $property->toDate = $this->toDate;
         $property->save();
         session()->flash('message', 'Property has been updated successfully!');
         return redirect('/admin/add-property');
@@ -209,6 +221,7 @@ class AdminEditPropertyComponent extends Component
         $Locations = Location::all();
         $ptype = Type::all();
         $featureds = Features::all();
-        return view('livewire.admin.admin-edit-property-component', ['Locations' => $Locations, 'ptype' => $ptype, 'featureds' => $featureds])->layout('layouts.backend');
+        $category = Category::all();
+        return view('livewire.admin.admin-edit-property-component', ['Locations' => $Locations, 'ptype' => $ptype, 'featureds' => $featureds, 'category' => $category])->layout('layouts.backend');
     }
 }
