@@ -1,425 +1,332 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="en">
+    <head>
 
-<head>
-    <!-- Document Meta
-    ============================================= -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!--IE Compatibility Meta-->
-    <meta name="author" content="zytheme" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="Real Estate html5 template">
-    <link href="{{asset('assets/user/assets/images/favicon/favicon.png')}}" rel="icon">
+        <meta charset="utf-8" />
+        <title style="text-transform: capitalize;">@if(Request::segment(2)){{  Str::title(str_replace('-', ' ', Request::segment(2))) }}@else{{  Str::title(str_replace('-', ' ', Request::segment(1))) }}@endif | {{ config('app.name', 'Ground & Properties Ltd - Gap') }} </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="AGAP was founded in the year 2017 to provide a unique approach to sourcing and selling of properties. We believe we have the perquisite taste and a unique eye to identify and march parcels with ideal buyers" name="description" />
+        <meta content="Coderthemes" name="author" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="{{asset('assets/admin/images/favicon.png')}}">
 
-    <!-- Fonts
-    ============================================= -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i%7CPoppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    <!-- Stylesheets
-    ============================================= -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
-    <link href="{{asset('assets/user/assets/css/external.css')}}" rel="stylesheet">
-    <link href="{{asset('assets/user/assets/css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('assets/user/assets/css/style.css')}}" rel="stylesheet">
-    @livewireStyles
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
-    <!--[if lt IE 9]>
-      <script src="{{asset('assets/user/assets/js/html5shiv.js')}}"></script>
-      <script src="{{asset('assets/user/assets/js/respond.min.js')}}"></script>
-    <![endif]-->
+        <!-- App css -->
+        <link href="{{asset('assets/admin/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" id="bs-default-stylesheet" />
+        <link href="{{asset('assets/admin/css/app.min.css')}}" rel="stylesheet" type="text/css" id="app-default-stylesheet" />
 
-    <!-- Document Title
-    ============================================= -->
-    <title>{{ config('app.name', 'Ground & Properties Ltd - Gap') }} | </title>
-   
-</head>
+        <!-- App-dark css -->
+        <link href="{{asset('assets/admin/css/bootstrap-dark.min.css')}}" rel="stylesheet" type="text/css" id="bs-dark-stylesheet" disabled="disabled"/>
+        <link href="{{asset('assets/admin/css/app-dark.min.css')}}" rel="stylesheet" type="text/css" id="app-dark-stylesheet" disabled="disabled"/>
 
-<body>
-    @include('sweetalert::alert')
-    <!-- Document Wrapper
-	============================================= -->
-    <div id="wrapper" class="wrapper clearfix">
-        <header id="navbar-spy" class="header header-1 header-light header-fixed">
-                <nav id="primary-menu" class="navbar navbar-fixed-top">
-                    <div class="container-fluid">
-                        <!-- Brand and toggle get grouped for better mobile display -->
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    </button>
-                            <a class="logo" href="/">
-                        <img class="logo-light" src="{{asset('assets/user/assets/images/logo/GAP-Logo-All-White.png')}}" alt="Land Logo" width="126" height="35">
-                        <img class="logo-dark" src="{{asset('assets/user/assets/images/logo/GAP-Logo-FC.svg')}}" alt="Land Logo" width="126" height="35">
-                    </a>
-                        </div>
-            
-                        <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class="collapse navbar-collapse pull-right" id="navbar-collapse-1">
-                            <ul class="nav navbar-nav nav-pos-center navbar-left">
-                                <!-- Home Menu -->
-                                <li class="active">
-                                    <a href="/">home</a>
-                                </li>
-                                <!-- li end -->
-            
-                                 <!-- Pages Menu-->
-                    <li><a href="/about">about</a></li>
-                    <li class="has-dropdown">
-                        <a href="#" data-toggle="dropdown" class="dropdown-toggle menu-item">services</a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="/airbnb">airbnb</a>
-                            </li>
-                            <li>
-                                <a href="/our-cars">our cars</a>
-                            </li>
-                        </ul>
-                        </li>
-                    <!-- li end -->
-                    <!-- Properties Menu-->
-                     <li><a href="/properties">properties</a></li>
-                    <li><a href="/partners">partners</a></li>
-                       <li><a href="/resources">resources</a></li>
-                     @if (Auth::check())
-                      <li><a href="/exclusive-properties">exclusive</a></li>
-                     @endif
-                    <!-- li end -->
-                    <!-- <li><a href="/blog">blog</a> </li>-->
-                    <li><a href="/contact">contact</a></li>
-                            </ul>
-                            <!-- Module Signup  -->
-                            @if (Route::has('login'))
-                                @auth
-                                    @if (Auth::user()->utype === 'ADM')
-                                    <div class="module module-login pull-left">
-                                        <ul class="nav navbar-nav navbar-left">
-                                        <li class="has-dropdown">
-                                            <a href="#" data-toggle="dropdown" class="dropdown-toggle menu-item"><i class="fa fa-user" aria-hidden="true"></i> ({{ Auth::user()->name }})</a>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="#" title="Dashboard">Dashboard</a></li>
-                                                 <!-- Profile Menu-->
-                                                 <li><a href="/admin/properties">Properties</a></li>
-                                                 <li><a href="/admin/add-slider">Add slider</a></li>
-                                                 <li><a href="/admin/home">Setting</a></li>
-                                                 <!-- logout-->
-                                                <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" title="Logout">Logout</a></li>
-                                                <form id="logout-form" method="POST" action="{{ route('logout') }}">
-                                                    @csrf
-                                                </form>
-                                            </ul>
-                                        </li>
-                                        </ul>
+        <!-- icons -->
+        <link href="{{asset('assets/admin/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
+        @livewireStyles
+        @include('sweetalert::alert')
+        @php
+         if(Request::segment(2)){
+            $AdminTitle = Request::segment(2);
+            $adminTitle = str_replace("-", " ", $AdminTitle);
+         }else {
+            $AdminTitle = Request::segment(1);
+            $admintitle = str_replace("-", " ", $AdminTitle);
+         }
+        @endphp
+        <style>
+            .pagination img, svg {
+                vertical-align: middle;
+                width: 25px !important;
+            }
+        </style>
+    </head>
+
+    <!-- body start -->
+    <body class="loading" data-layout='{"mode": "light", "width": "fluid", "menuPosition": "fixed", "sidebar": { "color": "light", "size": "default", "showuser": true}, "topbar": {"color": "light"}, "showRightSidebarOnPageLoad": true}'>
+
+        <!-- Begin page -->
+        <div id="wrapper">
+
+
+            <!-- Topbar Start -->
+            <div class="navbar-custom">
+                    <ul class="list-unstyled topnav-menu float-end mb-0">
+
+                        <li class="d-none d-lg-block">
+                            <form class="app-search">
+                                <div class="app-search-box">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search..." id="top-search">
+                                        <button class="btn input-group-text" type="submit">
+                                            <i class="fe-search"></i>
+                                        </button>
                                     </div>
-                                    <!-- Module Consultation  -->
-                                    <div class="module module-property pull-left">
-                                        <a href="/admin/add-property" target="_blank" class="btn"><i class="fa fa-plus"></i> add property</a>
-                                    </div>
-                                    @else
-                                    <div class="module module-login pull-left">
-                                        <ul class="nav navbar-nav navbar-left">
-                                        <li class="has-dropdown">
-                                            <a href="#" data-toggle="dropdown" class="dropdown-toggle menu-item">Profile ({{ Auth::user()->name }})</a>
-                                            <ul class="dropdown-menu">
-                                                <!-- Profile Menu-->
-                                                <li><a href="/user/profile">user profile</a></li>
-                                                <li><a href="/user/social-profile">social profile</a></li>
-                                                <li><a href="/user/my-properties">my properties</a></li>
-                                                <li><a href="/user/favourite-properties">favourite properties</a></li>
-                                                <li><a href="/user/add-property">add property</a></li>
-                                                <!-- logout-->
-                                                <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" title="Logout">Logout</a></li>
-                                                <form id="logout-form" method="POST" action="{{ route('logout') }}">
-                                                    @csrf
-                                                </form>
-                                            </ul>
-                                        </li>
-                                        </ul>
-                                    </div>
-                                    <!-- Module Consultation  -->
-                                    <div class="module module-property pull-left">
-                                        <a href="/user/add-property" target="_blank" class="btn"><i class="fa fa-plus"></i> add property</a>
-                                    </div>
-                                    @endif
-                                
-                            @else
-                            <div class="module module-login pull-left">
-                                <a class="btn-popup" data-toggle="modal" data-target="#signupModule">Login</a>
-                                <div class="modal register-login-modal fade" tabindex="-1" role="dialog" id="signupModule">
-                                    <div class="modal-dialog modal-lg" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-body">
-                                                <div class="row">
+                                    <div class="dropdown-menu dropdown-lg" id="search-dropdown">
+                                        <!-- item-->
+                                        <div class="dropdown-header noti-title">
+                                            <h5 class="text-overflow mb-2">Found 22 results</h5>
+                                        </div>
             
-                                                    <!-- Nav tabs -->
-                                                    <ul class="nav nav-tabs">
-                                                        <li class="active"><a href="#login" data-toggle="tab">login</a>
-                                                        </li>
-                                                        <li><a href="#signup" data-toggle="tab">signup</a>
-                                                        </li>
-                                                    </ul>
-                                                    <!-- Tab panes -->
-                                                    <div class="tab-content">
-                                                        <div class="tab-pane fade in active" id="login">
-                                                            <div class="signup-form-container text-center">
-                                                                <form class="mb-0" method="POST" action="{{ route('login') }}">
-                                                                        @csrf
-                                                                    <a href="#" class="btn btn--facebook btn--block"><i class="fa fa-facebook-square"></i>Login with Facebook</a>
-                                                                    <div class="or-text">
-                                                                        <span>or</span>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <input type="email" class="form-control" name="email" :value="old('email')" id="login-email" placeholder="Email Address"  required autofocus/>
-                                                                    </div>
-                                                                    <!-- .form-group end -->
-                                                                    <div class="form-group">
-                                                                        <input type="password" class="form-control" name="password" id="login-password" placeholder="Password" required autocomplete="current-password"/>
-                                                                    </div>
-                                                                    <!-- .form-group end -->
-                                                                    <div class="input-checkbox">
-                                                                        <label for="remember_me" class="label-checkbox">
-                                                                            <span>Remember Me</span>
-                                                                            <input type="checkbox" id="remember_me" name="remember">
-                                                                            <span class="check-indicator"></span>
-                                                                        </label>
-                                                                        </div>
-                                                                    <input type="submit" class="btn btn--primary btn--block" value="Sign In">
-                                                                    <a href="{{ route('password.request') }}" class="forget-password">Forget your password?</a>
-                                                                </form>
-                                                                <!-- form  end -->
-                                                            </div>
-                                                            <!-- .signup-form end -->
-                                                        </div>
-                                                        <div class="tab-pane" id="signup">
-                                                            <form class="mb-0" method="POST" action="{{ route('register') }}">
-                                                                    @csrf
-                                                                <a href="#" class="btn btn--facebook btn--block"><i class="fa fa-facebook-square"></i>Register with Facebook</a>
-                                                                <div class="or-text">
-                                                                    <span>or</span>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <input type="text" class="form-control" id="name" name="name" :value="old('name')" placeholder="Full Name" required autofocus autocomplete="name"/>
-                                                                </div>
-                                                                <!-- .form-group end -->
-                                                                <div class="form-group">
-                                                                    <input type="email" class="form-control" name="email" :value="old('email')"  id="email" placeholder="Email Address" required/>
-                                                                </div>
-                                                                <!-- .form-group end -->
-                                                                <div class="form-group">
-                                                                    <input type="password" class="form-control" name="password" id="password" placeholder="Password" required autocomplete="new-password" />
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <input type="password" class="form-control" name="password_confirmation" id="password_confirmation" placeholder="Confirmation password" required autocomplete="new-password" />
-                                                                </div>
-                                                                <!-- .form-group end -->
-                                                                <div class="input-checkbox">
-                                                                    <label class="label-checkbox">
-                                                                    <span>I agree with all <a href="#">Terms & Conditions</a></span>
-                                                                    <input type="checkbox">
-                                                                    <span class="check-indicator"></span>
-                                                                </label>
-                                                                </div>
-                                                                <input type="submit" class="btn btn--primary btn--block" value="Register">
-                                                            </form>
-                                                            <!-- form  end -->
-                                                        </div>
+                                        <!-- item-->
+                                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                            <i class="fe-home me-1"></i>
+                                            <span>Analytics Report</span>
+                                        </a>
             
+                                        <!-- item-->
+                                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                            <i class="fe-aperture me-1"></i>
+                                            <span>How can I help you?</span>
+                                        </a>
+                            
+                                        <!-- item-->
+                                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                            <i class="fe-settings me-1"></i>
+                                            <span>User profile settings</span>
+                                        </a>
+
+                                        <!-- item-->
+                                        <div class="dropdown-header noti-title">
+                                            <h6 class="text-overflow mb-2 text-uppercase">Users</h6>
+                                        </div>
+
+                                        <div class="notification-list">
+                                            <!-- item-->
+                                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                                <div class="d-flex align-items-start">
+                                                    <img class="d-flex me-2 rounded-circle" src="assets/images/users/user-2.jpg')}}" alt="Generic placeholder image" height="32">
+                                                    <div class="w-100">
+                                                        <h5 class="m-0 font-14">Erwin E. Brown</h5>
+                                                        <span class="font-12 mb-0">UI Designer</span>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <!-- /.modal-content -->
+                                            </a>
+
+                                            <!-- item-->
+                                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                                <div class="d-flex align-items-start">
+                                                    <img class="d-flex me-2 rounded-circle" src="assets/images/users/user-5.jpg')}}" alt="Generic placeholder image" height="32">
+                                                    <div class="w-100">
+                                                        <h5 class="m-0 font-14">Jacob Deo</h5>
+                                                        <span class="font-12 mb-0">Developer</span>
+                                                    </div>
+                                                </div>
+                                            </a>
                                         </div>
-                                        <!-- /.modal-dialog -->
-                                    </div>
-                                    <!-- /.modal -->
-                                </div>
-                            </div>
-                            <!-- Module Consultation  -->
-                            <div class="module module-property pull-left">
-                                <a data-toggle="modal" data-target="#signupModule" class="btn"><i class="fa fa-plus"></i> add property</a>
-                            </div>
-                            @endauth
-                            @endif
-                        </div>
-                        <!-- /.navbar-collapse -->
-                    </div>
-                    <!-- /.container-fluid -->
-                </nav>
             
-            </header>
-
-        <!-- Page Title #1
-============================================ -->
-         {{$slot}}
-        <!-- cta #1
-============================================= -->
-        <section id="cta" class="cta cta-1 text-center bg-overlay bg-overlay-dark pt-90">
-            <div class="bg-section"><img src="{{asset('assets/user/assets/images/cta/bg-1.jpg')}}" alt="Background"></div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3">
-                        <h3>Join our professional team & agents to start selling your house</h3>
-                        <a href="#" class="btn btn--primary">Contact</a>
-                    </div>
-                    <!-- .col-md-6 -->
-                </div>
-                <!-- .row -->
-            </div>
-            <!-- .container -->
-        </section>
-        <!-- #cta1 end -->
-        <!-- Footer #1
-============================================= -->
-        <footer id="footer" class="footer footer-1 bg-white">
-            <!-- Widget Section
-	============================================= -->
-            <div class="footer-widget">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-6 col-md-3 widget--about">
-                            <div class="widget--content">
-                                <div class="footer--logo">
-                                    <img src="{{asset('assets/user/assets/images/logo/GAP-Logo-FC.svg')}}" alt="logo" width="126" height="35">
+                                    </div> 
                                 </div>
-                                <p>86 Petersham town, New South Wales Wardll Street, Australia PA 6550</p>
-                                <div class="footer--contact">
-                                    <ul class="list-unstyled mb-0">
-                                        <li>+61 525 240 310</li>
-                                        <li><a href="mailto:contact@land.com">contact@land.com</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- .col-md-2 end -->
-                        <div class="col-xs-12 col-sm-3 col-md-2 col-md-offset-1 widget--links">
-                            <div class="widget--title">
-                                <h5>Company</h5>
-                            </div>
-                            <div class="widget--content">
-                                <ul class="list-unstyled mb-0">
-                                    <li><a href="#">About us</a></li>
-                                    <li><a href="#">Career</a></li>
-                                    <li><a href="#">Services</a></li>
-                                    <li><a href="#">Properties</a></li>
-                                    <li><a href="#">Contact</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- .col-md-2 end -->
-                        <div class="col-xs-12 col-sm-3 col-md-2 widget--links">
-                            <div class="widget--title">
-                                <h5>Learn More</h5>
-                            </div>
-                            <div class="widget--content">
-                                <ul class="list-unstyled mb-0">
-                                    <li><a href="#">Privacy</a></li>
-                                    <li><a href="#">Terms & Conditions</a></li>
-                                    <li><a href="#">Account</a></li>
-                                    <li><a href="#">FAQ</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- .col-md-2 end -->
-                        <div class="col-xs-12 col-sm-12 col-md-4 widget--newsletter">
-                            <div class="widget--title">
-                                <h5>newsletter</h5>
-                            </div>
-                            <div class="widget--content">
-                                <form class="newsletter--form mb-40">
-                                    <input type="email" class="form-control" id="newsletter-email" placeholder="Email Address">
-                                    <button type="submit"><i class="fa fa-arrow-right"></i></button>
+                            </form>
+                        </li>
+    
+                        <li class="dropdown d-inline-block d-lg-none">
+                            <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                <i class="fe-search noti-icon"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-lg dropdown-menu-end p-0">
+                                <form class="p-3">
+                                    <input type="text" class="form-control" placeholder="Search ..." aria-label="Recipient's username">
                                 </form>
-                                <h6>Get In Touch</h6>
-                                <div class="social-icons">
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                    <a href="#"><i class="fa fa-vimeo"></i></a>
+                            </div>
+                        </li>
+    
+                        <li class="dropdown notification-list topbar-dropdown">
+                            <a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                <img src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" class="rounded-circle" width="128" height="128">
+                                <span class="pro-user-name ms-1">
+                                    {{ Auth::user()->name }} <i class="mdi mdi-chevron-down"></i> 
+                                </span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
+                                <!-- item-->
+                                <div class="dropdown-header noti-title">
+                                    <h6 class="text-overflow m-0">Welcome !</h6>
+                                </div>
+    
+                                <!-- item-->
+                                <a href="/user/profile" class="dropdown-item notify-item">
+                                    <i class="fe-user"></i>
+                                    <span>My Account</span>
+                                </a>
+    
+                                <!-- item-->
+                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item notify-item">
+                                    <i class="fe-lock"></i>
+                                    <span>Lock Screen</span>
+                                </a>
+    
+                                <div class="dropdown-divider"></div>
+    
+                                <!-- item-->
+                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item notify-item">
+                                    <i class="fe-log-out"></i>
+                                    <span>Logout</span>
+                                </a>
+                                  <form id="logout-form" method="POST" action="{{ route('logout') }}">
+                                            @csrf
+                                        </form>
+                            </div>
+                        </li>
+    
+                        <li class="dropdown notification-list">
+                            <a href="javascript:void(0);" class="nav-link right-bar-toggle waves-effect waves-light">
+                                <i class="fe-settings noti-icon"></i>
+                            </a>
+                        </li>
+    
+                    </ul>
+    
+                    <!-- LOGO -->
+                    <div class="logo-box">
+                        <a href="index.html" class="logo logo-light text-center">
+                            <span class="logo-sm">
+                                <img src="{{asset('assets/admin/images/GAP-Logo-FC-light.svg')}}" alt="" width="126" height="35">
+                            </span>
+                            <span class="logo-lg">
+                                <img src="{{asset('assets/admin/images/GAP-Logo-FC.svg')}}" alt="" width="126" height="35">
+                            </span>
+                        </a>
+                        <a href="index.html" class="logo logo-dark text-center">
+                            <span class="logo-sm">
+                                <img src="{{asset('assets/admin/images/GAP-Logo-FC-light.svg')}}" alt="" width="126" height="35">
+                            </span>
+                            <span class="logo-lg">
+                                <img src="{{asset('assets/admin/images/GAP-Logo-FC.svg')}}" alt="" width="126" height="35">
+                            </span>
+                        </a>
+                    </div>
+
+                    <ul class="list-unstyled topnav-menu topnav-menu-left mb-0">
+                        <li>
+                            <button class="button-menu-mobile disable-btn waves-effect">
+                                <i class="fe-menu"></i>
+                            </button>
+                        </li>
+    
+                        <li>
+                            <h4 class="page-title-main" style="text-transform: capitalize;">@if(Request::segment(2)){{ $adminTitle }}@else {{ $admintitle }} @endif</h4>
+                        </li>
+            
+                    </ul>
+
+                    <div class="clearfix"></div> 
+               
+            </div>
+            <!-- end Topbar -->
+
+            <!-- ========== Left Sidebar Start ========== -->
+            <div class="left-side-menu">
+
+                <div class="h-100" data-simplebar>
+
+                     <!-- User box -->
+                    <div class="user-box text-center">
+
+                        <img src="{{ Auth::user()->profile_photo_url }}" alt="user-img" title="{{ Auth::user()->name }}" class="rounded-circle img-thumbnail avatar-md">
+                            <div class="dropdown">
+                                <a href="#" class="user-name dropdown-toggle h5 mt-2 mb-1 d-block" data-bs-toggle="dropdown"  aria-expanded="false">{{ Auth::user()->name }}</a>
+                                <div class="dropdown-menu user-pro-dropdown">
+
+                                    <!-- item-->
+                                    <a href="/user/profile" class="dropdown-item notify-item">
+                                        <i class="fe-user me-1"></i>
+                                        <span>My Account</span>
+                                    </a>
+        
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                        <i class="fe-settings me-1"></i>
+                                        <span>Settings</span>
+                                    </a>
+        
+                                    <!-- item-->
+                                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item notify-item">
+                                        <i class="fe-lock me-1"></i>
+                                        <span>Lock Screen</span>
+                                    </a>
+        
+                                    <!-- item-->
+                                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item notify-item">
+                                        <i class="fe-log-out me-1"></i>
+                                        <span>Logout</span>
+                                    </a>
+        
                                 </div>
                             </div>
-                        </div>
-                        <!-- .col-md-4 end -->
 
+                        <p class="text-muted left-user-info">Admin Head</p>
+
+                        <ul class="list-inline">
+                            <li class="list-inline-item">
+                                <a href="/user/profile" class="text-muted left-user-info">
+                                    <i class="mdi mdi-cog"></i>
+                                </a>
+                            </li>
+
+                            <li class="list-inline-item">
+                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    <i class="mdi mdi-power"></i>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
-                </div>
-                <!-- .container end -->
-            </div>
-            <!-- .footer-widget end -->
 
-            <!-- Copyrights
-	============================================= -->
-            <div class="footer--copyright text-center">
-                <div class="container">
-                    <div class="row footer--bar">
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <span>© 2018 <a href="http://themeforest.net/user/zytheme">Zytheme</a>, All Rights Reserved.</span>
-                        </div>
+                    <!--- Sidemenu -->
+                     @livewire('admin.admin-side-menu-component')
+                    <!-- End Sidebar -->
 
-                    </div>
-                    <!-- .row end -->
+                    <div class="clearfix"></div>
+
                 </div>
-                <!-- .container end -->
+                <!-- Sidebar -left -->
+
             </div>
-            <!-- .footer-copyright end -->
-        </footer>
-    </div>
-    <!-- #wrapper end -->
-  @livewireScripts
-    <!-- Footer Scripts
-============================================= -->
-    <script src="{{asset('assets/user/assets/js/jquery-2.2.4.min.js')}}"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
-    <script src="{{asset('assets/user/assets/js/plugins.js')}}"></script>
-    <script src="{{asset('assets/user/assets/js/dropzone.js')}}"></script>
-    <script src="{{asset('assets/user/assets/js/functions.js')}}"></script>
-    <script src="http://maps.google.com/maps/api/js?sensor=true&amp;key=AIzaSyCiRALrXFl5vovX0hAkccXXBFh7zP8AOW8"></script>
-    <script src="{{asset('assets/user/assets/js/plugins/jquery.gmap.min.js')}}"></script>
-    <style type="text/css">
-        .datepicker {
-            font-size: 0.875em;
-        }
-        /* solution 2: the original datepicker use 20px so replace with the following:*/
-        
-        .datepicker td, .datepicker th {
-            width: 1.5em;
-            height: 1.5em;
-        }
-        .ui-datepicker-next{
-            padding-left: 15px !important;
-        }
-        
-    </style>
-<script type="text/javascript">
-    $('#datepicker,#datepickers').datepicker({
-        format: "mm/dd/yyyy",
+            <!-- Left Sidebar End -->
+
+            <!-- ============================================================== -->
+            <!-- Start Page Content here -->
+            <!-- ============================================================== -->
+         
+             {{$slot}}
+            <!-- ============================================================== -->
+            <!-- End Page content -->
+            <!-- ============================================================== -->
+
+
+        </div>
+        <!-- END wrapper -->
+
+        @livewireScripts
+        <!-- Vendor -->
+        <script src="{{asset('assets/admin/libs/jquery/jquery.min.js')}}"></script>
+        <script src="{{asset('assets/admin/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+        <script src="{{asset('assets/admin/libs/simplebar/simplebar.min.js')}}"></script>
+        <script src="{{asset('assets/admin/libs/node-waves/waves.min.js')}}"></script>
+        <script src="{{asset('assets/admin/libs/waypoints/lib/jquery.waypoints.min.js')}}"></script>
+        <script src="{{asset('assets/admin/libs/jquery.counterup/jquery.counterup.min.js')}}"></script>
+        <script src="{{asset('assets/admin/libs/feather-icons/feather.min.js')}}"></script>
+
+        <!-- knob plugin -->
+        <script src="{{asset('assets/admin/libs/jquery-knob/jquery.knob.min.js')}}"></script>
+
+        <!--Morris Chart-->
+        <script src="{{asset('assets/admin/libs/morris.js06/morris.min.js')}}"></script>
+        <script src="{{asset('assets/admin/libs/raphael/raphael.min.js')}}"></script>
+  
+        <!-- Dashboar init js-->
+        <script src="{{asset('assets/admin/js/pages/dashboard.init.js')}}"></script>
+
+        <!-- App js-->
+        <script src="{{asset('assets/admin/js/app.min.js')}}"></script>
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+ <script>
+
+           $('#datepicker,#datepickers').datepicker({
         weekStart: 1,
         daysOfWeekHighlighted: "6,0",
         autoclose: true,
         todayHighlight: true,
     });
     $('#datepicker,#datepickers').datepicker("setDate", new Date());
-
-        $('#googleMap').gMap({
-            address: "121 King St,Melbourne, Australia",
-            zoom: 12,
-            maptype: 'ROADMAP',
-            markers: [{
-                address: "Melbourne, Australia",
-                maptype: 'ROADMAP',
-                icon: {
-                    image: "{{asset('assets/user/assets/images/gmap/marker1.png')}}",
-                    iconsize: [52, 75],
-                    iconanchor: [52, 75]
-                }
-            }]
-        });
-
-    </script>
-    <script src="{{asset('assets/user/assets/js/map-custom.js')}}"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    
-   
-</body>
-
+</script>
+    </body>
 </html>

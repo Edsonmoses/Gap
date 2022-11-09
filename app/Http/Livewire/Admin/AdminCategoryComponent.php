@@ -11,7 +11,7 @@ class AdminCategoryComponent extends Component
     use WithPagination;
     public function render()
     {
-        $categories = Category::orderBy('name','ASC')->paginate(20);
-        return view('livewire.admin.admin-category-component',['categories'=>$categories])->layout('layouts.backend');
+        $categories = Category::orderBy('name', 'ASC')->paginate(20);
+        return view('livewire.admin.admin-category-component', ['categories' => $categories])->layout('layouts.backend');
     }
 }

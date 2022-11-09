@@ -42,11 +42,13 @@ class AdminAddPropertyComponent extends Component
     public $exclusive;
     public $postedby;
     public $pin;
+    public $active;
 
     public function mount()
     {
         $this->postedby = Auth::user()->name;
         $this->category_id = '0';
+        $this->active = 'Isactive';
     }
     public function generateslug()
     {
@@ -162,6 +164,7 @@ class AdminAddPropertyComponent extends Component
         $property->postedby = $this->postedby;
         $property->category_id = $this->category_id;
         $property->pin = $this->pin;
+        $property->active = $this->active;
         $property->save();
         session()->flash('message', 'Property has been created successfully!');
         return redirect('/admin/add-property');

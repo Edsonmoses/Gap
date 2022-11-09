@@ -11,7 +11,7 @@ class AdminAgentsComponent extends Component
     use WithPagination;
     public function render()
     {
-        $agents = Agents::orderBy('title','ASC')->paginate(15);
-        return view('livewire.admin.admin-agents-component',['agents'=>$agents])->layout('layouts.base');
+        $agents = Agents::orderBy('title', 'ASC')->paginate(15);
+        return view('livewire.admin.admin-agents-component', ['agents' => $agents])->layout('layouts.backend');
     }
 }

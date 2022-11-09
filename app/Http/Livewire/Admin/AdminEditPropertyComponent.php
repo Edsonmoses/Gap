@@ -46,6 +46,7 @@ class AdminEditPropertyComponent extends Component
     public $pin;
     public $fromDate;
     public $toDate;
+    public $active;
 
     public function mount($slug)
     {
@@ -80,6 +81,7 @@ class AdminEditPropertyComponent extends Component
         $this->pin = $property->toDate;
         $this->postedby = Auth::user()->name;
         $this->category_id = '0';
+        $this->active = $property->active;
     }
     public function generateslug()
     {
@@ -212,6 +214,7 @@ class AdminEditPropertyComponent extends Component
         $property->pin = $this->pin;
         $property->fromDate = $this->fromDate;
         $property->toDate = $this->toDate;
+        $property->active = $this->active;
         $property->save();
         session()->flash('message', 'Property has been updated successfully!');
         return redirect('/admin/add-property');

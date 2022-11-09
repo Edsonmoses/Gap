@@ -40,7 +40,7 @@
                     <h3>Address</h3>
                     <p>Pamstech House 4th Floor</p>
                     <p>Woodvale Grove, Westland, Nairobi</p>
-                    <p>P.O.Box 2497-00606</p>
+                    <p>P.O.Box 7587 - 00100</p>
                 </div>
                 <!-- .contact-panel -->
                 <div class="contact-panel">

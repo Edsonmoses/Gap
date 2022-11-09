@@ -2,12 +2,14 @@
 
 namespace App\Http\Livewire\Admin;
 
+use App\Models\Location;
 use Livewire\Component;
 
 class AdminLocationComponent extends Component
 {
     public function render()
     {
-        return view('livewire.admin.admin-location-component')->layout('layouts.backend');
+        $locations = Location::orderBy('address', 'desc')->paginate(6);
+        return view('livewire.admin.admin-location-component', ['locations' => $locations])->layout('layouts.backend');
     }
 }

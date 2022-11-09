@@ -41,6 +41,7 @@ class CreatePropertiesTable extends Migration
             $table->longText('featured')->default('inexclusive');
             $table->string('exclusive')->default('null');
             $table->string('postedby')->default('postedby');
+            $table->string('active')->default('Isactive');
             $table->string('pin')->nullable();
             $table->string('fromDate')->nullable();
             $table->string('toDate')->nullable();

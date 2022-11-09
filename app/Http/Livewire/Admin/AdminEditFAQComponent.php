@@ -82,6 +82,6 @@ class AdminEditFAQComponent extends Component
     }
     public function render()
     {
-        return view('livewire.admin.admin-edit-f-a-q-component')->layout('layouts.base');
+        return view('livewire.admin.admin-edit-f-a-q-component')->layout('layouts.backend');
     }
 }

@@ -79,6 +79,6 @@ class AdminAddBlogComponent extends Component
 
     public function render()
     {
-        return view('livewire.admin.admin-add-blog-component')->layout('layouts.base');
+        return view('livewire.admin.admin-add-blog-component')->layout('layouts.backend');
     }
 }

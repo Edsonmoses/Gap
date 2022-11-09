@@ -60,6 +60,6 @@ class AdminAddFAQComponent extends Component
 
     public function render()
     {
-        return view('livewire.admin.admin-add-f-a-q-component')->layout('layouts.base');
+        return view('livewire.admin.admin-add-f-a-q-component')->layout('layouts.backend');
     }
 }

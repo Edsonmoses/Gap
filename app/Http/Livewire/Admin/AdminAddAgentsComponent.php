@@ -27,12 +27,12 @@ class AdminAddAgentsComponent extends Component
     public $email;
     public $website;
 
-     public function generateslug()
+    public function generateslug()
     {
         $this->slug = Str::slug($this->title);
     }
 
-   /* public function updated($fields)
+    /* public function updated($fields)
     {
         $this->validateOnly($fields,[
             'title' => 'required',
@@ -54,7 +54,7 @@ class AdminAddAgentsComponent extends Component
 
     public function storeAget()
     {
-       /* $this->validate([
+        /* $this->validate([
             'title' => 'required',
             'slug' => 'required',
             'position' => 'required',
@@ -76,11 +76,11 @@ class AdminAddAgentsComponent extends Component
         $agent->slug = $this->slug;
         $agent->position = $this->position;
         $agent->details = $this->details;
-        $imageName = Carbon::now()->timestamp. '.' . $this->image->extension();
-        $this->image->storeAs('agents/grid',$imageName);
+        $imageName = Carbon::now()->timestamp . '.' . $this->image->extension();
+        $this->image->storeAs('agents/grid', $imageName);
         $agent->image = $imageName;
-         $imgName = Carbon::now()->timestamp. '.' . $this->cover->extension();
-        $this->cover->storeAs('page-title',$imageName);
+        $imgName = Carbon::now()->timestamp . '.' . $this->cover->extension();
+        $this->cover->storeAs('page-title', $imageName);
         $agent->cover = $imgName;
         $agent->property_id = $this->property_id;
         $agent->facebook = $this->facebook;
@@ -92,12 +92,12 @@ class AdminAddAgentsComponent extends Component
         $agent->email = $this->email;
         $agent->website = $this->website;
         $agent->save();
-        session()->flash('message','Agent has been created successfully!');
-         return redirect('/admin/add-agent');
+        session()->flash('message', 'Agent has been created successfully!');
+        return redirect('/admin/add-agent');
     }
 
     public function render()
     {
-        return view('livewire.admin.admin-add-agents-component')->layout('layouts.base');
+        return view('livewire.admin.admin-add-agents-component')->layout('layouts.backend');
     }
 }

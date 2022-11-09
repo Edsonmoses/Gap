@@ -16,6 +16,7 @@ use App\Http\Livewire\Admin\AdminAddTypeComponent;
 use App\Http\Livewire\Admin\AdminAgentsComponent;
 use App\Http\Livewire\Admin\AdminBlogComponent;
 use App\Http\Livewire\Admin\AdminCategoryComponent;
+use App\Http\Livewire\Admin\AdminDashboardComponent;
 use App\Http\Livewire\Admin\AdminEditAgentsComponent;
 use App\Http\Livewire\Admin\AdminEditBlogComponent;
 use App\Http\Livewire\Admin\AdminEditCategoryComponent;
@@ -28,8 +29,10 @@ use App\Http\Livewire\Admin\AdminEditProvideComponent;
 use App\Http\Livewire\Admin\AdminEditResourcesComponet;
 use App\Http\Livewire\Admin\AdminEditStepsComponent;
 use App\Http\Livewire\Admin\AdminEditTitleComponent;
+use App\Http\Livewire\Admin\AdminEditTypeComponent;
 use App\Http\Livewire\Admin\AdminFAQComponent;
 use App\Http\Livewire\Admin\AdminHomeComponent;
+use App\Http\Livewire\Admin\AdminLocationComponent;
 use App\Http\Livewire\Admin\AdminMainSlidersComponent;
 use App\Http\Livewire\Admin\AdminOurCarsComponet;
 use App\Http\Livewire\Admin\AdminPagesComponent;
@@ -40,6 +43,7 @@ use App\Http\Livewire\Admin\AdminResourcesComponet;
 use App\Http\Livewire\Admin\AdminSliderComponent;
 use App\Http\Livewire\Admin\AdminStepsComponent;
 use App\Http\Livewire\Admin\AdminTitleComponent;
+use App\Http\Livewire\Admin\AdminTypeComponent;
 use App\Http\Livewire\Pages\AboutComponent;
 use App\Http\Livewire\Pages\AgencyComponent;
 use App\Http\Livewire\Pages\AgencyProfileComponent;
@@ -137,9 +141,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
 //For Admin
 Route::middleware(['auth:sanctum', 'verified', 'authadmin'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', AdminDashboardComponent::class)->name('dashboard');
     //For Setting
     Route::get('/admin/home', AdminHomeComponent::class)->name('admin.home');
     //For Category
@@ -149,13 +151,17 @@ Route::middleware(['auth:sanctum', 'verified', 'authadmin'])->group(function () 
     //For Features
     Route::get('/admin/add-features', AdminAddFeaturesComponent::class)->name('admin.addfeatures');
     //For Location
+    Route::get('/admin/locations', AdminLocationComponent::class)->name('admin.locations');
     Route::get('/admin/add-location', AdminAddLocationComponent::class)->name('admin.addlocation');
+    Route::get('/admin/edit-location/{country}', AdminEditPropertyComponent::class)->name('admin.editlocation');
     //For Properties
     Route::get('/admin/properties', AdminPropertyComponent::class)->name('admin.properties');
     Route::get('/admin/add-property', AdminAddPropertyComponent::class)->name('admin.addproperty');
     Route::get('/admin/edit-property/{slug}', AdminEditPropertyComponent::class)->name('admin.editproperty');
     Route::get('/admin/add-slider', AdminMainSlidersComponent::class)->name('admin.addslider');
+    Route::get('/admin/types', AdminTypeComponent::class)->name('admin.type');
     Route::get('/admin/add-type', AdminAddTypeComponent::class)->name('admin.addtype');
+    Route::get('/admin/edit-type/{slug}', AdminEditTypeComponent::class)->name('admin.edittype');
     //Pages
     Route::get('/admin/pages', AdminPagesComponent::class)->name('admin.pages');
     Route::get('/admin/add-page', AdminAddPagesComponent::class)->name('admin.addpage');

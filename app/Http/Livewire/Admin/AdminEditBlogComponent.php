@@ -3,10 +3,10 @@
 namespace App\Http\Livewire\Admin;
 
 use Carbon\Carbon;
+use App\Models\Blog;
 use Livewire\Component;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
-use Google\Service\Blogger\Blog;
 use Illuminate\Support\Facades\Auth;
 
 class AdminEditBlogComponent extends Component
@@ -99,6 +99,6 @@ class AdminEditBlogComponent extends Component
     }
     public function render()
     {
-        return view('livewire.admin.admin-edit-blog-component')->layout('layouts.base');
+        return view('livewire.admin.admin-edit-blog-component')->layout('layouts.backend');
     }
 }

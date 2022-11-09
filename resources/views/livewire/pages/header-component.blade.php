@@ -62,7 +62,7 @@
                             <li class="has-dropdown">
                                 <a href="#" data-toggle="dropdown" class="dropdown-toggle menu-item"><i class="fa fa-user" aria-hidden="true"></i> ({{ Auth::user()->name }})</a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#" title="Dashboard">Dashboard</a></li>
+                                    <li><a href="/dashboard" title="Dashboard">Dashboard</a></li>
                                      <!-- Profile Menu-->
                                      <li><a href="/admin/properties">Properties</a></li>
                                     <li><a href="/admin/add-slider">Add slider</a></li>

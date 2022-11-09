@@ -17,6 +17,6 @@ class AdminFAQComponent extends Component
     public function render()
     {
         $faqs = Faqs::all();
-        return view('livewire.admin.admin-f-a-q-component', ['faqs' => $faqs])->layout('layouts.base');
+        return view('livewire.admin.admin-f-a-q-component', ['faqs' => $faqs])->layout('layouts.backend');
     }
 }
