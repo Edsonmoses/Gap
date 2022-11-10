@@ -11,7 +11,7 @@ class AdminTypeComponent extends Component
     use WithPagination;
     public function render()
     {
-        $types = Type::orderBy('name', 'ASC')->paginate(6);
+        $types = Type::orderBy('created_at', 'desc')->latest()->paginate(6);
         return view('livewire.admin.admin-type-component', ['types' => $types])->layout('layouts.backend');
     }
 }

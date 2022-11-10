@@ -57,7 +57,7 @@ class IndexComponent extends Component
     public function render()
     {
         $homes = Home::where('isActive', 'active')->get();
-        $lproperties = Property::with('locations')->orderBy('name', 'ASC');
+        $lproperties = Property::with('locations')->orderBy('created_at', 'desc')->latest();
         return view('livewire.pages.index-component', ['homes' => $homes, 'lproperties' => $lproperties])->layout('layouts.base');
     }
 }

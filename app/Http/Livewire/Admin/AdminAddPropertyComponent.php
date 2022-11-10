@@ -2,16 +2,17 @@
 
 namespace App\Http\Livewire\Admin;
 
+use Carbon\Carbon;
+use App\Models\Type;
+use App\Models\Agents;
+use Livewire\Component;
 use App\Models\Category;
 use App\Models\Features;
 use App\Models\Location;
 use App\Models\Property;
-use App\Models\Type;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
-use Livewire\Component;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Auth;
 
 class AdminAddPropertyComponent extends Component
 {
@@ -43,12 +44,15 @@ class AdminAddPropertyComponent extends Component
     public $postedby;
     public $pin;
     public $active;
+    public $agent_id;
 
     public function mount()
     {
         $this->postedby = Auth::user()->name;
         $this->category_id = '0';
         $this->active = 'Isactive';
+        $this->exclusive = 'inexclusive';
+        $this->agent_id = '0';
     }
     public function generateslug()
     {
@@ -165,6 +169,7 @@ class AdminAddPropertyComponent extends Component
         $property->category_id = $this->category_id;
         $property->pin = $this->pin;
         $property->active = $this->active;
+        $property->agent_id = $this->agent_id;
         $property->save();
         session()->flash('message', 'Property has been created successfully!');
         return redirect('/admin/add-property');
@@ -176,6 +181,7 @@ class AdminAddPropertyComponent extends Component
         $ptype = Type::all();
         $featureds = Features::all();
         $category = Category::all();
-        return view('livewire.admin.admin-add-property-component', ['Locations' => $Locations, 'ptype' => $ptype, 'featureds' => $featureds, 'category' => $category])->layout('layouts.backend');
+        $pagents = Agents::all();
+        return view('livewire.admin.admin-add-property-component', ['Locations' => $Locations, 'ptype' => $ptype, 'featureds' => $featureds, 'category' => $category, 'pagents' => $pagents])->layout('layouts.backend');
     }
 }

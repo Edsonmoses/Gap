@@ -20,7 +20,7 @@
                     <div class="agent--img">
                         <img src="{{asset('assets/user/assets/images/agents/grid')}}/{{ $agent->image }}" alt="agent" />
                         <div class="agent--details">
-                            <p>{{ $agent->details }}</p>
+                            <p>{{ Str::limit($agent->details, 550) }}</p>
                             <div class="agent--social-links">
                                 <a href="{{ $agent->facebook }}"><i class="fa fa-facebook"></i></a>
                                 <a href="{{ $agent->twitter }}"><i class="fa fa-twitter"></i></a>

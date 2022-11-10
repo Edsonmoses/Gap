@@ -9,7 +9,7 @@ class AdminLocationComponent extends Component
 {
     public function render()
     {
-        $locations = Location::orderBy('address', 'desc')->paginate(6);
+        $locations = Location::orderBy('created_at', 'desc')->latest()->paginate(6);
         return view('livewire.admin.admin-location-component', ['locations' => $locations])->layout('layouts.backend');
     }
 }

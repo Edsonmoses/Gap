@@ -9,7 +9,7 @@ class PropertiesGridComponent extends Component
 {
     public function render()
     {
-        $lproperties = Property::orderBy('name', 'ASC')->where('exclusive', '=', 'inexclusive')->paginate(6);
+        $lproperties = Property::orderBy('created_at', 'desc')->latest()->where('exclusive', '=', 'inexclusive')->paginate(6);
         $sale = Property::where('status', 'sale')->where('exclusive', '=', 'inexclusive')->count();
         $rent = Property::where('status', 'rent')->where('exclusive', '=', 'inexclusive')->count();
         $Featured = Property::orderBy('name', 'ASC')->where('exclusive', '=', 'inexclusive')->inRandomOrder()->paginate(6);

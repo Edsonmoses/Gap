@@ -18,7 +18,7 @@ class AdminBlogComponent extends Component
     }
     public function render()
     {
-        $posts = Blog::orderBy('name', 'ASC')->paginate(15);
+        $posts = Blog::orderBy('created_at', 'desc')->latest()->paginate(15);
         return view('livewire.admin.admin-blog-component', ['posts' => $posts])->layout('layouts.backend');
     }
 }

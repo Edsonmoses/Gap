@@ -225,7 +225,7 @@ class AdminResourcesComponet extends Component
     }
     public function render()
     {
-        $this->resources = Resources::orderBy('name')->get();
+        $this->resources = Resources::orderBy('created_at', 'desc')->latest()->get();
         return view('livewire.admin.admin-resources-componet')->layout('layouts.backend');
     }
 }

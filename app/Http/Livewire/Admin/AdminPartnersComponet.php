@@ -232,7 +232,7 @@ class AdminPartnersComponet extends Component
 
     public function render()
     {
-        $this->partners = Partners::orderBy('name')->get();
+        $this->partners = Partners::orderBy('created_at', 'desc')->latest()->get();
         return view('livewire.admin.admin-partners-componet')->layout('layouts.backend');
     }
 }

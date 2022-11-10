@@ -14,7 +14,7 @@ class AirBnbDetailComponent extends Component
     }
     public function render()
     {
-        $airbnb = Property::where('slug', $this->slug)->orderBy('name', 'ASC')->first();
+        $airbnb = Property::where('slug', $this->slug)->orderBy('created_at', 'desc')->latest()->first();
         return view('livewire.pages.air-bnb-detail-component', ['airbnb' => $airbnb])->layout('layouts.base');
     }
 }

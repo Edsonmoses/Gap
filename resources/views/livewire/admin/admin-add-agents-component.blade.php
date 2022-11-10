@@ -17,7 +17,7 @@
                                          @if (Session::has('message'))
                                         <div class="alert alert-success" role="alert">{{ Session::get('message') }}</div>
                                         @endif
-                                        <form class="mb-0" wire:ignore.self>
+                                        <form class="mb-0" wire:ignore.self id="addd-content-form">
                                             <div class="form-box">
                                                 <div class="row">
                                                     <!-- .col-md-12 end -->
@@ -141,24 +141,11 @@
                                                         </div>
                                                     </div>
                                                     <!-- .col-md-4 end -->
-                                                    <div class="col-xs-12 col-sm-4 col-md-4 mb-2">
-                                                        <div class="form-group">
-                                                            <label for="select-status">Property</label>
-                                                            <div class="select--box">
-                                                                <select class="form-select" id="select-status" wire:model="property_id">
-                                                                    <option value="sale">Assign property</option>
-                                                                    <option value="1">Approved</option>
-                                                                    <option value="0">Pending</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- .col-md-4 end -->
                                                 </div>
                                                 <!-- .row end -->
                                             </div>
                                             <!-- .form-box end -->
-                                            <input type="submit" value="Save Agent" name="submit" wire:click.prevent="storeAget()" class="btn btn-info rounded-pill waves-effect waves-light">
+                                            <input type="submit" id="SubmitBtn" value="Save Agent" name="submit" wire:click.prevent="storeAget()" class="btn btn-info rounded-pill waves-effect waves-light">
                                          </form>
                                         <!--end form-->
                                     </div> 
@@ -192,3 +179,39 @@
                 <!-- end Footer -->
 
             </div>
+            @section('scripts')
+    <script type="text/javascript">
+    alert('tinymce')
+        tinymce.init({
+            selector: 'textarea#details',
+            height: 600
+        });
+
+        $(document).ready(function() {
+
+            var formId = '#addd-content-form';
+
+            $(formId).on('submit', function(e) {
+                e.preventDefault();
+
+                var data = $(formId).serializeArray();
+                data.push({name: 'details', value: tinyMCE.get('details').getContent()});
+
+                $.ajax({
+                    type: 'POST',
+                    url: $(formId).attr('data-action'),
+                    data: data,
+                    success: function (response, textStatus, xhr) {
+                        window.location=response.redirectTo;
+                    },
+                    complete: function (xhr) {
+
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        var response = XMLHttpRequest;
+
+                    }
+                }); 
+            });
+        });
+    </script>

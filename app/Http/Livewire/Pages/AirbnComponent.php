@@ -9,7 +9,7 @@ class AirbnComponent extends Component
 {
     public function render()
     {
-        $airbnb = Property::where('category_id', '=', '4')->get();
+        $airbnb = Property::where('category_id', '=', '4')->orderBy('created_at', 'desc')->latest()->get();
         return view('livewire.pages.airbn-component', ['airbnb' => $airbnb])->layout('layouts.base');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin;
 
+use App\Models\Agents;
 use Carbon\Carbon;
 use App\Models\Type;
 use Livewire\Component;
@@ -47,6 +48,7 @@ class AdminEditPropertyComponent extends Component
     public $fromDate;
     public $toDate;
     public $active;
+    public $agent_id;
 
     public function mount($slug)
     {
@@ -80,8 +82,9 @@ class AdminEditPropertyComponent extends Component
         $this->pin = $property->fromDate;
         $this->pin = $property->toDate;
         $this->postedby = Auth::user()->name;
-        $this->category_id = '0';
+        $this->category_id = $property->category_id;
         $this->active = $property->active;
+        $this->agent_id = $property->agent_id;
     }
     public function generateslug()
     {
@@ -215,6 +218,7 @@ class AdminEditPropertyComponent extends Component
         $property->fromDate = $this->fromDate;
         $property->toDate = $this->toDate;
         $property->active = $this->active;
+        $property->agent_id = $this->agent_id;
         $property->save();
         session()->flash('message', 'Property has been updated successfully!');
         return redirect('/admin/add-property');
@@ -225,6 +229,7 @@ class AdminEditPropertyComponent extends Component
         $ptype = Type::all();
         $featureds = Features::all();
         $category = Category::all();
-        return view('livewire.admin.admin-edit-property-component', ['Locations' => $Locations, 'ptype' => $ptype, 'featureds' => $featureds, 'category' => $category])->layout('layouts.backend');
+        $pagents = Agents::all();
+        return view('livewire.admin.admin-edit-property-component', ['Locations' => $Locations, 'ptype' => $ptype, 'featureds' => $featureds, 'category' => $category, 'pagents' => $pagents])->layout('layouts.backend');
     }
 }

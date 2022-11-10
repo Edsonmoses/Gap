@@ -11,7 +11,7 @@ class FAQComponent extends Component
     public function render()
     {
         $faqs = Faqs::all();
-        $pagetitle = Pagetitle::where('hide', '=', 'Active')->get();
+        $pagetitle = Pagetitle::where('hide', '=', 'Active')->orderBy('created_at', 'desc')->latest()->get();
         return view('livewire.pages.f-a-q-component', ['pagetitle' => $pagetitle, 'faqs' => $faqs])->layout('layouts.base');
     }
 }

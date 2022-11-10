@@ -32,7 +32,7 @@ class AdminPropertyComponent extends Component
 
     public function render()
     {
-        $properties = Property::orderBy('name', 'ASC')->paginate(20);
+        $properties = Property::orderBy('created_at', 'desc')->latest()->paginate(20);
         return view('livewire.admin.admin-property-component', ['properties' => $properties])->layout('layouts.backend');
     }
 }

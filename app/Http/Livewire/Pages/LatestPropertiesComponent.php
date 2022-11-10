@@ -10,12 +10,12 @@ use App\Models\Pagetitle;
 
 class LatestPropertiesComponent extends Component
 {
-     public $slug;
+    public $slug;
     public function render()
     {
-        $lproperties= Property::orderBy('name','ASC')->paginate(20);
-        $plocations= Location::all();
-        $pagetitle = Pagetitle::where('hide','=','Active')->get();
-        return view('livewire.pages.latest-properties-component',['lproperties'=>$lproperties,'plocations'=>$plocations,'pagetitle'=>$pagetitle]);
+        $lproperties = Property::orderBy('created_at', 'desc')->latest()->paginate(20);
+        $plocations = Location::all();
+        $pagetitle = Pagetitle::where('hide', '=', 'Active')->get();
+        return view('livewire.pages.latest-properties-component', ['lproperties' => $lproperties, 'plocations' => $plocations, 'pagetitle' => $pagetitle]);
     }
 }

@@ -9,7 +9,7 @@ class PropertieSlistComponent extends Component
 {
     public function render()
     {
-        $lproperties= Property::orderBy('name','ASC')->paginate(20);
-        return view('livewire.pages.propertie-slist-component',['lproperties'=>$lproperties])->layout('layouts.base');
+        $lproperties = Property::orderBy('created_at', 'desc')->latest()->paginate(20);
+        return view('livewire.pages.propertie-slist-component', ['lproperties' => $lproperties])->layout('layouts.base');
     }
 }

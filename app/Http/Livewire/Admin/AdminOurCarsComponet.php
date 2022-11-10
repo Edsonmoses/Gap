@@ -237,7 +237,7 @@ class AdminOurCarsComponet extends Component
 
     public function render()
     {
-        $this->cars = Cars::orderBy('name')->get();
+        $this->cars = Cars::orderBy('created_at', 'desc')->latest()->get();
         return view('livewire.admin.admin-our-cars-componet')->layout('layouts.backend');
     }
 }

@@ -21,6 +21,8 @@
 
         <!-- icons -->
         <link href="{{asset('assets/admin/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
+    
+
         @livewireStyles
         @include('sweetalert::alert')
         @php
@@ -298,6 +300,7 @@
         @livewireScripts
         <!-- Vendor -->
         <script src="{{asset('assets/admin/libs/jquery/jquery.min.js')}}"></script>
+         <script src="{{asset('assets/tinymce/js/tinymce.min.js')}}"></script>
         <script src="{{asset('assets/admin/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
         <script src="{{asset('assets/admin/libs/simplebar/simplebar.min.js')}}"></script>
         <script src="{{asset('assets/admin/libs/node-waves/waves.min.js')}}"></script>

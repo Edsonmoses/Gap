@@ -9,7 +9,7 @@ class BlogComponent extends Component
 {
     public function render()
     {
-        $posts = Blog::where('status', '=', 'approved')->get();
+        $posts = Blog::where('status', '=', 'approved')->orderBy('created_at', 'desc')->latest()->get();
         return view('livewire.pages.blog-component', ['posts' => $posts])->layout('layouts.base');
     }
 }

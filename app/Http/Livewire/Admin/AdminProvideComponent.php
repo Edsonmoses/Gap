@@ -8,10 +8,10 @@ use Livewire\WithPagination;
 
 class AdminProvideComponent extends Component
 {
-     use WithPagination;
+    use WithPagination;
     public function render()
     {
-        $pages = Page::where('category_id','=',3)->orderBy('name','ASC')->paginate(20);
-        return view('livewire.admin.admin-provide-component',['pages'=>$pages])->layout('layouts.backend');
+        $pages = Page::where('category_id', '=', 3)->orderBy('created_at', 'desc')->latest()->paginate(20);
+        return view('livewire.admin.admin-provide-component', ['pages' => $pages])->layout('layouts.backend');
     }
 }

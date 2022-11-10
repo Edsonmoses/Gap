@@ -133,80 +133,6 @@
             <div class="col-xs-12 col-sm-12 col-md-4">
                 <!-- widget property type
 =============================-->
-                {{--<div class="widget widget-property">
-                    <div class="widget--title">
-                        <h5>Property Type</h5>
-                    </div>
-                    <div class="widget--content">
-                        <ul class="list-unstyled mb-0">
-                            <li>
-                                <a href="#">Apartments <span>(13)</span></a>
-                            </li>
-                            <li>
-                                <a href="#">Houses <span>(8)</span></a>
-                            </li>
-                            <li>
-                                <a href="#">Offices <span>(3)</span></a>
-                            </li>
-                            <li>
-                                <a href="#">Villas <span>(4)</span></a>
-                            </li>
-                            <li>
-                                <a href="#">Land <span>(2)</span></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- . widget property type end -->
-
-                <!-- widget property status
-=============================-->
-                <div class="widget widget-property">
-                    <div class="widget--title">
-                        <h5>Property Status</h5>
-                    </div>
-                    <div class="widget--content">
-                        <ul class="list-unstyled mb-0">
-                            <li>
-                                <a href="#">For Rent <span>({{ $rent }})</span></a>
-                            </li>
-                            <li>
-                                <a href="#">For Sale <span>({{ $sale }})</span></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- . widget property status end -->
-
-
-                <!-- widget property city
-=============================-->
-                <div class="widget widget-property">
-                    <div class="widget--title">
-                        <h5>Property By City</h5>
-                    </div>
-                    <div class="widget--content">
-                        <ul class="list-unstyled mb-0">
-                            <li>
-                                <a href="#">London <span>(5)</span></a>
-                            </li>
-                            <li>
-                                <a href="#">Sydney <span>(10)</span></a>
-                            </li>
-                            <li>
-                                <a href="#">New York <span>(4)</span></a>
-                            </li>
-                            <li>
-                                <a href="#">Paris <span>(7)</span></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- . widget property city end -->
-
---}}
-                <!-- widget featured property
-=============================-->
                 <div class="widget widget-featured-property">
                     <div class="widget--title">
                         <h5>Featured Properties</h5>
@@ -224,7 +150,11 @@
                                             @if (!empty($image[1]))
                                     <img src="{{asset('assets/user/assets/images/properties')}}/{{ $image[1] }}" alt="property -{{ $pfeatured->name }}" class="img-responsive">
                                      @endif
+                                    @if ($pfeatured->status == 'sale')
                                        <span class="property--status">For Sale</span>
+                                    @else
+                                        <span class="property--status">For Rent</span>
+                                    @endif
                                 </div>
                                 </a>
                                 <div class="property--content">
@@ -295,7 +225,7 @@
                                     @endif
                                 </div>
                                 <div class="property--content">
-                                    <div class="property--info">
+                                    <div class="property--info" style="height: 150px;">
                                         <h5 class="property--title"><a href="{{ route('single_gallery',['slug'=>$lproperty->slug]) }}">{{ $lproperty->name }}</a></h5>
                                         <p class="property--location">{{ $lproperty->locations}}</p>
                                         <p class="property--price">Ksh {{ $lproperty->SRprice }}</p>
