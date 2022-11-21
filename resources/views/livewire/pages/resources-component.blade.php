@@ -8,11 +8,11 @@
                 <div class="title title-1 text-center">
                     <div class="title--content">
                         <div class="title--heading">
-                            <h1>Blog Right Sidebar</h1>
+                            <h1>Important Resources</h1>
                         </div>
                         <ol class="breadcrumb">
-                            <li><a href="#">Home</a></li>
-                            <li class="active">Blog</li>
+                            <li><a href="/">Home</a></li>
+                            <li class="active">Resources</li>
                         </ol>
                     </div>
                     <div class="clearfix"></div>
@@ -40,64 +40,24 @@
                     <div class="widget--content">
                         <div class="row">
                         <!-- entry #1 -->
-                        <div class="entry col-xs-12 col-sm-12 col-md-4">
-                            <a href="property-single-gallery.html">
-    <img src="{{asset('assets/user/assets/icons/icons8-pdf-50.png')}}" alt="thumb" />
-    </a>
+                        @forelse ($resources as $resource)
+                            <div class="entry col-xs-12 col-sm-12 col-md-4">
+                            <a href="{{ asset('assets/user/assets/images/resources') }}/{{ $resource->pdf }}" download="{{ $resource->name }}">
+                                <img src="{{asset('assets/user/assets/icons/icons8-pdf-50.png')}}" alt="thumb" />
+                            </a>
                             <div class="entry-desc">
                                 <div class="entry-title">
-                                    <a href="#">Laikipia rural economy</a>
+                                    <a href="{{ asset('assets/user/assets/images/resources') }}/{{ $resource->pdf }}" download="{{ $resource->name }}">{{ $resource->name }}</a>
                                 </div>
                                 <div class="entry-meta">
-                                    <a href="#">View Pdf</a>
+                                    <a href="{{ asset('assets/user/assets/images/resources') }}/{{ $resource->pdf }}"download="{{ $resource->name }}">View Pdf</a>
                                 </div>
                             </div>
                         </div>
-                        <!-- .recent-entry end -->
-                        <!-- entry #2 -->
-                        <div class="entry col-xs-12 col-sm-12 col-md-4">
-                            <a href="property-single-gallery.html">
-    <img src="{{asset('assets/user/assets/icons/icons8-pdf-50.png')}}" alt="thumb" />
-    </a>
-                            <div class="entry-desc">
-                                <div class="entry-title">
-                                    <a href="#">3 Key Tips For Selling a Home</a>
-                                </div>
-                                <div class="entry-meta">
-                                    <a href="#">View Pdf</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- .recent-entry end -->
-                        <!-- entry #3 -->
-                        <div class="entry col-xs-12 col-sm-12 col-md-4">
-                            <a href="property-single-gallery.html">
-    <img src="{{asset('assets/user/assets/icons/icons8-pdf-50.png')}}" alt="thumb" />
-    </a>
-                            <div class="entry-desc">
-                                <div class="entry-title">
-                                    <a href="#">Creating a Capitve Audience</a>
-                                </div>
-                                <div class="entry-meta">
-                                    <a href="#">View Pdf</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- .recent-entry end -->
-                        <!-- entry #4 -->
-                        <div class="entry col-xs-12 col-sm-12 col-md-4">
-                            <a href="property-single-gallery.html">
-    <img src="{{asset('assets/user/assets/icons/icons8-pdf-50.png')}}" alt="thumb" />
-    </a>
-                            <div class="entry-desc">
-                                <div class="entry-title">
-                                    <a href="#">Real Estate Email Marketing</a>
-                                </div>
-                                <div class="entry-meta">
-                                    <a href="#">View Pdf</a>
-                                </div>
-                            </div>
-                        </div>
+                        @empty
+                            <h1>no resources found!</h1>
+                        @endforelse
+                        
                         <!-- .recent-entry end -->
                         </div>
                         <!-- .row end -->

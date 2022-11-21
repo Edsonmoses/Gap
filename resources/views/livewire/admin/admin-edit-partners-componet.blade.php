@@ -11,7 +11,7 @@
     
                                        <div class="button-list mb-2" style="float: right !important">
                                              <a href="/admin/partners" type="button" class="btn btn-outline-primary waves-effect waves-light">All Partners</a>
-                                            <a href="/admin/add-partners" type="button" class="btn btn-outline-success waves-effect waves-light">Add Partner</a>
+                                            <a href="/admin/partners" type="button" class="btn btn-outline-success waves-effect waves-light">Add Partner</a>
                                         </div>
                                         <div class="clearfix"></div>
                                          @if (Session::has('message'))
@@ -43,7 +43,7 @@
                                                                 @if($newimage)
                                                                 <img src="{{ $newimage->temporaryUrl() }}" width="120" />
                                                                 @else
-                                                                <img src="{{asset('assets/user/images/partners')}}/{{ $image }}" width="120" />
+                                                                <img src="{{asset('assets/user/assets/images/partners')}}/{{ $image }}" width="120" />
                                                                 @endif
                                                             </div>
                                                         </div>
@@ -54,7 +54,7 @@
                                                                 @if($newcoverimg)
                                                                 <img src="{{ $newcoverimg->temporaryUrl() }}" width="120" />
                                                                 @else
-                                                                <img src="{{asset('assets/user/images/partners')}}/{{ $coverimg }}" width="120" />
+                                                                <img src="{{asset('assets/user/assets/images/partners')}}/{{ $coverimg }}" width="120" />
                                                                 @endif
                                                             </div>
                                                         </div>

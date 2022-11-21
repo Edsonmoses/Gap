@@ -81,7 +81,9 @@
                                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                                         <div class="form-group">
                                                             <label for="details">Details</label>
+                                                            <div wire:ignore>
                                                             <textarea class="form-control" name="details" id="details" rows="2" wire:model="details"></textarea>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <!-- .col-md-12 end -->
@@ -179,39 +181,26 @@
                 <!-- end Footer -->
 
             </div>
-            @section('scripts')
-    <script type="text/javascript">
-    alert('tinymce')
-        tinymce.init({
-            selector: 'textarea#details',
-            height: 600
-        });
-
-        $(document).ready(function() {
-
-            var formId = '#addd-content-form';
-
-            $(formId).on('submit', function(e) {
-                e.preventDefault();
-
-                var data = $(formId).serializeArray();
-                data.push({name: 'details', value: tinyMCE.get('details').getContent()});
-
-                $.ajax({
-                    type: 'POST',
-                    url: $(formId).attr('data-action'),
-                    data: data,
-                    success: function (response, textStatus, xhr) {
-                        window.location=response.redirectTo;
-                    },
-                    complete: function (xhr) {
-
-                    },
-                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        var response = XMLHttpRequest;
-
-                    }
-                }); 
-            });
+            @push('scripts')
+    <script>
+        $('#details').summernote({
+            placeholder: 'Enter details',
+            height: 300,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ],
+            callbacks: {
+                onChange: function(contents, $editable) {
+                    @this.set('details', contents);
+                }
+            }
         });
     </script>
+@endpush
+           

@@ -36,14 +36,14 @@
                             <li>
                                 <a href="/airbnb">airbnb</a>
                             </li>
-                            <li>
+                           <!-- <li>
                                 <a href="/our-cars">our cars</a>
-                            </li>
+                            </li>-->
                         </ul>
                         </li>
                     <!-- li end -->
                     <!-- Properties Menu-->
-                     <li><a href="/properties">properties</a></li>
+                     <!--<li><a href="/properties">properties</a></li>-->
                       <li><a href="/partners">partners</a></li>
                        <li><a href="/resources">resources</a></li>
                      @if (Auth::check())

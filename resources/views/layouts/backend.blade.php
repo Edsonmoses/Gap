@@ -10,7 +10,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <!-- App favicon -->
         <link rel="shortcut icon" href="{{asset('assets/admin/images/favicon.png')}}">
-
+{{-- Summernote --}}
+         <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
         <!-- App css -->
         <link href="{{asset('assets/admin/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" id="bs-default-stylesheet" />
         <link href="{{asset('assets/admin/css/app.min.css')}}" rel="stylesheet" type="text/css" id="app-default-stylesheet" />
@@ -22,7 +23,7 @@
         <!-- icons -->
         <link href="{{asset('assets/admin/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
     
-
+        
         @livewireStyles
         @include('sweetalert::alert')
         @php
@@ -300,7 +301,8 @@
         @livewireScripts
         <!-- Vendor -->
         <script src="{{asset('assets/admin/libs/jquery/jquery.min.js')}}"></script>
-         <script src="{{asset('assets/tinymce/js/tinymce.min.js')}}"></script>
+           {{-- Summernote --}}
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
         <script src="{{asset('assets/admin/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
         <script src="{{asset('assets/admin/libs/simplebar/simplebar.min.js')}}"></script>
         <script src="{{asset('assets/admin/libs/node-waves/waves.min.js')}}"></script>
@@ -321,6 +323,7 @@
         <!-- App js-->
         <script src="{{asset('assets/admin/js/app.min.js')}}"></script>
          <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+
  <script>
 
            $('#datepicker,#datepickers').datepicker({

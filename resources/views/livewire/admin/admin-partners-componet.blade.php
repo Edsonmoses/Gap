@@ -45,7 +45,7 @@
                                                     @foreach ($partners as $partner)
                                                     <tr>
                                                         <td>{{$partner->id}}</td>
-                                                        <td><img src="{{asset('assets/user/images/partners')}}/{{ $partner->image }}" width="60" /></td>
+                                                        <td><img src="{{asset('assets/user/assets/images/partners')}}/{{ $partner->image }}" width="60" /></td>
                                                         <td>{{$partner->name}}</td>
                                                         <td>{{$partner->category_id}}</td>
                                                         <td>{{$partner->created_at}}</td>

@@ -22,6 +22,15 @@
 <!-- Footer #1
 ============================================= -->
 <footer id="footer" class="footer footer-1 bg-white">
+    <div class="container e-logos">
+         <section class="customer-logos slider">
+             @forelse ($logos as $logo )
+            <div class="slide"><img src="{{asset('assets/user/assets/images/partners')}}/{{ $logo->image }}" alt="{{ $logo->name }}"/></div>
+            @empty
+                <h1>no partners found !</h1>
+            @endforelse
+        </section>
+    </div>
     <!-- Widget Section
 ============================================= -->
     <div class="footer-widget">

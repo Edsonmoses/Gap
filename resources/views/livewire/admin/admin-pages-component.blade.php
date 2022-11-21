@@ -30,7 +30,13 @@
                             @foreach ($pages as $page)
                             <tr>
                                 <td>{{$page->id}}</td>
-                                <td><img src="{{ asset('assets/user/assets/images/pages') }}/{{ $page->image }}" width="60" /></td>
+                                <td>
+                                    @if ($page->image)
+                                        <img src="{{ asset('assets/user/assets/images/pages') }}/{{ $page->image }}" width="60" />
+                                    @else
+                                      <img src="{{ asset('assets/user/assets/images/pages') }}/{{ $page->icon }}" width="60" />
+                                    @endif
+                                </td>
                                 <td>{{$page->name}}</td>
                                 <td>{{$page->category_id}}</td>
                                 <td>{{$page->created_at}}</td>
